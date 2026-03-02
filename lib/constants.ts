@@ -3,12 +3,12 @@ import { z } from 'zod'
 // ─── Navigation ─────────────────────────────────────────────────────────────
 
 export const NAV_LINKS = [
-  { label: 'Leistungen', href: '#leistungen' },
-  { label: 'Preise', href: '#preise' },
-  { label: 'Prozess', href: '#prozess' },
-  { label: 'About', href: '#about' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Kontakt', href: '#kontakt' },
+  { label: 'Leistungen', href: '/leistungen' },
+  { label: 'Preise', href: '/#preise' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'About', href: '/about' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ] as const
 
 export const NAV_CTA = 'Projekt starten →'
@@ -50,6 +50,9 @@ export const MARQUEE_ITEMS: MarqueeItem[] = [
   { label: 'Tailwind CSS', wp: false },
   { label: 'MongoDB', wp: false },
   { label: 'Stripe', wp: false },
+  { label: 'Google', wp: false },
+  { label: 'GitHub', wp: false },
+  { label: 'Docker', wp: false },
 ]
 
 // ─── Services ─────────────────────────────────────────────────────────────────
@@ -393,17 +396,138 @@ export type ContactFormData = z.infer<typeof contactSchema>
 
 export const FOOTER = {
   tagline: 'Professionelle Webentwicklung · Leipzig, DE',
-  copyright: '© 2025 DevOS Web · Leipzig · info@devos-web.de',
+  copyright: '© 2026 DevOS Web · Leipzig · info@devos-web.de',
   vatNote: 'Alle Preise zzgl. gesetzlicher MwSt.',
   links: [
-    { label: 'Leistungen', href: '#leistungen' },
-    { label: 'Preise', href: '#preise' },
-    { label: 'Prozess', href: '#prozess' },
-    { label: 'FAQ', href: '#faq' },
-    { label: 'Kontakt', href: '#kontakt' },
+    { label: 'Leistungen', href: '/leistungen' },
+    { label: 'Preise', href: '/#preise' },
+    { label: 'Portfolio', href: '/portfolio' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Kontakt', href: '/#kontakt' },
   ],
   legal: [
     { label: 'Impressum', href: '/impressum' },
     { label: 'Datenschutz', href: '/datenschutz' },
   ],
+} as const
+
+// ─── Newsletter ────────────────────────────────────────────────────────────────
+
+export const NEWSLETTER = {
+  label: 'KOSTENLOSES PDF',
+  title: '10 Tipps für Ihre Website',
+  description: 'Tragen Sie sich ein und erhalten Sie sofort Ihr kostenloses PDF — direkt in Ihr Postfach.',
+  placeholder: 'ihre@email.de',
+  submit: 'PDF erhalten →',
+  successMessage: '✓ Danke! Das PDF ist auf dem Weg zu Ihnen.',
+  errorMessage: 'Fehler. Bitte versuchen Sie es erneut.',
+} as const
+
+// ─── Leistungen Page ──────────────────────────────────────────────────────────
+
+export const LEISTUNGEN_PAGE = {
+  hero: {
+    label: 'LEISTUNGEN',
+    h1: 'Was ich für Sie entwickle',
+    subtitle: 'Von WordPress bis Full-Stack — klare Lösungen, keine Überraschungen.',
+  },
+  wordpress: {
+    label: 'WORDPRESS',
+    h2: 'WordPress-Websites',
+    description: 'Professionelle, editierbare Websites mit Divi. Ideal für Unternehmen, die online wachsen wollen.',
+    plans: [
+      {
+        name: 'WP Base',
+        price: 'ab 700 EUR',
+        features: ['WordPress + Divi', 'Bis 5 Seiten', 'Responsives Design', 'Kontaktformular', 'SSL'],
+      },
+      {
+        name: 'WP Premium',
+        price: 'ab 900 EUR',
+        features: ['Alles aus WP Base', 'Individuelles Design', 'Farbpalette + Typografie', 'Amelia Buchungen'],
+        featured: true,
+      },
+      {
+        name: 'WP Pro',
+        price: 'ab 1.500 EUR',
+        features: ['Alles aus WP Premium', 'Google Calendar', 'Zoom', 'Stripe', 'DSGVO', '3 Monate Support'],
+      },
+    ],
+  },
+  fullstack: {
+    label: 'FULL-STACK',
+    h2: 'Web-Apps mit React & Node.js',
+    description: 'Maßgeschneiderte Plattformen mit Login, Rollen, Dashboards und APIs.',
+    features: [
+      { icon: '⚛️', title: 'React / Next.js', description: 'Modernes Frontend mit Server-Side Rendering und TypeScript.' },
+      { icon: '🛠️', title: 'Backend + Auth', description: 'Node.js, PostgreSQL, sichere Authentifizierung und Rollen.' },
+      { icon: '🔗', title: 'APIs & Integrationen', description: 'Stripe, CRMs, Zoom, Google Calendar und externe Systeme.' },
+      { icon: '🚀', title: 'Deploy & DevOps', description: 'Vercel, Docker, CI/CD — sauber und wartbar.' },
+    ],
+  },
+  ecommerce: {
+    label: 'E-COMMERCE',
+    h2: 'WooCommerce-Shops',
+    description: 'Vollständige Online-Shops mit Zahlungsgateways, Lagerverwaltung und Produktkatalogen.',
+    features: ['WooCommerce Setup', 'Stripe & PayPal', 'Lagerverwaltung', 'Produktkatalog', 'DSGVO-konform'],
+  },
+  automatisierungen: {
+    label: 'AUTOMATISIERUNGEN',
+    h2: 'Buchungen & Automatisierungen',
+    description: 'Amelia Buchungssystem, Google Calendar, Zoom und Stripe — vollständig konfiguriert.',
+    items: [
+      { icon: '📅', title: 'Amelia Buchungen', description: 'Online-Terminbuchung mit automatischen Bestätigungen.' },
+      { icon: '🗓️', title: 'Google Calendar', description: 'Synchronisation mit Ihrem persönlichen Kalender.' },
+      { icon: '🎥', title: 'Zoom Integration', description: 'Automatische Meeting-Links bei Online-Terminen.' },
+      { icon: '💳', title: 'Stripe Zahlungen', description: 'Online-Bezahlung direkt bei der Buchung.' },
+    ],
+  },
+  performance: {
+    label: 'PERFORMANCE & SEO',
+    h2: 'Geschwindigkeit & Sichtbarkeit',
+    description: 'Core Web Vitals, Caching, Bildoptimierung und technisches SEO.',
+    metrics: ['LCP < 2.5s', 'CLS < 0.1', 'FID < 100ms', 'Google PageSpeed > 90'],
+  },
+  support: {
+    label: 'SUPPORT',
+    h2: 'Support & Wartung',
+    description: 'Ich bin auch nach dem Launch erreichbar.',
+    price: 'ab 75 EUR/Std',
+    features: ['Updates & Sicherheits-Patches', 'Backup-Verwaltung', 'Neue Inhalte einfügen', 'Technischer Support per E-Mail'],
+  },
+  cta: {
+    h2: 'Bereit anzufangen?',
+    text: 'Schreiben Sie mir — ich antworte innerhalb von 24–48 Stunden.',
+    button: 'Projekt anfragen →',
+  },
+} as const
+
+// ─── About Page ───────────────────────────────────────────────────────────────
+
+export const ABOUT_PAGE = {
+  hero: {
+    name: 'Oscar',
+    tagline: 'Webentwickler · Leipzig, DE',
+    paragraph: 'Ich entwickle WordPress-Websites und digitale Plattformen für Unternehmen, die online wachsen wollen. Kein Aufwand für den Kunden — ich kümmere mich um alles, von der Domain bis zum Launch. Mein Fokus liegt auf sauberem Code, klarer Kommunikation und Lösungen, die wirklich funktionieren.',
+  },
+  stack: {
+    label: 'TECH STACK',
+    items: ['WordPress', 'Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'Docker'],
+  },
+  values: {
+    label: 'MEINE WERTE',
+    items: [
+      { icon: '🔍', title: 'Klarheit', description: 'Kein Fachjargon. Klare Kommunikation, verständliche Angebote.' },
+      { icon: '⚡', title: 'Performance', description: 'Schnelle Websites, sauberer Code, messbare Ergebnisse.' },
+      { icon: '📢', title: 'Direktheit', description: 'Ich sage, was möglich ist und was nicht — ohne Umwege.' },
+      { icon: '✅', title: 'Zuverlässigkeit', description: 'Deadlines werden eingehalten. Ich melde mich immer innerhalb 24h.' },
+    ],
+  },
+  languages: 'Ich spreche Deutsch und Spanisch.',
+  location: 'Projekte für Kunden in Deutschland und Europa.',
+  cta: {
+    h2: 'Lassen Sie uns arbeiten',
+    text: 'Haben Sie ein Projekt? Schreiben Sie mir.',
+    button: 'Kontakt aufnehmen →',
+  },
 } as const

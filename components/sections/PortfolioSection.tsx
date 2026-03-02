@@ -1,6 +1,13 @@
 import { PORTFOLIO_CASES } from '@/lib/constants'
 
-export default function PortfolioSection() {
+type Props = {
+  maxItems?: number
+  showLink?: boolean
+}
+
+export default function PortfolioSection({ maxItems, showLink }: Props) {
+  const cases = maxItems !== undefined ? PORTFOLIO_CASES.slice(0, maxItems) : PORTFOLIO_CASES
+
   return (
     <section
       id="portfolio"
@@ -9,24 +16,34 @@ export default function PortfolioSection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-12">
-          <p
-            className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--accent)' }}
-          >
-            PORTFOLIO
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-extrabold"
-            style={{ color: 'var(--fg)' }}
-          >
-            Echte Projekte
-          </h2>
+        <div className="mb-12 flex items-end justify-between gap-4">
+          <div>
+            <p
+              className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
+              style={{ color: 'var(--accent)' }}
+            >
+              PORTFOLIO
+            </p>
+            <h2
+              className="text-3xl sm:text-4xl font-extrabold"
+              style={{ color: 'var(--fg)' }}
+            >
+              Echte Projekte
+            </h2>
+          </div>
+          {showLink && (
+            <a
+              href="/portfolio"
+              className="text-sm font-semibold whitespace-nowrap link-hover-accent"
+            >
+              Alle Projekte →
+            </a>
+          )}
         </div>
 
         {/* Grid 2x2 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {PORTFOLIO_CASES.map((project) => (
+          {cases.map((project) => (
             <div
               key={project.title}
               className="rounded-xl border overflow-hidden card-hover"

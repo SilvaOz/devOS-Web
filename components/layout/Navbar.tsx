@@ -26,7 +26,7 @@ export default function Navbar() {
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <a
-          href="#"
+          href="/"
           className="font-mono text-xl font-semibold tracking-tight select-none"
           style={{ color: 'var(--fg)' }}
         >
@@ -56,7 +56,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <a
-          href="#kontakt"
+          href="/#kontakt"
           className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold rounded transition-opacity duration-150 hover:opacity-90"
           style={{
             background: 'var(--accent)',
@@ -117,7 +117,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#kontakt"
+            href="/#kontakt"
             onClick={handleNavClick}
             className="mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded"
             style={{ background: 'var(--accent)', color: '#000' }}

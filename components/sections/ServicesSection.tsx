@@ -104,6 +104,16 @@ export default function ServicesSection() {
             </div>
           ))}
         </div>
+
+        {/* Link to full leistungen page */}
+        <div className="mt-10 text-center">
+          <a
+            href="/leistungen"
+            className="inline-flex items-center gap-2 text-sm font-semibold link-hover-accent"
+          >
+            Alle Leistungen ansehen →
+          </a>
+        </div>
       </div>
     </section>
   )

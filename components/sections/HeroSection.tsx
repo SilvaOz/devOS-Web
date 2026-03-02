@@ -12,27 +12,21 @@ export default function HeroSection() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    window.addEventListener('resize', resize, { passive: true })
-
     const chars =
       '01アイウエオカキクケコサシスセソタチツテト{}[]()<>=+-*/&|^%$#@!?;:,.'
     const fontSize = 13
-    let columns = Math.floor(canvas.width / fontSize)
-    let drops: number[] = Array(columns).fill(1)
+    let columns = 0
+    let drops: number[] = []
 
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      columns = Math.floor(canvas.width / fontSize)
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect()
+      canvas.width = rect.width
+      canvas.height = rect.height
+      columns = Math.floor(rect.width / fontSize)
       drops = Array(columns).fill(1)
     }
-
-    window.addEventListener('resize', handleResize, { passive: true })
+    resize()
+    window.addEventListener('resize', resize, { passive: true })
 
     let animId: number
     let lastTime = 0
@@ -65,7 +59,6 @@ export default function HeroSection() {
     return () => {
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', resize)
-      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -78,6 +71,7 @@ export default function HeroSection() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
+        style={{ willChange: 'transform' }}
         aria-hidden="true"
       />
 

@@ -1,4 +1,5 @@
 import { FOOTER } from '@/lib/constants'
+import NewsletterForm from './NewsletterForm'
 
 export default function Footer() {
   return (
@@ -7,6 +8,14 @@ export default function Footer() {
       style={{ borderColor: 'var(--border)', background: 'var(--bg-elevated)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        {/* Newsletter */}
+        <div
+          className="mb-10 pb-10 border-b"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <NewsletterForm />
+        </div>
+
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-2">
