@@ -4,7 +4,6 @@ import { z } from 'zod'
 
 export const NAV_LINKS = [
   { label: 'Leistungen', href: '/leistungen' },
-  { label: 'Preise', href: '/#preise' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'About', href: '/about' },
   { label: 'FAQ', href: '/faq' },
