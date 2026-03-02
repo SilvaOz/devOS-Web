@@ -117,6 +117,13 @@ const LogoAmelia = () => (
   </svg>
 )
 
+const LogoZoom = () => (
+  <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor">
+    <rect x="4" y="11" width="22" height="18" rx="3" strokeWidth="1.5" />
+    <path d="M26 17l10-6v18l-10-6V17z" strokeWidth="1.5" strokeLinejoin="round" />
+  </svg>
+)
+
 // ─── Logo map ─────────────────────────────────────────────────────────────────
 
 const LOGOS: Record<string, () => ReactElement> = {
@@ -126,15 +133,13 @@ const LOGOS: Record<string, () => ReactElement> = {
   'TypeScript': LogoTypeScript,
   'Node.js': LogoNodejs,
   'Tailwind CSS': LogoTailwind,
-  'MongoDB': LogoMongoDB,
   'Stripe': LogoStripe,
   'Google': LogoGoogle,
   'GitHub': LogoGitHub,
-  'Docker': LogoDocker,
-  'PostgreSQL': LogoPostgreSQL,
   'Divi': LogoDivi,
   'WooCommerce': LogoWooCommerce,
   'Amelia': LogoAmelia,
+  'Zoom': LogoZoom,
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────

@@ -17,16 +17,16 @@ export const NAV_CTA = 'Projekt starten →'
 
 export const HERO = {
   badge: '● Verfügbar für neue Projekte · Leipzig, DE',
-  h1Line1: 'Ihre professionelle',
-  h1Line2: 'Website. Fertig.',
+  h1Line1: 'Ihre Website.',
+  h1Line2: 'In guten Händen.',
   subtitle:
-    'Ich entwickle WordPress-Websites und digitale Plattformen für Unternehmen, die online wachsen wollen.',
+    'Ich entwickle Websites für Therapeuten, Künstler und kleine Unternehmen — persönlich, klar und ohne Fachjargon.',
   ctaPrimary: 'Projekt starten →',
-  ctaGhost: 'Leistungen ansehen',
+  ctaGhost: 'Für wen bin ich?',
   micros: [
     '● Antwort in 24–48h',
-    '● Leipzig, DE',
-    '● Kunden in ganz DE',
+    '● Kein technisches Wissen nötig',
+    '● Leipzig · Kunden in ganz DE',
   ],
 } as const
 
@@ -38,21 +38,19 @@ export type MarqueeItem = {
 }
 
 export const MARQUEE_ITEMS: MarqueeItem[] = [
-  { label: 'React', wp: false },
-  { label: 'Next.js', wp: false },
   { label: 'WordPress', wp: true },
   { label: 'Divi', wp: true },
-  { label: 'TypeScript', wp: false },
-  { label: 'Node.js', wp: false },
   { label: 'WooCommerce', wp: true },
   { label: 'Amelia', wp: true },
-  { label: 'PostgreSQL', wp: false },
-  { label: 'Tailwind CSS', wp: false },
-  { label: 'MongoDB', wp: false },
-  { label: 'Stripe', wp: false },
   { label: 'Google', wp: false },
+  { label: 'Stripe', wp: false },
+  { label: 'Zoom', wp: false },
+  { label: 'React', wp: false },
+  { label: 'Next.js', wp: false },
+  { label: 'TypeScript', wp: false },
+  { label: 'Node.js', wp: false },
+  { label: 'Tailwind CSS', wp: false },
   { label: 'GitHub', wp: false },
-  { label: 'Docker', wp: false },
 ]
 
 // ─── Services ─────────────────────────────────────────────────────────────────
@@ -68,54 +66,54 @@ export type ServiceCard = {
 
 export const SERVICES: ServiceCard[] = [
   {
-    icon: '⚡',
-    title: 'WordPress + Divi',
+    icon: '🌐',
+    title: 'Ihre Website',
     description:
-      'Professionelle, editierbare Websites. Ideal für Unternehmen, die online präsent sein wollen.',
+      'Professionell, editierbar, ohne Programmierkenntnisse. Sie können Texte selbst ändern — kein IT-Wissen nötig.',
     features: [
-      'Responsives Design',
-      'Vom Kunden editierbar',
-      'Kontaktformulare',
-      'SEO-Grundlagen',
-      'Amelia Buchungen',
-      'WooCommerce',
+      'Responsives Design (Mobil + Desktop)',
+      'Sie können selbst Inhalte ändern',
+      'Kontaktformular & Buchungen',
+      'SEO-Grundlagen inklusive',
+      'Schnell & sicher (SSL)',
+      'DSGVO-Grundlage',
     ],
     cta: 'Preise ansehen →',
     featured: true,
   },
   {
-    icon: '🔄',
-    title: 'Automatisierungen',
+    icon: '📅',
+    title: 'Online-Buchungen',
     description:
-      'Buchungen mit Amelia, Zahlungen, Google Calendar und Zoom.',
-    features: [],
-  },
-  {
-    icon: '🛠️',
-    title: 'Full-Stack Entwicklung',
-    description:
-      'Maßgeschneiderte Web-Apps mit React und Node.js. Login, Rollen, Dashboard.',
-    features: [],
-  },
-  {
-    icon: '🔗',
-    title: 'APIs & Integrationen',
-    description:
-      'Verbindung von WordPress mit CRMs, Zahlungsgateways und externen Systemen.',
+      'Ihre Klienten buchen selbst, zahlen direkt und bekommen eine Bestätigung — automatisch. Sie müssen nichts tun.',
     features: [],
   },
   {
     icon: '🛒',
-    title: 'E-Commerce',
+    title: 'Online verkaufen',
     description:
-      'WooCommerce-Shops mit Zahlungsgateways und Lagerverwaltung.',
+      'Produkte, Kurse oder Sitzungen online anbieten. Bezahlung direkt auf Ihrer Website.',
     features: [],
   },
   {
-    icon: '⚙️',
-    title: 'Performance',
+    icon: '🔍',
+    title: 'Bei Google gefunden',
     description:
-      'Geschwindigkeitsoptimierung für WordPress. Core Web Vitals.',
+      'Ihre Website lädt schnell und erscheint in den Suchergebnissen — ohne technischen Aufwand Ihrerseits.',
+    features: [],
+  },
+  {
+    icon: '🖥️',
+    title: 'Individuelle Plattformen',
+    description:
+      'Login-Bereiche, Dashboards, interne Tools. Für komplexere Anforderungen.',
+    features: [],
+  },
+  {
+    icon: '🤝',
+    title: 'Support & Pflege',
+    description:
+      'Ich bin auch nach dem Launch da. Updates, neue Inhalte, Fragen — Antwort in 24–48h.',
     features: [],
   },
 ]
@@ -206,54 +204,57 @@ export type ProcessStep = {
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: '01',
-    title: 'Brief',
-    description: 'Wir definieren Ziele, Zielgruppe und Kernfunktionen.',
+    title: 'Gespräch',
+    description: 'Sie erklären mir Ihr Ziel. Ich frage alles, was ich brauche. Keine Hausaufgaben für Sie.',
   },
   {
     number: '02',
-    title: 'Design',
-    description: 'Wireframes und Mockups. Gemeinsame Überprüfung.',
+    title: 'Entwurf',
+    description: 'Ich zeige Ihnen erste Designs. Sie sagen, was gefällt — ich passe an.',
   },
   {
     number: '03',
     title: 'Entwicklung',
-    description: 'Sauberer Code, Best Practices, Tests.',
+    description: 'Ich baue Ihre Website. Sie müssen nichts Technisches wissen oder tun.',
   },
   {
     number: '04',
     title: 'Launch',
-    description: 'Deployment, Domain, Schulung inklusive.',
+    description: 'Ihre Seite ist live. Ich erkläre Ihnen alles in einem kurzen Video. Fertig.',
   },
 ]
 
 // ─── About ────────────────────────────────────────────────────────────────────
 
 export const ABOUT = {
-  label: 'WARUM ICH',
-  h2: 'Technik, Klarheit und Verantwortung',
+  label: 'ÜBER MICH',
+  name: 'Hallo, ich bin Oscar.',
+  role: 'Gründer von DevOS Web · Leipzig',
   paragraph:
-    'Ich bin Webentwickler aus Leipzig mit Fokus auf WordPress und Full-Stack-Entwicklung. Ich liefere saubere, performante Websites – kein Aufwand für den Kunden, keine versteckten Kosten.',
-  cta: 'Projekt anfragen →',
+    'Ich kümmere mich persönlich um Ihre Website — von der ersten Nachricht bis zum Launch und darüber hinaus. Kein Call-Center, kein Outsourcing. Sie schreiben mir, ich antworte.',
+  paragraph2:
+    'Ich arbeite mit Therapeuten, Künstlern, Coaches und kleinen Unternehmen. Ich erkläre alles auf Ihre Sprache — nicht auf Programmiersprache.',
+  cta: 'Lassen Sie uns sprechen →',
   points: [
     {
-      icon: '🔒',
-      title: 'DNS, SSL, SMTP',
-      description: 'Professionelle Konfiguration.',
-    },
-    {
-      icon: '⚙️',
-      title: 'Echte Integrationen',
-      description: 'Amelia, Google Calendar, Stripe, Zoom.',
+      icon: '🙋',
+      title: 'Persönlicher Ansprechpartner',
+      description: 'Immer ich — keine Weiterleitung, kein Ticket-System.',
     },
     {
       icon: '💬',
-      title: 'DE / ES',
-      description: 'Ich spreche Deutsch und Spanisch.',
+      title: 'Kein Fachjargon',
+      description: 'Ich erkläre alles verständlich. Auf Deutsch oder Spanisch.',
+    },
+    {
+      icon: '✅',
+      title: 'Deadlines werden eingehalten',
+      description: 'Ich sage, was ich tue — und tue, was ich sage.',
     },
     {
       icon: '📍',
-      title: 'Leipzig',
-      description: 'Projekte für Kunden in DE und Europa.',
+      title: 'Leipzig — Europa',
+      description: 'Ich arbeite mit Kunden in Deutschland und ganz Europa.',
     },
   ],
 } as const
@@ -270,6 +271,13 @@ export type PortfolioCase = {
 
 export const PORTFOLIO_CASES: PortfolioCase[] = [
   {
+    title: 'Psychotherapie Praxis',
+    type: 'WordPress / Amelia Buchungen',
+    stack: ['WordPress', 'Divi', 'Amelia', 'DSGVO'],
+    metrics: ['Online buchbar 24/7', '3 Wochen Lieferzeit'],
+    gradient: 'from-teal-900/60 to-emerald-900/40',
+  },
+  {
     title: 'Centro Estetica',
     type: 'WordPress / Amelia',
     stack: ['WordPress', 'Divi', 'Amelia'],
@@ -284,15 +292,8 @@ export const PORTFOLIO_CASES: PortfolioCase[] = [
     gradient: 'from-green-900/60 to-teal-900/40',
   },
   {
-    title: 'NeoBank Dashboard',
-    type: 'React / Node.js',
-    stack: ['React', 'Node.js', 'PostgreSQL'],
-    metrics: ['50ms Ladezeit', '99.9% Uptime'],
-    gradient: 'from-blue-900/60 to-cyan-900/40',
-  },
-  {
     title: 'Inmobiliaria',
-    type: 'WordPress',
+    type: 'WordPress / SEO',
     stack: ['WordPress', 'Divi', 'SEO'],
     metrics: ['+200 Leads/Monat', 'Top 3 Google'],
     gradient: 'from-orange-900/60 to-red-900/40',
@@ -391,6 +392,42 @@ export const contactSchema = z.object({
 })
 
 export type ContactFormData = z.infer<typeof contactSchema>
+
+// ─── Für wen ──────────────────────────────────────────────────────────────────
+
+export type FuerWenCard = {
+  icon: string
+  title: string
+  description: string
+  examples: string[]
+}
+
+export const FUER_WEN: FuerWenCard[] = [
+  {
+    icon: '🧘',
+    title: 'Therapeuten & Coaches',
+    description: 'Online buchbar, DSGVO-konform, vertrauenswürdig. Ihre Klienten finden Sie — und buchen direkt.',
+    examples: ['Psychotherapie', 'Coaching', 'Physiotherapie'],
+  },
+  {
+    icon: '🎨',
+    title: 'Künstler & Kreative',
+    description: 'Ein Portfolio, das Ihre Arbeit zeigt — nicht überwältigt. Einfach, schön, professionell.',
+    examples: ['Fotografie', 'Illustration', 'Musik'],
+  },
+  {
+    icon: '🌿',
+    title: 'Gesundheit & Wellness',
+    description: 'Termine online verwalten, Zahlungen automatisch. Mehr Zeit für Ihre Klienten, weniger Verwaltung.',
+    examples: ['Yoga', 'Ernährungsberatung', 'Massage'],
+  },
+  {
+    icon: '💼',
+    title: 'Kleine Unternehmen',
+    description: 'Bei Google gefunden werden, Anfragen bekommen, professionell wirken. Alles, was Sie brauchen.',
+    examples: ['Handwerk', 'Dienstleistung', 'Beratung'],
+  },
+]
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 

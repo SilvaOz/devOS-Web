@@ -128,7 +128,7 @@ export default function HeroSection() {
               {HERO.ctaPrimary}
             </a>
             <a
-              href="#leistungen"
+              href="#fuer-wen"
               className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm border transition-colors duration-150"
               style={{
                 color: 'var(--fg)',

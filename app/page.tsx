@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
 import MarqueeSection from '@/components/sections/MarqueeSection'
+import FuerWenSection from '@/components/sections/FuerWenSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import PricingSection from '@/components/sections/PricingSection'
 import ProcessSection from '@/components/sections/ProcessSection'
@@ -16,6 +17,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <MarqueeSection />
+        <FuerWenSection />
         <ServicesSection />
         <PricingSection />
         <ProcessSection />
