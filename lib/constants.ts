@@ -448,6 +448,89 @@ export const FOOTER = {
   ],
 } as const
 
+// ─── Support Plans ────────────────────────────────────────────────────────────
+
+export type SupportPlan = {
+  id: string
+  name: string
+  tagline: string
+  duration: string
+  totalPrice: number
+  perMonth: number
+  savings?: number
+  features: string[]
+  featured?: boolean
+}
+
+export const SUPPORT_PLANS: SupportPlan[] = [
+  {
+    id: 'monthly',
+    name: 'Monatspflege',
+    tagline: 'Flexibel, monatlich kündbar.',
+    duration: '1 Monat',
+    totalPrice: 99,
+    perMonth: 99,
+    features: [
+      'WordPress & Plugin-Updates',
+      'Wöchentliches Backup',
+      '1 Std. Inhaltsänderungen/Monat',
+      'E-Mail-Support (Antwort in 48h)',
+    ],
+  },
+  {
+    id: 'quarterly',
+    name: 'Quartalspflege',
+    tagline: 'Für einen ruhigen Start.',
+    duration: '3 Monate',
+    totalPrice: 249,
+    perMonth: 83,
+    savings: 16,
+    features: [
+      'WordPress & Plugin-Updates',
+      'Wöchentliches Backup',
+      '2 Std. Änderungen/Monat',
+      'Sicherheits-Monitoring',
+      'E-Mail-Support (Antwort in 48h)',
+      'Monatlicher Statusbericht',
+    ],
+  },
+  {
+    id: 'annual',
+    name: 'Jahresperson',
+    tagline: 'Die Wahl der meisten Kunden.',
+    duration: '12 Monate',
+    totalPrice: 699,
+    perMonth: 58,
+    savings: 41,
+    features: [
+      'Alles aus Quartalspflege',
+      '3 Std. Änderungen/Monat',
+      'Tägliches Backup',
+      'Priorität: Antwort in 24h',
+      '1 Notfall-Intervention inklusive',
+      'Halbjährlicher Performance-Bericht',
+    ],
+    featured: true,
+  },
+  {
+    id: 'biennial',
+    name: '2-Jahres-Partner',
+    tagline: 'Für langfristige Partnerschaft.',
+    duration: '24 Monate',
+    totalPrice: 1099,
+    perMonth: 46,
+    savings: 54,
+    features: [
+      'Alles aus Jahresperson',
+      '4 Std. Änderungen/Monat',
+      'Priorität: Antwort in 12h',
+      'Notfall-Interventionen unbegrenzt',
+      'Quartals-Gespräch (30 Min.)',
+      'SEO-Check alle 6 Monate',
+    ],
+  },
+]
+
 // ─── Newsletter ────────────────────────────────────────────────────────────────
 
 export const NEWSLETTER = {
