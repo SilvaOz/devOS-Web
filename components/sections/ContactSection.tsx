@@ -53,9 +53,9 @@ export default function ContactSection() {
   }
 
   const inputBase: React.CSSProperties = {
-    background: 'var(--bg-light-alt)',
-    border: '1px solid var(--border-light)',
-    color: 'var(--fg-light)',
+    background: 'var(--bg-elevated)',
+    border: '1px solid var(--border)',
+    color: 'var(--fg)',
     borderRadius: '8px',
     padding: '10px 14px',
     fontSize: '14px',
@@ -74,7 +74,7 @@ export default function ContactSection() {
     <section
       id="kontakt"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-light)' }}
+      style={{ background: 'var(--bg)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
@@ -89,11 +89,11 @@ export default function ContactSection() {
               </p>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-3"
-                style={{ color: 'var(--fg-light)' }}
+                style={{ color: 'var(--fg)' }}
               >
                 {CONTACT.h2}
               </h2>
-              <p className="text-base" style={{ color: 'var(--muted-light)' }}>
+              <p className="text-base" style={{ color: 'var(--muted)' }}>
                 {CONTACT.paragraph}
               </p>
             </div>
@@ -131,7 +131,7 @@ export default function ContactSection() {
 
             <p
               className="text-sm italic"
-              style={{ color: 'var(--muted-light)' }}
+              style={{ color: 'var(--muted)' }}
             >
               {CONTACT.noPhone}
             </p>
@@ -139,12 +139,12 @@ export default function ContactSection() {
             <div
               className="rounded-lg p-4 border flex gap-3"
               style={{
-                background: 'var(--bg-light)',
+                background: 'var(--bg)',
                 borderColor: 'rgba(255,215,0,0.15)',
               }}
             >
               <CreditCard size={18} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }} />
-              <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
+              <p className="text-sm" style={{ color: 'var(--muted)' }}>
                 {CONTACT.paymentNote}
               </p>
             </div>
@@ -175,7 +175,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border-light)')
+                  (e.target.style.borderColor = 'var(--border)')
                 }
               />
               {errors.name && (
@@ -202,7 +202,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border-light)')
+                  (e.target.style.borderColor = 'var(--border)')
                 }
               />
               {errors.email && (
@@ -227,7 +227,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border-light)')
+                  (e.target.style.borderColor = 'var(--border)')
                 }
               >
                 <option value="" style={{ background: 'var(--bg-elevated)' }}>
@@ -266,7 +266,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border-light)')
+                  (e.target.style.borderColor = 'var(--border)')
                 }
               />
               {errors.message && (
@@ -286,7 +286,7 @@ export default function ContactSection() {
               <label
                 htmlFor="privacy"
                 className="text-sm"
-                style={{ color: 'var(--muted-light)' }}
+                style={{ color: 'var(--muted)' }}
               >
                 Ich akzeptiere die{' '}
                 <a

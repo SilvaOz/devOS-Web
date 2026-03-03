@@ -27,7 +27,7 @@ export default function TestimonialsSection() {
     <section
       id="stimmen"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-light-alt)' }}
+      style={{ background: 'var(--bg-elevated)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -40,11 +40,11 @@ export default function TestimonialsSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold mb-3"
-            style={{ color: 'var(--fg-light)' }}
+            style={{ color: 'var(--fg)' }}
           >
             Was meine Kunden sagen
           </h2>
-          <p className="text-base max-w-xl" style={{ color: 'var(--muted-light)' }}>
+          <p className="text-base max-w-xl" style={{ color: 'var(--muted)' }}>
             Echte Ergebnisse für Therapeuten, Kreative und kleine Unternehmen.
           </p>
         </div>
@@ -56,8 +56,8 @@ export default function TestimonialsSection() {
               key={t.author}
               className="rounded-xl p-6 border flex flex-col gap-5 card-hover"
               style={{
-                background: 'var(--bg-light)',
-                borderColor: 'var(--border-light)',
+                background: 'var(--bg)',
+                borderColor: 'var(--border)',
               }}
             >
               {/* Stars */}
@@ -66,7 +66,7 @@ export default function TestimonialsSection() {
               {/* Quote */}
               <p
                 className="text-sm leading-relaxed flex-1 italic"
-                style={{ color: 'var(--fg-light)' }}
+                style={{ color: 'var(--fg)' }}
               >
                 "{t.quote}"
               </p>
@@ -74,7 +74,7 @@ export default function TestimonialsSection() {
               {/* Divider */}
               <div
                 className="h-px"
-                style={{ background: 'var(--border-light)' }}
+                style={{ background: 'var(--border)' }}
                 aria-hidden="true"
               />
 
@@ -92,11 +92,11 @@ export default function TestimonialsSection() {
                 <div className="flex flex-col gap-0.5">
                   <span
                     className="text-sm font-semibold"
-                    style={{ color: 'var(--fg-light)' }}
+                    style={{ color: 'var(--fg)' }}
                   >
                     {t.author}
                   </span>
-                  <span className="text-xs" style={{ color: 'var(--muted-light)' }}>
+                  <span className="text-xs" style={{ color: 'var(--muted)' }}>
                     {t.role} · {t.location}
                   </span>
                 </div>
@@ -118,7 +118,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Trust note */}
-        <p className="mt-10 text-xs text-center" style={{ color: 'var(--muted-light)' }}>
+        <p className="mt-10 text-xs text-center" style={{ color: 'var(--muted)' }}>
           Namen abgekürzt zum Schutz der Privatsphäre.{' '}
           <a href="/#kontakt" className="link-hover-accent font-semibold">
             Fragen Sie mich nach Referenzen →

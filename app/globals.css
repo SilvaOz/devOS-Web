@@ -5,7 +5,7 @@
   --color-bg-elevated: #12121a;
   --color-fg: #e8e8ed;
   --color-muted: #6b6b7a;
-  --color-accent: #1d4ed8;
+  --color-accent: #FFD700;
   --color-card: #16161f;
   --color-border: #2a2a3a;
   --color-accent-wp: #21759b;
@@ -14,27 +14,16 @@
 }
 
 :root {
-  /* ── Dark (Hero + Navbar + Footer) ── */
   --bg:          #0a0a0f;
   --bg-elevated: #12121a;
   --fg:          #e8e8ed;
   --muted:       #6b6b7a;
+  --accent:      #FFD700;
+  --accent-dim:  rgba(255, 215, 0, 0.12);
+  --accent-wp:   #21759b;
   --card:        #16161f;
   --border:      #2a2a3a;
-
-  /* ── Accent ── */
-  --accent:      #1d4ed8;
-  --accent-dim:  rgba(29, 78, 216, 0.10);
-  --accent-wp:   #21759b;
-  --glow:        rgba(29, 78, 216, 0.35);
-
-  /* ── Light sections ── */
-  --bg-light:      #f8f9fb;
-  --bg-light-alt:  #ffffff;
-  --fg-light:      #111827;
-  --muted-light:   #6b7280;
-  --card-light:    #ffffff;
-  --border-light:  #e5e7eb;
+  --glow:        rgba(255, 215, 0, 0.3);
 }
 
 *,
@@ -56,37 +45,25 @@ body {
 
 /* Marquee infinite scroll */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .marquee-track {
   animation: marquee 35s linear infinite;
 }
 
-/* Hover utilities (evita 'use client' en Server Components) */
+/* Hover utilities */
 .link-hover {
-  color: var(--muted-light);
-  transition: color 0.15s;
-}
-.link-hover:hover {
-  color: var(--fg-light);
-}
-
-.link-hover-dark {
   color: var(--muted);
   transition: color 0.15s;
 }
-.link-hover-dark:hover {
+.link-hover:hover {
   color: var(--fg);
 }
 
 .link-hover-accent {
-  color: var(--fg-light);
+  color: var(--fg);
   transition: color 0.15s;
 }
 .link-hover-accent:hover {
@@ -94,16 +71,15 @@ body {
 }
 
 .card-hover {
-  border-color: var(--border-light);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  border-color: var(--border);
+  transition: border-color 0.2s;
 }
 .card-hover:hover {
   border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
 }
 
 .card-hover-wp {
-  border-color: var(--border-light);
+  border-color: var(--border);
   transition: border-color 0.2s;
 }
 .card-hover-wp:hover {
@@ -117,7 +93,7 @@ body {
 
 /* Marquee logo items */
 .logo-item {
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0.2s;
 }
 .logo-item:hover {
@@ -125,7 +101,7 @@ body {
 }
 .logo-item.logo-wp {
   color: var(--accent-wp);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .logo-item.logo-wp:hover {
   opacity: 1;
@@ -133,7 +109,6 @@ body {
 
 /* ── Hero: grid + orbs + rain ─────────────────────────────────────────────── */
 
-/* Moving grid */
 @keyframes grid-move {
   0%   { transform: translate(0, 0); }
   100% { transform: translate(60px, 60px); }
@@ -150,7 +125,6 @@ body {
   animation: grid-move 24s linear infinite;
 }
 
-/* Floating glow orbs */
 @keyframes orb-float {
   0%, 100% { transform: translate(0, 0) scale(1); }
   50%       { transform: translate(22px, -22px) scale(1.08); }
@@ -164,7 +138,6 @@ body {
   animation: orb-float 9s ease-in-out infinite;
 }
 
-/* Top-right — blue */
 .hero-orb-tr {
   width: 420px;
   height: 420px;
@@ -174,11 +147,10 @@ body {
   animation-delay: 0s;
 }
 
-/* Bottom-left — teal complement */
 .hero-orb-bl {
   width: 300px;
   height: 300px;
-  background: rgba(29, 78, 216, 0.18);
+  background: rgba(33, 117, 155, 0.22);
   bottom: -80px;
   left: -80px;
   animation-delay: -4.5s;
@@ -195,7 +167,6 @@ body {
   50%, 100% { opacity: 0; }
 }
 
-/* Each line starts hidden (width:0), then types itself out */
 .terminal-line {
   overflow: hidden;
   white-space: nowrap;
@@ -203,7 +174,6 @@ body {
   animation: terminal-typing 1.1s steps(32, end) forwards;
 }
 
-/* Delays: each line starts after the previous finishes (~1.1s each) */
 .terminal-line-1 { animation-delay: 0.6s; }
 .terminal-line-2 { animation-delay: 1.8s; }
 .terminal-line-3 { animation-delay: 3.0s; }
@@ -222,7 +192,7 @@ body {
   animation-delay: 6.5s;
 }
 
-/* ── Code Rain (HeroSection) ──────────────────────────────────────────────── */
+/* ── Code Rain ──────────────────────────────────────────────────────────────── */
 @keyframes rain-fall {
   0%   { transform: translateY(0); }
   100% { transform: translateY(200vh); }
@@ -248,14 +218,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-light);
+  background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-light);
+  background: var(--border);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-light);
+  background: var(--muted);
 }

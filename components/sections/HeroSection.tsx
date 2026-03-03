@@ -126,7 +126,7 @@ export default function HeroSection() {
               <a
                 href="#kontakt"
                 className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm transition-opacity duration-150 hover:opacity-90"
-                style={{ background: 'var(--accent)', color: '#fff' }}
+                style={{ background: 'var(--accent)', color: '#000' }}
               >
                 {HERO.ctaPrimary}
               </a>

@@ -12,7 +12,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
     <section
       id="portfolio"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-light)' }}
+      style={{ background: 'var(--bg)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -26,7 +26,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
             </p>
             <h2
               className="text-3xl sm:text-4xl font-extrabold"
-              style={{ color: 'var(--fg-light)' }}
+              style={{ color: 'var(--fg)' }}
             >
               Echte Projekte
             </h2>
@@ -47,7 +47,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
             <div
               key={project.title}
               className="rounded-xl border overflow-hidden card-hover"
-              style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
+              style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
             >
               {/* Gradient placeholder */}
               <div
@@ -66,11 +66,11 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                 <div>
                   <h3
                     className="text-base font-bold mb-0.5"
-                    style={{ color: 'var(--fg-light)' }}
+                    style={{ color: 'var(--fg)' }}
                   >
                     {project.title}
                   </h3>
-                  <p className="text-xs" style={{ color: 'var(--muted-light)' }}>
+                  <p className="text-xs" style={{ color: 'var(--muted)' }}>
                     {project.type}
                   </p>
                 </div>
@@ -82,9 +82,9 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                       key={tag}
                       className="text-xs font-mono px-2 py-0.5 rounded border"
                       style={{
-                        background: 'var(--bg-light)',
-                        color: 'var(--muted-light)',
-                        borderColor: 'var(--border-light)',
+                        background: 'var(--bg)',
+                        color: 'var(--muted)',
+                        borderColor: 'var(--border)',
                       }}
                     >
                       {tag}
@@ -95,7 +95,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                 {/* Metrics */}
                 <div
                   className="flex flex-wrap gap-4 pt-2 border-t"
-                  style={{ borderColor: 'var(--border-light)' }}
+                  style={{ borderColor: 'var(--border)' }}
                 >
                   {project.metrics.map((metric) => (
                     <span

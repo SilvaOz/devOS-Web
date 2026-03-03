@@ -9,7 +9,7 @@ export default function ServicesSection() {
     <section
       id="leistungen"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-light)' }}
+      style={{ background: 'var(--bg)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -22,7 +22,7 @@ export default function ServicesSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold"
-            style={{ color: 'var(--fg-light)' }}
+            style={{ color: 'var(--fg)' }}
           >
             Was ich mache
           </h2>
@@ -33,7 +33,7 @@ export default function ServicesSection() {
           {/* Featured card — spans 2 cols */}
           <div
             className="md:col-span-2 rounded-xl p-6 sm:p-8 border flex flex-col gap-5 card-hover-wp"
-            style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
+            style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
           >
             <div className="flex items-start gap-4">
               <span
@@ -45,11 +45,11 @@ export default function ServicesSection() {
               <div>
                 <h3
                   className="text-xl font-bold mb-1"
-                  style={{ color: 'var(--fg-light)' }}
+                  style={{ color: 'var(--fg)' }}
                 >
                   {featured.title}
                 </h3>
-                <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
+                <p className="text-sm" style={{ color: 'var(--muted)' }}>
                   {featured.description}
                 </p>
               </div>
@@ -61,7 +61,7 @@ export default function ServicesSection() {
                   <li
                     key={f}
                     className="flex items-center gap-2 text-sm"
-                    style={{ color: 'var(--fg-light)' }}
+                    style={{ color: 'var(--fg)' }}
                   >
                     <span style={{ color: 'var(--accent-wp)' }}>✓</span>
                     {f}
@@ -86,7 +86,7 @@ export default function ServicesSection() {
             <div
               key={card.title}
               className="rounded-xl p-6 border flex flex-col gap-3 card-hover"
-              style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
+              style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
             >
               <span
                 className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"
@@ -96,11 +96,11 @@ export default function ServicesSection() {
               </span>
               <h3
                 className="text-base font-bold"
-                style={{ color: 'var(--fg-light)' }}
+                style={{ color: 'var(--fg)' }}
               >
                 {card.title}
               </h3>
-              <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
+              <p className="text-sm" style={{ color: 'var(--muted)' }}>
                 {card.description}
               </p>
             </div>

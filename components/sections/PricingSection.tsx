@@ -10,7 +10,7 @@ export default function PricingSection() {
     <section
       id="preise"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-light)' }}
+      style={{ background: 'var(--bg)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -23,11 +23,11 @@ export default function PricingSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold mb-3"
-            style={{ color: 'var(--fg-light)' }}
+            style={{ color: 'var(--fg)' }}
           >
             Klare Investition, keine Überraschungen
           </h2>
-          <p className="text-base" style={{ color: 'var(--muted-light)' }}>
+          <p className="text-base" style={{ color: 'var(--muted)' }}>
             Alle Preise auf Anfrage per Rechnung. Keine versteckten Kosten.
           </p>
         </div>
@@ -41,10 +41,10 @@ export default function PricingSection() {
                 key={plan.id}
                 className="rounded-xl p-6 sm:p-8 border flex flex-col gap-5 cursor-default"
                 style={{
-                  background: 'var(--card-light)',
-                  borderColor: isHighlighted ? 'var(--accent)' : 'var(--border-light)',
+                  background: 'var(--card)',
+                  borderColor: isHighlighted ? 'var(--accent)' : 'var(--border)',
                   boxShadow: isHighlighted
-                    ? '0 0 0 1px var(--accent), 0 4px 24px rgba(29,78,216,0.12)'
+                    ? '0 0 0 1px var(--accent), 0 4px 24px var(--glow)'
                     : 'none',
                   transition: 'border-color 0.2s, box-shadow 0.2s',
                 }}
@@ -57,20 +57,20 @@ export default function PricingSection() {
                     <div className="flex items-center gap-2 mb-1">
                       <h3
                         className="text-lg font-bold"
-                        style={{ color: 'var(--fg-light)' }}
+                        style={{ color: 'var(--fg)' }}
                       >
                         {plan.name}
                       </h3>
                       {plan.featured && (
                         <span
                           className="text-xs font-mono px-2 py-0.5 rounded-full"
-                          style={{ background: 'var(--accent)', color: '#fff' }}
+                          style={{ background: 'var(--accent)', color: '#000' }}
                         >
                           Empfohlen
                         </span>
                       )}
                     </div>
-                    <p className="text-xs" style={{ color: 'var(--muted-light)' }}>
+                    <p className="text-xs" style={{ color: 'var(--muted)' }}>
                       {plan.target}
                     </p>
                   </div>
@@ -91,7 +91,7 @@ export default function PricingSection() {
                       <li
                         key={f}
                         className="flex items-center gap-2 text-sm"
-                        style={{ color: 'var(--fg-light)' }}
+                        style={{ color: 'var(--fg)' }}
                       >
                         <span style={{ color: 'var(--accent)' }}>✓</span>
                         {f}
@@ -107,7 +107,7 @@ export default function PricingSection() {
                       <li
                         key={f}
                         className="flex items-center gap-2 text-sm"
-                        style={{ color: 'var(--muted-light)' }}
+                        style={{ color: 'var(--muted)' }}
                       >
                         <span>✗</span>
                         {f}
@@ -124,13 +124,13 @@ export default function PricingSection() {
                     plan.featured
                       ? {
                           background: 'var(--accent)',
-                          color: '#fff',
+                          color: '#000',
                           borderColor: 'var(--accent)',
                         }
                       : {
                           background: 'transparent',
-                          color: 'var(--fg-light)',
-                          borderColor: 'var(--border-light)',
+                          color: 'var(--fg)',
+                          borderColor: 'var(--border)',
                         }
                   }
                 >
@@ -144,7 +144,7 @@ export default function PricingSection() {
         {/* Note */}
         <p
           className="text-sm text-center max-w-xl mx-auto"
-          style={{ color: 'var(--muted-light)' }}
+          style={{ color: 'var(--muted)' }}
         >
           {PRICING_NOTE}
         </p>

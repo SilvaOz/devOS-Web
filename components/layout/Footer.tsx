@@ -5,14 +5,14 @@ export default function Footer() {
   return (
     <footer
       className="border-t"
-      style={{ borderColor: '#1f2937', background: '#111827' }}
+      style={{ borderColor: 'var(--border)', background: 'var(--bg-elevated)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         {/* Newsletter lead magnet */}
         <div
           className="mb-10 pb-10 border-b rounded-xl p-6 sm:p-8 border"
           style={{
-            borderColor: 'rgba(29,78,216,0.25)',
+            borderColor: 'rgba(255,215,0,0.18)',
             background: '#1a2035',
           }}
         >
@@ -24,11 +24,11 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <span
               className="font-mono text-xl font-semibold"
-              style={{ color: '#f9fafb' }}
+              style={{ color: 'var(--fg)' }}
             >
               Dev<span style={{ color: 'var(--accent)' }}>OS</span>
             </span>
-            <p className="text-sm" style={{ color: '#9ca3af' }}>
+            <p className="text-sm" style={{ color: 'var(--muted)' }}>
               {FOOTER.tagline}
             </p>
           </div>
@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p
               className="text-xs font-semibold uppercase tracking-wider mb-1"
-              style={{ color: '#6b7280' }}
+              style={{ color: 'var(--muted)' }}
             >
               Navigation
             </p>
@@ -56,7 +56,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p
               className="text-xs font-semibold uppercase tracking-wider mb-1"
-              style={{ color: '#6b7280' }}
+              style={{ color: 'var(--muted)' }}
             >
               Rechtliches
             </p>
@@ -75,12 +75,12 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           className="mt-10 pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
-          style={{ borderColor: '#1f2937' }}
+          style={{ borderColor: 'var(--border)' }}
         >
-          <p className="text-xs" style={{ color: '#6b7280' }}>
+          <p className="text-xs" style={{ color: 'var(--muted)' }}>
             {FOOTER.copyright}
           </p>
-          <p className="text-xs" style={{ color: '#6b7280' }}>
+          <p className="text-xs" style={{ color: 'var(--muted)' }}>
             {FOOTER.vatNote}
           </p>
         </div>
