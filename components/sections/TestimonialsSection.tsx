@@ -4,17 +4,10 @@ function Stars() {
   return (
     <div className="flex gap-0.5" aria-label="5 von 5 Sternen">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg
-          key={i}
-          width="14"
-          height="14"
-          viewBox="0 0 14 14"
-          fill="none"
-          aria-hidden="true"
-        >
+        <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
           <path
             d="M7 1l1.545 3.13 3.455.502-2.5 2.436.59 3.44L7 8.885l-3.09 1.623.59-3.44L2 4.632l3.455-.502L7 1z"
-            fill="var(--accent)"
+            fill="#c4b5a0"
           />
         </svg>
       ))}
@@ -31,15 +24,15 @@ export default function TestimonialsSection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12" data-animate>
           <p
             className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--muted)' }}
           >
             KUNDENSTIMMEN
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-3"
+            className="text-4xl sm:text-5xl font-extrabold mb-3"
             style={{ color: 'var(--fg)' }}
           >
             Was meine Kunden sagen
@@ -50,50 +43,31 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5" data-animate data-animate-delay="1">
           {TESTIMONIALS.map((t) => (
             <div
               key={t.author}
-              className="rounded-xl p-6 border flex flex-col gap-5 card-hover"
-              style={{
-                background: 'var(--bg)',
-                borderColor: 'var(--border)',
-              }}
+              className="rounded-2xl p-6 border flex flex-col gap-5 card-hover"
+              style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
             >
-              {/* Stars */}
               <Stars />
 
-              {/* Quote */}
-              <p
-                className="text-sm leading-relaxed flex-1 italic"
-                style={{ color: 'var(--fg)' }}
-              >
+              <p className="text-sm leading-relaxed flex-1 italic" style={{ color: 'var(--fg)' }}>
                 "{t.quote}"
               </p>
 
-              {/* Divider */}
-              <div
-                className="h-px"
-                style={{ background: 'var(--border)' }}
-                aria-hidden="true"
-              />
+              <div className="h-px" style={{ background: 'var(--border)' }} aria-hidden="true" />
 
-              {/* Author */}
               <div className="flex items-center gap-3">
-                {/* Avatar circle */}
                 <div
                   className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-                  style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                  style={{ background: 'rgba(0,0,0,0.07)', color: 'var(--fg)' }}
                   aria-hidden="true"
                 >
                   {t.initial}
                 </div>
-
                 <div className="flex flex-col gap-0.5">
-                  <span
-                    className="text-sm font-semibold"
-                    style={{ color: 'var(--fg)' }}
-                  >
+                  <span className="text-sm font-semibold" style={{ color: 'var(--fg)' }}>
                     {t.author}
                   </span>
                   <span className="text-xs" style={{ color: 'var(--muted)' }}>
@@ -104,11 +78,11 @@ export default function TestimonialsSection() {
 
               {/* Result metric */}
               <div
-                className="rounded-lg px-3 py-2 text-xs font-mono font-semibold"
+                className="rounded-lg px-3 py-2 text-xs font-mono font-semibold border"
                 style={{
-                  background: 'var(--accent-dim)',
-                  color: 'var(--accent)',
-                  borderLeft: '2px solid var(--accent)',
+                  background: 'rgba(0,0,0,0.04)',
+                  color: 'var(--fg)',
+                  borderColor: 'var(--border)',
                 }}
               >
                 ✓ {t.metric}
@@ -117,7 +91,6 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
-        {/* Trust note */}
         <p className="mt-10 text-xs text-center" style={{ color: 'var(--muted)' }}>
           Namen abgekürzt zum Schutz der Privatsphäre.{' '}
           <a href="/#kontakt" className="link-hover-accent font-semibold">

@@ -9,15 +9,15 @@ export default function ProcessSection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-14">
+        <div className="mb-14" data-animate>
           <p
             className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--muted)' }}
           >
             PROZESS
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-extrabold"
+            className="text-4xl sm:text-5xl font-extrabold"
             style={{ color: 'var(--fg)' }}
           >
             So arbeite ich
@@ -25,41 +25,33 @@ export default function ProcessSection() {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-4" data-animate data-animate-delay="1">
           {PROCESS_STEPS.map((step, index) => (
             <div key={step.number} className="relative flex flex-col gap-4">
-              {/* Connector line (hidden on last item and mobile) */}
+              {/* Connector line */}
               {index < PROCESS_STEPS.length - 1 && (
                 <div
-                  className="hidden md:block absolute top-8 left-1/2 w-full h-px"
-                  style={{
-                    background:
-                      'linear-gradient(to right, var(--border), transparent)',
-                  }}
+                  className="hidden md:block absolute top-6 left-1/2 w-full h-px"
+                  style={{ background: 'linear-gradient(to right, var(--border), transparent)' }}
                   aria-hidden="true"
                 />
               )}
 
               {/* Number */}
               <div
-                className="text-5xl sm:text-6xl font-extrabold font-mono leading-none select-none"
+                className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-extrabold font-mono flex-shrink-0"
                 style={{
-                  background:
-                    'linear-gradient(135deg, var(--accent) 0%, rgba(255,215,0,0.3) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  border: '2px solid var(--border)',
+                  color: 'var(--fg)',
+                  background: 'var(--card)',
                 }}
               >
-                {step.number}
+                {String(index + 1).padStart(2, '0')}
               </div>
 
               {/* Content */}
               <div>
-                <h3
-                  className="text-base font-bold mb-1"
-                  style={{ color: 'var(--fg)' }}
-                >
+                <h3 className="text-base font-bold mb-1" style={{ color: 'var(--fg)' }}>
                   {step.title}
                 </h3>
                 <p className="text-sm" style={{ color: 'var(--muted)' }}>

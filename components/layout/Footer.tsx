@@ -13,7 +13,7 @@ export default function Footer() {
           className="mb-10 pb-10 border-b rounded-xl p-6 sm:p-8 border"
           style={{
             borderColor: 'rgba(255,215,0,0.18)',
-            background: '#1a2035',
+            background: 'var(--card)',
           }}
         >
           <NewsletterForm />
@@ -45,7 +45,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-hover-dark text-sm"
+                className="link-hover text-sm"
               >
                 {link.label}
               </a>
@@ -64,7 +64,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-hover-dark text-sm"
+                className="link-hover text-sm"
               >
                 {link.label}
               </a>

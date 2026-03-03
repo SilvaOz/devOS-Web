@@ -83,12 +83,12 @@ export default function ContactSection() {
             <div>
               <p
                 className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-                style={{ color: 'var(--accent)' }}
+                style={{ color: 'var(--muted)' }}
               >
                 {CONTACT.label}
               </p>
               <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-3"
+                className="text-4xl sm:text-5xl font-extrabold mb-3"
                 style={{ color: 'var(--fg)' }}
               >
                 {CONTACT.h2}
@@ -100,7 +100,7 @@ export default function ContactSection() {
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
-                <Mail size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                <Mail size={16} style={{ color: 'var(--muted)', flexShrink: 0 }} />
                 <a
                   href={`mailto:${CONTACT.email}`}
                   className="text-sm transition-colors duration-150"
@@ -116,13 +116,13 @@ export default function ContactSection() {
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                <MapPin size={16} style={{ color: 'var(--muted)', flexShrink: 0 }} />
                 <span className="text-sm" style={{ color: 'var(--fg)' }}>
                   {CONTACT.location}
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <Clock size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                <Clock size={16} style={{ color: 'var(--muted)', flexShrink: 0 }} />
                 <span className="text-sm" style={{ color: 'var(--fg)' }}>
                   {CONTACT.hours}
                 </span>
@@ -172,7 +172,7 @@ export default function ContactSection() {
                 style={inputBase}
                 {...register('name')}
                 onFocus={(e) =>
-                  (e.target.style.borderColor = 'var(--accent)')
+                  (e.target.style.borderColor = 'var(--fg)')
                 }
                 onBlur={(e) =>
                   (e.target.style.borderColor = 'var(--border)')
@@ -199,7 +199,7 @@ export default function ContactSection() {
                 style={inputBase}
                 {...register('email')}
                 onFocus={(e) =>
-                  (e.target.style.borderColor = 'var(--accent)')
+                  (e.target.style.borderColor = 'var(--fg)')
                 }
                 onBlur={(e) =>
                   (e.target.style.borderColor = 'var(--border)')
@@ -224,7 +224,7 @@ export default function ContactSection() {
                 style={{ ...inputBase, cursor: 'pointer' }}
                 {...register('package')}
                 onFocus={(e) =>
-                  (e.target.style.borderColor = 'var(--accent)')
+                  (e.target.style.borderColor = 'var(--fg)')
                 }
                 onBlur={(e) =>
                   (e.target.style.borderColor = 'var(--border)')
@@ -263,7 +263,7 @@ export default function ContactSection() {
                 style={{ ...inputBase, resize: 'vertical' }}
                 {...register('message')}
                 onFocus={(e) =>
-                  (e.target.style.borderColor = 'var(--accent)')
+                  (e.target.style.borderColor = 'var(--fg)')
                 }
                 onBlur={(e) =>
                   (e.target.style.borderColor = 'var(--border)')

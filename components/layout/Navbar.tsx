@@ -19,8 +19,11 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'var(--bg)' : 'transparent',
-        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        background: scrolled ? 'rgba(232,232,237,0.45)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
       }}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
@@ -40,12 +43,12 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className="text-sm font-medium transition-colors duration-150"
-                style={{ color: 'var(--muted)' }}
+                style={{ color: '#333' }}
                 onMouseEnter={(e) =>
-                  ((e.target as HTMLElement).style.color = 'var(--fg)')
+                  ((e.target as HTMLElement).style.color = '#000')
                 }
                 onMouseLeave={(e) =>
-                  ((e.target as HTMLElement).style.color = 'var(--muted)')
+                  ((e.target as HTMLElement).style.color = '#333')
                 }
               >
                 {link.label}
@@ -101,7 +104,7 @@ export default function Navbar() {
         <div
           className="md:hidden px-4 pb-4 pt-2 flex flex-col gap-3"
           style={{
-            background: 'var(--bg)',
+            background: '#e8e8ed',
             borderBottom: '1px solid var(--border)',
           }}
         >

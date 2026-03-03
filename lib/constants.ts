@@ -3,9 +3,10 @@ import { z } from 'zod'
 // ─── Navigation ─────────────────────────────────────────────────────────────
 
 export const NAV_LINKS = [
+  { label: 'Start', href: '/' },
   { label: 'Leistungen', href: '/leistungen' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'About', href: '/about' },
+  { label: 'Über mich', href: '/about' },
   { label: 'FAQ', href: '/faq' },
   { label: 'Kontakt', href: '/#kontakt' },
 ] as const
@@ -15,7 +16,7 @@ export const NAV_CTA = 'Projekt starten →'
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 export const HERO = {
-  badge: '● Verfügbar für neue Projekte · Leipzig, DE',
+  badge: 'Verfügbar für neue Projekte · Leipzig, DE',
   h1Line1: 'Ihre Website.',
   h1Line2: 'In guten Händen.',
   subtitle:
@@ -675,7 +676,7 @@ export const LEISTUNGEN_PAGE = {
 export const ABOUT_PAGE = {
   hero: {
     name: 'Oscar',
-    tagline: 'Webentwickler · Leipzig, DE',
+    tagline: 'Softwareentwickler & Webentwickler · Leipzig, DE',
     paragraph: 'Ich entwickle WordPress-Websites und digitale Plattformen für Unternehmen, die online wachsen wollen. Kein Aufwand für den Kunden — ich kümmere mich um alles, von der Domain bis zum Launch. Mein Fokus liegt auf sauberem Code, klarer Kommunikation und Lösungen, die wirklich funktionieren.',
   },
   stack: {

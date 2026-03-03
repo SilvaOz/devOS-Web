@@ -48,7 +48,7 @@ export default function LeistungenPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <p
               className="text-xs font-mono font-semibold uppercase tracking-widest mb-4"
-              style={{ color: 'var(--accent)' }}
+              style={{ color: 'var(--muted)' }}
             >
               LEISTUNGEN
             </p>
@@ -173,7 +173,7 @@ export default function LeistungenPage() {
             {/* Header */}
             <p
               className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-              style={{ color: 'var(--accent)' }}
+              style={{ color: 'var(--muted)' }}
             >
               SUPPORT & PFLEGE
             </p>
@@ -210,10 +210,10 @@ export default function LeistungenPage() {
                 style={{ background: 'var(--accent-dim)', borderColor: 'rgba(255,215,0,0.2)' }}
               >
                 <span className="flex-shrink-0 mt-0.5">
-                  <Icon name="CheckCircle2" size={22} style={{ color: 'var(--accent)' }} />
+                  <Icon name="CheckCircle2" size={22} style={{ color: '#22c55e' }} />
                 </span>
                 <div>
-                  <p className="text-sm font-bold mb-1" style={{ color: 'var(--accent)' }}>
+                  <p className="text-sm font-bold mb-1" style={{ color: '#22c55e' }}>
                     Mit Pflege-Paket
                   </p>
                   <p className="text-sm" style={{ color: 'var(--muted)' }}>
@@ -312,7 +312,7 @@ export default function LeistungenPage() {
             >
               <div className="flex-1">
                 <p className="text-sm font-bold mb-1 flex items-center gap-2" style={{ color: 'var(--fg)' }}>
-                  <Icon name="Lightbulb" size={16} style={{ color: 'var(--accent)' }} />
+                  <Icon name="Lightbulb" size={16} style={{ color: 'var(--muted)' }} />
                   Warum ein Paket sinnvoll ist
                 </p>
                 <p className="text-sm" style={{ color: 'var(--muted)' }}>
@@ -360,9 +360,9 @@ export default function LeistungenPage() {
                 >
                   <span
                     className="w-10 h-10 flex items-center justify-center rounded-lg"
-                    style={{ background: 'var(--accent-dim)' }}
+                    style={{ background: 'rgba(0,0,0,0.06)' }}
                   >
-                    <Icon name={item.icon} size={20} style={{ color: 'var(--accent)' }} />
+                    <Icon name={item.icon} size={20} style={{ color: 'var(--fg)' }} />
                   </span>
                   <h3 className="text-sm font-bold" style={{ color: 'var(--fg)' }}>
                     {item.title}
@@ -381,7 +381,7 @@ export default function LeistungenPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <p
               className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-              style={{ color: 'var(--accent)' }}
+              style={{ color: 'var(--muted)' }}
             >
               AUTOMATISIERUNGEN
             </p>
@@ -406,9 +406,9 @@ export default function LeistungenPage() {
                 >
                   <span
                     className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0 mt-0.5"
-                    style={{ background: 'var(--accent-dim)' }}
+                    style={{ background: 'rgba(0,0,0,0.06)' }}
                   >
-                    <Icon name={item.icon} size={20} style={{ color: 'var(--accent)' }} />
+                    <Icon name={item.icon} size={20} style={{ color: 'var(--fg)' }} />
                   </span>
                   <div>
                     <h3 className="text-base font-bold mb-1" style={{ color: 'var(--fg)' }}>
@@ -468,7 +468,7 @@ export default function LeistungenPage() {
               <div>
                 <p
                   className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'var(--muted)' }}
                 >
                   WEB APPS
                 </p>
@@ -507,9 +507,9 @@ export default function LeistungenPage() {
                   >
                     <span
                       className="w-8 h-8 flex items-center justify-center rounded-md flex-shrink-0"
-                      style={{ background: 'var(--accent-dim)' }}
+                      style={{ background: 'rgba(0,0,0,0.06)' }}
                     >
-                      <Icon name={item.icon} size={16} style={{ color: 'var(--accent)' }} />
+                      <Icon name={item.icon} size={16} style={{ color: 'var(--fg)' }} />
                     </span>
                     <div>
                       <p className="text-sm font-bold" style={{ color: 'var(--fg)' }}>
@@ -533,7 +533,7 @@ export default function LeistungenPage() {
               <div className="flex-1">
                 <p
                   className="text-xs font-mono font-semibold uppercase tracking-widest mb-2"
-                  style={{ color: 'var(--accent)' }}
+                  style={{ color: 'var(--muted)' }}
                 >
                   PERFORMANCE & SEO
                 </p>
@@ -551,9 +551,9 @@ export default function LeistungenPage() {
                     key={m}
                     className="px-4 py-2.5 rounded-lg border text-sm font-mono font-semibold"
                     style={{
-                      background: 'var(--accent-dim)',
-                      borderColor: 'rgba(255,215,0,0.25)',
-                      color: 'var(--accent)',
+                      background: 'rgba(34,197,94,0.12)',
+                      borderColor: 'rgba(34,197,94,0.3)',
+                      color: '#22c55e',
                     }}
                     dangerouslySetInnerHTML={{ __html: m }}
                   />

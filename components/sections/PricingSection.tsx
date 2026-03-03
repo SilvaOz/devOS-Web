@@ -14,15 +14,15 @@ export default function PricingSection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12" data-animate>
           <p
             className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--muted)' }}
           >
             PREISE
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-3"
+            className="text-4xl sm:text-5xl font-extrabold mb-3"
             style={{ color: 'var(--fg)' }}
           >
             Klare Investition, keine Überraschungen
@@ -33,13 +33,13 @@ export default function PricingSection() {
         </div>
 
         {/* Grid 2x2 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8" data-animate data-animate-delay="1">
           {PRICING_PLANS.map((plan) => {
             const isHighlighted = hoveredId ? hoveredId === plan.id : plan.featured
             return (
               <div
                 key={plan.id}
-                className="rounded-xl p-6 sm:p-8 border flex flex-col gap-5 cursor-default"
+                className="rounded-2xl p-6 sm:p-8 border flex flex-col gap-5 cursor-default"
                 style={{
                   background: 'var(--card)',
                   borderColor: isHighlighted ? 'var(--accent)' : 'var(--border)',
@@ -77,7 +77,7 @@ export default function PricingSection() {
                   <div className="text-right flex-shrink-0">
                     <span
                       className="text-xl font-extrabold font-mono"
-                      style={{ color: 'var(--accent)' }}
+                      style={{ color: 'var(--fg)' }}
                     >
                       {plan.price}
                     </span>
@@ -93,7 +93,7 @@ export default function PricingSection() {
                         className="flex items-center gap-2 text-sm"
                         style={{ color: 'var(--fg)' }}
                       >
-                        <span style={{ color: 'var(--accent)' }}>✓</span>
+                        <span style={{ color: 'var(--fg)' }}>✓</span>
                         {f}
                       </li>
                     ))}

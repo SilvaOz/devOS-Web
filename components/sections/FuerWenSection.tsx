@@ -11,15 +11,15 @@ export default function FuerWenSection() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12" data-animate>
           <p
             className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--accent)' }}
+            style={{ color: 'var(--muted)' }}
           >
             FÜR WEN
           </p>
           <h2
-            className="text-3xl sm:text-4xl font-extrabold mb-3"
+            className="text-4xl sm:text-5xl font-extrabold mb-3"
             style={{ color: 'var(--fg)' }}
           >
             Ich arbeite für Menschen, nicht für Konzerne
@@ -30,27 +30,26 @@ export default function FuerWenSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-animate data-animate-delay="1">
           {FUER_WEN.map((card) => (
             <div
               key={card.title}
-              className="rounded-xl p-6 border flex flex-col gap-4 card-hover"
-              style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
+              className="rounded-2xl p-6 border flex flex-col gap-4 card-hover"
+              style={{
+                background: 'var(--bg)',
+                borderColor: 'var(--border)',
+                boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
+              }}
             >
-              {/* Icon */}
               <span
                 className="w-11 h-11 flex items-center justify-center rounded-xl"
-                style={{ background: 'var(--accent-dim)' }}
+                style={{ background: 'rgba(0,0,0,0.05)' }}
               >
-                <Icon name={card.icon as IconName} size={22} style={{ color: 'var(--accent)' }} />
+                <Icon name={card.icon as IconName} size={22} style={{ color: 'var(--fg)' }} />
               </span>
 
-              {/* Title + description */}
               <div className="flex flex-col gap-2">
-                <h3
-                  className="text-base font-bold"
-                  style={{ color: 'var(--fg)' }}
-                >
+                <h3 className="text-base font-bold" style={{ color: 'var(--fg)' }}>
                   {card.title}
                 </h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
@@ -58,16 +57,12 @@ export default function FuerWenSection() {
                 </p>
               </div>
 
-              {/* Examples */}
               <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t" style={{ borderColor: 'var(--border)' }}>
                 {card.examples.map((ex) => (
                   <span
                     key={ex}
-                    className="text-xs font-mono px-2 py-0.5 rounded"
-                    style={{
-                      background: 'var(--accent-dim)',
-                      color: 'var(--accent)',
-                    }}
+                    className="text-xs font-mono px-2 py-0.5 rounded-lg"
+                    style={{ background: 'rgba(0,0,0,0.06)', color: 'var(--muted)' }}
                   >
                     {ex}
                   </span>
@@ -77,7 +72,6 @@ export default function FuerWenSection() {
           ))}
         </div>
 
-        {/* Sub-note */}
         <p className="mt-8 text-sm text-center" style={{ color: 'var(--muted)' }}>
           Sie sind sich nicht sicher, ob ich der Richtige bin?{' '}
           <a href="/#kontakt" className="link-hover-accent font-semibold">

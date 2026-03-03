@@ -11,9 +11,9 @@ export default function AboutSection() {
       style={{ background: 'var(--bg-elevated)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start" data-animate>
 
-          {/* Left column — photo + personal intro */}
+          {/* Left column */}
           <div className="flex flex-col gap-6">
             <div
               className="w-full max-w-xs rounded-2xl overflow-hidden border"
@@ -29,16 +29,15 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* Name + role */}
             <div>
               <p
                 className="text-xs font-mono font-semibold uppercase tracking-widest mb-2"
-                style={{ color: 'var(--accent)' }}
+                style={{ color: 'var(--muted)' }}
               >
                 {ABOUT.label}
               </p>
               <h2
-                className="text-3xl sm:text-4xl font-extrabold mb-1"
+                className="text-4xl sm:text-5xl font-extrabold mb-1"
                 style={{ color: 'var(--fg)' }}
               >
                 {ABOUT.name}
@@ -56,29 +55,23 @@ export default function AboutSection() {
 
             <a
               href="/#kontakt"
-              className="self-start inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded transition-opacity duration-150 hover:opacity-90"
+              className="self-start inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-xl transition-opacity duration-150 hover:opacity-90"
               style={{ background: 'var(--accent)', color: '#000' }}
             >
               {ABOUT.cta}
             </a>
           </div>
 
-          {/* Right column — points */}
+          {/* Right column */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:pt-4">
             {ABOUT.points.map((point) => (
               <div
                 key={point.title}
-                className="rounded-xl p-5 border flex flex-col gap-2 card-hover"
-                style={{
-                  background: 'var(--bg)',
-                  borderColor: 'var(--border)',
-                }}
+                className="rounded-2xl p-5 border flex flex-col gap-2 card-hover"
+                style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
               >
-                <Icon name={point.icon as IconName} size={22} style={{ color: 'var(--accent)' }} />
-                <h3
-                  className="text-sm font-bold"
-                  style={{ color: 'var(--fg)' }}
-                >
+                <Icon name={point.icon as IconName} size={22} style={{ color: 'var(--fg)' }} />
+                <h3 className="text-sm font-bold" style={{ color: 'var(--fg)' }}>
                   {point.title}
                 </h3>
                 <p className="text-xs leading-relaxed" style={{ color: 'var(--muted)' }}>
@@ -89,19 +82,13 @@ export default function AboutSection() {
 
             {/* Quote card */}
             <div
-              className="sm:col-span-2 rounded-xl p-5 border"
-              style={{
-                background: 'var(--accent-dim)',
-                borderColor: 'rgba(29,78,216,0.2)',
-              }}
+              className="sm:col-span-2 rounded-2xl p-5 border"
+              style={{ background: 'var(--bg)', borderColor: 'var(--border)' }}
             >
-              <p
-                className="text-sm leading-relaxed italic"
-                style={{ color: 'var(--fg)' }}
-              >
+              <p className="text-sm leading-relaxed italic" style={{ color: 'var(--fg)' }}>
                 "Mein Ziel ist einfach: dass Sie sich nach unserem ersten Gespräch bereits entspannt fühlen. Alles andere übernehme ich."
               </p>
-              <p className="text-xs mt-2 font-mono" style={{ color: 'var(--accent)' }}>
+              <p className="text-xs mt-2 font-mono" style={{ color: 'var(--muted)' }}>
                 — Oscar, Gründer DevOS Web
               </p>
             </div>

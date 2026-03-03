@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Manrope, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import AnimationInit from '@/components/ui/AnimationInit'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -42,7 +43,10 @@ export default function RootLayout({
       lang="de"
       className={`${manrope.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <AnimationInit />
+        {children}
+      </body>
     </html>
   )
 }
