@@ -1,6 +1,9 @@
+import Image from 'next/image'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { ABOUT_PAGE } from '@/lib/constants'
+import { Icon } from '@/components/ui/Icon'
+import type { IconName } from '@/components/ui/Icon'
 
 export const metadata = {
   title: 'About — DevOS Web',
@@ -21,29 +24,19 @@ export default function AboutPage() {
         >
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row gap-12 items-start">
-              {/* Photo placeholder — Ersetze mit <Image src="..." /> */}
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 w-full md:w-80 lg:w-96">
                 <div
-                  className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(135deg, var(--bg-elevated) 0%, #1e1e2e 50%, var(--card) 100%)',
-                    border: '1px solid var(--border)',
-                  }}
+                  className="rounded-2xl overflow-hidden"
+                  style={{ border: '1px solid var(--border)' }}
                 >
-                  {/* Silhouette SVG placeholder */}
-                  <svg
-                    viewBox="0 0 100 120"
-                    width="120"
-                    height="140"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <circle cx="50" cy="35" r="22" fill="var(--border)" />
-                    <path
-                      d="M10 110c0-22 18-40 40-40s40 18 40 40"
-                      fill="var(--border)"
-                    />
-                  </svg>
+                  <Image
+                    src="/oscar.png"
+                    alt="Oscar — DevOS Web"
+                    width={640}
+                    height={900}
+                    className="w-full h-auto object-cover object-top"
+                    priority
+                  />
                 </div>
               </div>
 
@@ -135,7 +128,12 @@ export default function AboutPage() {
                   className="rounded-xl p-6 border card-hover flex gap-4"
                   style={{ background: 'var(--card)' }}
                 >
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                  <span
+                    className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0"
+                    style={{ background: 'var(--accent-dim)' }}
+                  >
+                    <Icon name={item.icon as IconName} size={20} style={{ color: 'var(--accent)' }} />
+                  </span>
                   <div>
                     <h3 className="text-base font-bold mb-1" style={{ color: 'var(--fg)' }}>
                       {item.title}

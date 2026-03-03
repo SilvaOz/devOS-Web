@@ -12,7 +12,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
     <section
       id="portfolio"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg)' }}
+      style={{ background: 'var(--bg-light)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -26,7 +26,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
             </p>
             <h2
               className="text-3xl sm:text-4xl font-extrabold"
-              style={{ color: 'var(--fg)' }}
+              style={{ color: 'var(--fg-light)' }}
             >
               Echte Projekte
             </h2>
@@ -47,15 +47,15 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
             <div
               key={project.title}
               className="rounded-xl border overflow-hidden card-hover"
-              style={{ background: 'var(--card)' }}
+              style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
             >
               {/* Gradient placeholder */}
               <div
                 className={`h-36 sm:h-44 bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
               >
                 <span
-                  className="text-3xl font-extrabold font-mono opacity-20"
-                  style={{ color: 'var(--fg)' }}
+                  className="text-3xl font-extrabold font-mono opacity-30"
+                  style={{ color: '#ffffff' }}
                 >
                   {project.title.slice(0, 2).toUpperCase()}
                 </span>
@@ -66,11 +66,11 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                 <div>
                   <h3
                     className="text-base font-bold mb-0.5"
-                    style={{ color: 'var(--fg)' }}
+                    style={{ color: 'var(--fg-light)' }}
                   >
                     {project.title}
                   </h3>
-                  <p className="text-xs" style={{ color: 'var(--muted)' }}>
+                  <p className="text-xs" style={{ color: 'var(--muted-light)' }}>
                     {project.type}
                   </p>
                 </div>
@@ -82,9 +82,9 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                       key={tag}
                       className="text-xs font-mono px-2 py-0.5 rounded border"
                       style={{
-                        background: 'var(--bg-elevated)',
-                        color: 'var(--muted)',
-                        borderColor: 'var(--border)',
+                        background: 'var(--bg-light)',
+                        color: 'var(--muted-light)',
+                        borderColor: 'var(--border-light)',
                       }}
                     >
                       {tag}
@@ -95,7 +95,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
                 {/* Metrics */}
                 <div
                   className="flex flex-wrap gap-4 pt-2 border-t"
-                  style={{ borderColor: 'var(--border)' }}
+                  style={{ borderColor: 'var(--border-light)' }}
                 >
                   {project.metrics.map((metric) => (
                     <span

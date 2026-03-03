@@ -8,6 +8,7 @@ import PricingSection from '@/components/sections/PricingSection'
 import ProcessSection from '@/components/sections/ProcessSection'
 import AboutSection from '@/components/sections/AboutSection'
 import PortfolioSection from '@/components/sections/PortfolioSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ContactSection from '@/components/sections/ContactSection'
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <ProcessSection />
         <AboutSection />
         <PortfolioSection maxItems={2} showLink={true} />
+        <TestimonialsSection />
 
         {/* FAQ teaser */}
         <div

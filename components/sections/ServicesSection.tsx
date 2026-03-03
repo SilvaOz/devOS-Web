@@ -1,4 +1,6 @@
 import { SERVICES } from '@/lib/constants'
+import { Icon } from '@/components/ui/Icon'
+import type { IconName } from '@/components/ui/Icon'
 
 export default function ServicesSection() {
   const [featured, ...rest] = SERVICES
@@ -7,7 +9,7 @@ export default function ServicesSection() {
     <section
       id="leistungen"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg)' }}
+      style={{ background: 'var(--bg-light)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -20,7 +22,7 @@ export default function ServicesSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold"
-            style={{ color: 'var(--fg)' }}
+            style={{ color: 'var(--fg-light)' }}
           >
             Was ich mache
           </h2>
@@ -31,23 +33,23 @@ export default function ServicesSection() {
           {/* Featured card — spans 2 cols */}
           <div
             className="md:col-span-2 rounded-xl p-6 sm:p-8 border flex flex-col gap-5 card-hover-wp"
-            style={{ background: 'var(--card)' }}
+            style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
           >
             <div className="flex items-start gap-4">
               <span
-                className="text-2xl w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0"
+                className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0"
                 style={{ background: 'rgba(33,117,155,0.15)' }}
               >
-                {featured.icon}
+                <Icon name={featured.icon as IconName} size={20} style={{ color: 'var(--accent-wp)' }} />
               </span>
               <div>
                 <h3
                   className="text-xl font-bold mb-1"
-                  style={{ color: 'var(--fg)' }}
+                  style={{ color: 'var(--fg-light)' }}
                 >
                   {featured.title}
                 </h3>
-                <p className="text-sm" style={{ color: 'var(--muted)' }}>
+                <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
                   {featured.description}
                 </p>
               </div>
@@ -59,7 +61,7 @@ export default function ServicesSection() {
                   <li
                     key={f}
                     className="flex items-center gap-2 text-sm"
-                    style={{ color: 'var(--fg)' }}
+                    style={{ color: 'var(--fg-light)' }}
                   >
                     <span style={{ color: 'var(--accent-wp)' }}>✓</span>
                     {f}
@@ -84,21 +86,21 @@ export default function ServicesSection() {
             <div
               key={card.title}
               className="rounded-xl p-6 border flex flex-col gap-3 card-hover"
-              style={{ background: 'var(--card)' }}
+              style={{ background: 'var(--card-light)', borderColor: 'var(--border-light)' }}
             >
               <span
-                className="text-xl w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"
+                className="w-9 h-9 flex items-center justify-center rounded-lg flex-shrink-0"
                 style={{ background: 'var(--accent-dim)' }}
               >
-                {card.icon}
+                <Icon name={card.icon as IconName} size={18} style={{ color: 'var(--accent)' }} />
               </span>
               <h3
                 className="text-base font-bold"
-                style={{ color: 'var(--fg)' }}
+                style={{ color: 'var(--fg-light)' }}
               >
                 {card.title}
               </h3>
-              <p className="text-sm" style={{ color: 'var(--muted)' }}>
+              <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
                 {card.description}
               </p>
             </div>

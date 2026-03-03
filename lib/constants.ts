@@ -65,7 +65,7 @@ export type ServiceCard = {
 
 export const SERVICES: ServiceCard[] = [
   {
-    icon: '🌐',
+    icon: 'Globe',
     title: 'Ihre Website',
     description:
       'Professionell, editierbar, ohne Programmierkenntnisse. Sie können Texte selbst ändern — kein IT-Wissen nötig.',
@@ -81,35 +81,35 @@ export const SERVICES: ServiceCard[] = [
     featured: true,
   },
   {
-    icon: '📅',
+    icon: 'CalendarCheck',
     title: 'Online-Buchungen',
     description:
       'Ihre Klienten buchen selbst, zahlen direkt und bekommen eine Bestätigung — automatisch. Sie müssen nichts tun.',
     features: [],
   },
   {
-    icon: '🛒',
+    icon: 'ShoppingCart',
     title: 'Online verkaufen',
     description:
       'Produkte, Kurse oder Sitzungen online anbieten. Bezahlung direkt auf Ihrer Website.',
     features: [],
   },
   {
-    icon: '🔍',
+    icon: 'Search',
     title: 'Bei Google gefunden',
     description:
       'Ihre Website lädt schnell und erscheint in den Suchergebnissen — ohne technischen Aufwand Ihrerseits.',
     features: [],
   },
   {
-    icon: '🖥️',
+    icon: 'LayoutDashboard',
     title: 'Individuelle Plattformen',
     description:
       'Login-Bereiche, Dashboards, interne Tools. Für komplexere Anforderungen.',
     features: [],
   },
   {
-    icon: '🤝',
+    icon: 'HeartHandshake',
     title: 'Support & Pflege',
     description:
       'Ich bin auch nach dem Launch da. Updates, neue Inhalte, Fragen — Antwort in 24–48h.',
@@ -236,22 +236,22 @@ export const ABOUT = {
   cta: 'Lassen Sie uns sprechen →',
   points: [
     {
-      icon: '🙋',
+      icon: 'UserRound',
       title: 'Persönlicher Ansprechpartner',
       description: 'Immer ich — keine Weiterleitung, kein Ticket-System.',
     },
     {
-      icon: '💬',
+      icon: 'MessageSquare',
       title: 'Kein Fachjargon',
       description: 'Ich erkläre alles verständlich. Auf Deutsch oder Spanisch.',
     },
     {
-      icon: '✅',
+      icon: 'BadgeCheck',
       title: 'Deadlines werden eingehalten',
       description: 'Ich sage, was ich tue — und tue, was ich sage.',
     },
     {
-      icon: '📍',
+      icon: 'MapPin',
       title: 'Leipzig — Europa',
       description: 'Ich arbeite mit Kunden in Deutschland und ganz Europa.',
     },
@@ -360,7 +360,7 @@ export const CONTACT = {
   location: 'Leipzig, Deutschland',
   hours: 'Mo–Fr, 9:00–18:00 Uhr',
   noPhone: 'Kein Telefon — alles per E-Mail. Schneller, klarer, dokumentiert.',
-  ibanPlaceholder: 'DE XX XXXX XXXX XXXX XXXX XX',
+  paymentNote: 'Zahlung per Banküberweisung nach schriftlichem Angebot. Sie erhalten eine Rechnung per E-Mail.',
   packageOptions: [
     { value: 'wp-base', label: 'WP Base (ab 700 EUR)' },
     { value: 'wp-premium', label: 'WP Premium (ab 900 EUR)' },
@@ -403,25 +403,25 @@ export type FuerWenCard = {
 
 export const FUER_WEN: FuerWenCard[] = [
   {
-    icon: '🧘',
+    icon: 'Heart',
     title: 'Therapeuten & Coaches',
     description: 'Online buchbar, DSGVO-konform, vertrauenswürdig. Ihre Klienten finden Sie — und buchen direkt.',
     examples: ['Psychotherapie', 'Coaching', 'Physiotherapie'],
   },
   {
-    icon: '🎨',
+    icon: 'Palette',
     title: 'Künstler & Kreative',
     description: 'Ein Portfolio, das Ihre Arbeit zeigt — nicht überwältigt. Einfach, schön, professionell.',
     examples: ['Fotografie', 'Illustration', 'Musik'],
   },
   {
-    icon: '🌿',
+    icon: 'Leaf',
     title: 'Gesundheit & Wellness',
     description: 'Termine online verwalten, Zahlungen automatisch. Mehr Zeit für Ihre Klienten, weniger Verwaltung.',
     examples: ['Yoga', 'Ernährungsberatung', 'Massage'],
   },
   {
-    icon: '💼',
+    icon: 'Briefcase',
     title: 'Kleine Unternehmen',
     description: 'Bei Google gefunden werden, Anfragen bekommen, professionell wirken. Alles, was Sie brauchen.',
     examples: ['Handwerk', 'Dienstleistung', 'Beratung'],
@@ -495,7 +495,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
   },
   {
     id: 'annual',
-    name: 'Jahresperson',
+    name: 'Jahrespflege',
     tagline: 'Die Wahl der meisten Kunden.',
     duration: '12 Monate',
     totalPrice: 699,
@@ -520,7 +520,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
     perMonth: 46,
     savings: 54,
     features: [
-      'Alles aus Jahresperson',
+      'Alles aus Jahrespflege',
       '4 Std. Änderungen/Monat',
       'Priorität: Antwort in 12h',
       'Notfall-Interventionen unbegrenzt',
@@ -530,14 +530,63 @@ export const SUPPORT_PLANS: SupportPlan[] = [
   },
 ]
 
+// ─── Testimonials ─────────────────────────────────────────────────────────────
+
+export type Testimonial = {
+  quote: string
+  author: string
+  role: string
+  location: string
+  metric: string
+  initial: string
+}
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    quote:
+      'Ich hatte null Ahnung von Websites. Oscar hat alles erklärt, alles organisiert — und 3 Wochen später war ich online buchbar. Meine Klientinnen buchen jetzt direkt, ohne dass ich eingreifen muss.',
+    author: 'Maria S.',
+    role: 'Heilpraktikerin',
+    location: 'Leipzig',
+    metric: '12 Buchungen in der ersten Woche',
+    initial: 'M',
+  },
+  {
+    quote:
+      'Mein altes Portfolio war eine Katastrophe. Jetzt zeige ich es jedem. Die Seite sieht professionell aus, lädt schnell, und Oscar hat sogar meinen alten Content gerettet. Absolute Empfehlung.',
+    author: 'Thomas R.',
+    role: 'Fotograf',
+    location: 'Dresden',
+    metric: '3 neue Kundenanfragen im ersten Monat',
+    initial: 'T',
+  },
+  {
+    quote:
+      'Die Online-Buchungen haben meinen Alltag komplett verändert. Kein WhatsApp-Chaos mehr, keine verlorenen Termine. Alles läuft automatisch. Ich kann mich endlich auf den Unterricht konzentrieren.',
+    author: 'Karin M.',
+    role: 'Yoga-Studio-Inhaberin',
+    location: 'Leipzig',
+    metric: '+40% Buchungen seit Launch',
+    initial: 'K',
+  },
+]
+
 // ─── Newsletter ────────────────────────────────────────────────────────────────
 
 export const NEWSLETTER = {
-  label: 'KOSTENLOSES PDF',
+  label: 'KOSTENLOS',
   title: '10 Tipps für Ihre Website',
-  description: 'Tragen Sie sich ein und erhalten Sie sofort Ihr kostenloses PDF — direkt in Ihr Postfach.',
+  subtitle: 'Was eine gute Website wirklich ausmacht — erklärt ohne Fachjargon.',
+  bullets: [
+    'Wie Sie bei Google gefunden werden — ohne Werbung',
+    'Warum Ladezeit direkt Kunden und Buchungen kostet',
+    'Die 5 häufigsten Fehler auf kleinen Unternehmenswebsites',
+    'Was eine Website wirklich kosten sollte (und was nicht)',
+    'Wie Sie Ihre Seite selbst pflegen, ohne Programmierer',
+  ],
   placeholder: 'ihre@email.de',
-  submit: 'PDF erhalten →',
+  submit: 'PDF kostenlos erhalten →',
+  privacy: 'Kein Spam. Nur diese E-Mail. Abmeldung jederzeit.',
   successMessage: '✓ Danke! Das PDF ist auf dem Weg zu Ihnen.',
   errorMessage: 'Fehler. Bitte versuchen Sie es erneut.',
 } as const
@@ -578,10 +627,10 @@ export const LEISTUNGEN_PAGE = {
     h2: 'Web-Apps mit React & Node.js',
     description: 'Maßgeschneiderte Plattformen mit Login, Rollen, Dashboards und APIs.',
     features: [
-      { icon: '⚛️', title: 'React / Next.js', description: 'Modernes Frontend mit Server-Side Rendering und TypeScript.' },
-      { icon: '🛠️', title: 'Backend + Auth', description: 'Node.js, PostgreSQL, sichere Authentifizierung und Rollen.' },
-      { icon: '🔗', title: 'APIs & Integrationen', description: 'Stripe, CRMs, Zoom, Google Calendar und externe Systeme.' },
-      { icon: '🚀', title: 'Deploy & DevOps', description: 'Vercel, Docker, CI/CD — sauber und wartbar.' },
+      { icon: 'Code2', title: 'React / Next.js', description: 'Modernes Frontend mit Server-Side Rendering und TypeScript.' },
+      { icon: 'Server', title: 'Backend + Auth', description: 'Node.js, PostgreSQL, sichere Authentifizierung und Rollen.' },
+      { icon: 'Plug', title: 'APIs & Integrationen', description: 'Stripe, CRMs, Zoom, Google Calendar und externe Systeme.' },
+      { icon: 'Rocket', title: 'Deploy & DevOps', description: 'Vercel, Docker, CI/CD — sauber und wartbar.' },
     ],
   },
   ecommerce: {
@@ -595,10 +644,10 @@ export const LEISTUNGEN_PAGE = {
     h2: 'Buchungen & Automatisierungen',
     description: 'Amelia Buchungssystem, Google Calendar, Zoom und Stripe — vollständig konfiguriert.',
     items: [
-      { icon: '📅', title: 'Amelia Buchungen', description: 'Online-Terminbuchung mit automatischen Bestätigungen.' },
-      { icon: '🗓️', title: 'Google Calendar', description: 'Synchronisation mit Ihrem persönlichen Kalender.' },
-      { icon: '🎥', title: 'Zoom Integration', description: 'Automatische Meeting-Links bei Online-Terminen.' },
-      { icon: '💳', title: 'Stripe Zahlungen', description: 'Online-Bezahlung direkt bei der Buchung.' },
+      { icon: 'CalendarCheck', title: 'Amelia Buchungen', description: 'Online-Terminbuchung mit automatischen Bestätigungen.' },
+      { icon: 'CalendarDays', title: 'Google Calendar', description: 'Synchronisation mit Ihrem persönlichen Kalender.' },
+      { icon: 'Video', title: 'Zoom Integration', description: 'Automatische Meeting-Links bei Online-Terminen.' },
+      { icon: 'CreditCard', title: 'Stripe Zahlungen', description: 'Online-Bezahlung direkt bei der Buchung.' },
     ],
   },
   performance: {
@@ -636,10 +685,10 @@ export const ABOUT_PAGE = {
   values: {
     label: 'MEINE WERTE',
     items: [
-      { icon: '🔍', title: 'Klarheit', description: 'Kein Fachjargon. Klare Kommunikation, verständliche Angebote.' },
-      { icon: '⚡', title: 'Performance', description: 'Schnelle Websites, sauberer Code, messbare Ergebnisse.' },
-      { icon: '📢', title: 'Direktheit', description: 'Ich sage, was möglich ist und was nicht — ohne Umwege.' },
-      { icon: '✅', title: 'Zuverlässigkeit', description: 'Deadlines werden eingehalten. Ich melde mich immer innerhalb 24h.' },
+      { icon: 'Eye', title: 'Klarheit', description: 'Kein Fachjargon. Klare Kommunikation, verständliche Angebote.' },
+      { icon: 'Zap', title: 'Performance', description: 'Schnelle Websites, sauberer Code, messbare Ergebnisse.' },
+      { icon: 'Megaphone', title: 'Direktheit', description: 'Ich sage, was möglich ist und was nicht — ohne Umwege.' },
+      { icon: 'BadgeCheck', title: 'Zuverlässigkeit', description: 'Deadlines werden eingehalten. Ich melde mich immer innerhalb 24h.' },
     ],
   },
   languages: 'Ich spreche Deutsch und Spanisch.',

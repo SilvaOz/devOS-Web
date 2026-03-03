@@ -1,11 +1,13 @@
 import { FUER_WEN } from '@/lib/constants'
+import { Icon } from '@/components/ui/Icon'
+import type { IconName } from '@/components/ui/Icon'
 
 export default function FuerWenSection() {
   return (
     <section
       id="fuer-wen"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg-elevated)' }}
+      style={{ background: 'var(--bg-light-alt)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -18,11 +20,11 @@ export default function FuerWenSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold mb-3"
-            style={{ color: 'var(--fg)' }}
+            style={{ color: 'var(--fg-light)' }}
           >
             Ich arbeite für Menschen, nicht für Konzerne
           </h2>
-          <p className="text-base max-w-xl" style={{ color: 'var(--muted)' }}>
+          <p className="text-base max-w-xl" style={{ color: 'var(--muted-light)' }}>
             Egal ob Sie Therapeutin, Künstler oder Inhaber eines kleinen Unternehmens sind — ich bringe Sie professionell online.
           </p>
         </div>
@@ -33,26 +35,31 @@ export default function FuerWenSection() {
             <div
               key={card.title}
               className="rounded-xl p-6 border flex flex-col gap-4 card-hover"
-              style={{ background: 'var(--card)' }}
+              style={{ background: 'var(--bg-light)', borderColor: 'var(--border-light)' }}
             >
               {/* Icon */}
-              <span className="text-3xl">{card.icon}</span>
+              <span
+                className="w-11 h-11 flex items-center justify-center rounded-xl"
+                style={{ background: 'var(--accent-dim)' }}
+              >
+                <Icon name={card.icon as IconName} size={22} style={{ color: 'var(--accent)' }} />
+              </span>
 
               {/* Title + description */}
               <div className="flex flex-col gap-2">
                 <h3
                   className="text-base font-bold"
-                  style={{ color: 'var(--fg)' }}
+                  style={{ color: 'var(--fg-light)' }}
                 >
                   {card.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted-light)' }}>
                   {card.description}
                 </p>
               </div>
 
               {/* Examples */}
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t" style={{ borderColor: 'var(--border)' }}>
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t" style={{ borderColor: 'var(--border-light)' }}>
                 {card.examples.map((ex) => (
                   <span
                     key={ex}
@@ -71,7 +78,7 @@ export default function FuerWenSection() {
         </div>
 
         {/* Sub-note */}
-        <p className="mt-8 text-sm text-center" style={{ color: 'var(--muted)' }}>
+        <p className="mt-8 text-sm text-center" style={{ color: 'var(--muted-light)' }}>
           Sie sind sich nicht sicher, ob ich der Richtige bin?{' '}
           <a href="/#kontakt" className="link-hover-accent font-semibold">
             Schreiben Sie mir — kostenlos und unverbindlich.

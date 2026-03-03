@@ -5,7 +5,7 @@ export default function ProcessSection() {
     <section
       id="prozess"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg)' }}
+      style={{ background: 'var(--bg-light)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
@@ -18,7 +18,7 @@ export default function ProcessSection() {
           </p>
           <h2
             className="text-3xl sm:text-4xl font-extrabold"
-            style={{ color: 'var(--fg)' }}
+            style={{ color: 'var(--fg-light)' }}
           >
             So arbeite ich
           </h2>
@@ -34,7 +34,7 @@ export default function ProcessSection() {
                   className="hidden md:block absolute top-8 left-1/2 w-full h-px"
                   style={{
                     background:
-                      'linear-gradient(to right, var(--border), transparent)',
+                      'linear-gradient(to right, var(--border-light), transparent)',
                   }}
                   aria-hidden="true"
                 />
@@ -45,7 +45,7 @@ export default function ProcessSection() {
                 className="text-5xl sm:text-6xl font-extrabold font-mono leading-none select-none"
                 style={{
                   background:
-                    'linear-gradient(135deg, var(--accent) 0%, rgba(255,215,0,0.3) 100%)',
+                    'linear-gradient(135deg, var(--accent) 0%, rgba(29,78,216,0.3) 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -58,11 +58,11 @@ export default function ProcessSection() {
               <div>
                 <h3
                   className="text-base font-bold mb-1"
-                  style={{ color: 'var(--fg)' }}
+                  style={{ color: 'var(--fg-light)' }}
                 >
                   {step.title}
                 </h3>
-                <p className="text-sm" style={{ color: 'var(--muted)' }}>
+                <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
                   {step.description}
                 </p>
               </div>

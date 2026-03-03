@@ -60,7 +60,7 @@ export default function Navbar() {
           className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold rounded transition-opacity duration-150 hover:opacity-90"
           style={{
             background: 'var(--accent)',
-            color: '#000',
+            color: '#fff',
           }}
         >
           {NAV_CTA}
@@ -120,7 +120,7 @@ export default function Navbar() {
             href="/#kontakt"
             onClick={handleNavClick}
             className="mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded"
-            style={{ background: 'var(--accent)', color: '#000' }}
+            style={{ background: 'var(--accent)', color: '#fff' }}
           >
             {NAV_CTA}
           </a>

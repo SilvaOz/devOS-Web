@@ -4,62 +4,56 @@ import { useEffect, useRef } from 'react'
 import { HERO } from '@/lib/constants'
 
 export default function HeroSection() {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const rainRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const container = rainRef.current
+    if (!container) return
 
-    const chars =
-      '01アイウエオカキクケコサシスセソタチツテト{}[]()<>=+-*/&|^%$#@!?;:,.'
-    const fontSize = 13
-    let columns = 0
-    let drops: number[] = []
+    const snippets = [
+      'const user = await getUser(id)',
+      'function render() { return jsx }',
+      'import { useState } from "react"',
+      'export default async function()',
+      'type Props = { id: string }',
+      'if (!auth) redirect("/login")',
+      'useEffect(() => { init() }, [])',
+      '.map(item => item.id)',
+      '.filter(Boolean).length > 0',
+      'return res.status(200).json()',
+      'const [open, setOpen] = useState(false)',
+      'schema.parse(formData)',
+      'z.string().email().min(1)',
+      'git commit -m "feat: add"',
+      'npm run build && npm start',
+      'SELECT id, name FROM users',
+      'docker compose up --build',
+      'interface User { id: number }',
+      'async/await Promise.all([])',
+      'throw new Error("not found")',
+    ]
 
-    const resize = () => {
-      const rect = canvas.getBoundingClientRect()
-      canvas.width = rect.width
-      canvas.height = rect.height
-      columns = Math.floor(rect.width / fontSize)
-      drops = Array(columns).fill(1)
-    }
-    resize()
-    window.addEventListener('resize', resize, { passive: true })
+    const columnCount = Math.floor(window.innerWidth / 110)
+    const cols: HTMLDivElement[] = []
 
-    let animId: number
-    let lastTime = 0
-    const interval = 90 // ms between frames → ~11fps, slow and elegant
+    for (let i = 0; i < columnCount; i++) {
+      const col = document.createElement('div')
+      col.className = 'rain-col'
+      col.style.left = `${(i / columnCount) * 100}%`
+      col.style.animationDuration = `${18 + Math.random() * 22}s`
+      col.style.animationDelay  = `${-Math.random() * 30}s`
+      col.style.opacity = String(0.07 + Math.random() * 0.11)
 
-    const draw = (timestamp: number) => {
-      animId = requestAnimationFrame(draw)
-      if (timestamp - lastTime < interval) return
-      lastTime = timestamp
-
-      ctx.fillStyle = 'rgba(10, 10, 15, 0.06)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      ctx.fillStyle = 'rgba(255, 215, 0, 0.18)'
-      ctx.font = `${fontSize}px monospace`
-
-      for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)]
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize)
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0
-        }
-        drops[i] += 0.4
+      let text = ''
+      for (let j = 0; j < 12; j++) {
+        text += snippets[Math.floor(Math.random() * snippets.length)] + '   '
       }
+      col.textContent = text
+      container.appendChild(col)
+      cols.push(col)
     }
 
-    animId = requestAnimationFrame(draw)
-
-    return () => {
-      cancelAnimationFrame(animId)
-      window.removeEventListener('resize', resize)
-    }
+    return () => cols.forEach(c => c.remove())
   }, [])
 
   return (
@@ -67,11 +61,17 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center overflow-hidden"
       style={{ background: 'var(--bg)' }}
     >
-      {/* Code Rain Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ willChange: 'transform' }}
+      {/* Grid */}
+      <div className="hero-grid" aria-hidden="true" />
+
+      {/* Glow orbs — top-right gold, bottom-left blue */}
+      <div className="hero-orb hero-orb-tr" aria-hidden="true" />
+      <div className="hero-orb hero-orb-bl" aria-hidden="true" />
+
+      {/* Code Rain */}
+      <div
+        ref={rainRef}
+        className="absolute inset-0 overflow-hidden"
         aria-hidden="true"
       />
 
@@ -87,76 +87,129 @@ export default function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-32 md:py-40 w-full">
-        <div className="max-w-2xl">
-          {/* Badge */}
-          <div
-            className="inline-flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-full mb-6 border"
-            style={{
-              background: 'var(--accent-dim)',
-              borderColor: 'rgba(255,215,0,0.25)',
-              color: 'var(--accent)',
-            }}
-          >
-            {HERO.badge}
-          </div>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
 
-          {/* H1 */}
-          <h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6"
-            style={{ color: 'var(--fg)' }}
-          >
-            {HERO.h1Line1}
-            <br />
-            <span style={{ color: 'var(--accent)' }}>{HERO.h1Line2}</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            className="text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
-            style={{ color: 'var(--muted)' }}
-          >
-            {HERO.subtitle}
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <a
-              href="#kontakt"
-              className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm transition-opacity duration-150 hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#000' }}
-            >
-              {HERO.ctaPrimary}
-            </a>
-            <a
-              href="#fuer-wen"
-              className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm border transition-colors duration-150"
+          {/* Left — text */}
+          <div>
+            {/* Badge */}
+            <div
+              className="inline-flex items-center gap-2 text-xs font-mono px-3 py-1.5 rounded-full mb-6 border"
               style={{
-                color: 'var(--fg)',
-                borderColor: 'var(--border)',
-                background: 'transparent',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget
-                el.style.background = 'var(--bg-elevated)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget
-                el.style.background = 'transparent'
+                background: 'var(--accent-dim)',
+                borderColor: 'rgba(255,215,0,0.25)',
+                color: 'var(--accent)',
               }}
             >
-              {HERO.ctaGhost}
-            </a>
+              {HERO.badge}
+            </div>
+
+            {/* H1 */}
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6"
+              style={{ color: 'var(--fg)' }}
+            >
+              {HERO.h1Line1}
+              <br />
+              <span style={{ color: 'var(--accent)' }}>{HERO.h1Line2}</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-lg sm:text-xl leading-relaxed mb-8 max-w-xl"
+              style={{ color: 'var(--muted)' }}
+            >
+              {HERO.subtitle}
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-10">
+              <a
+                href="#kontakt"
+                className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm transition-opacity duration-150 hover:opacity-90"
+                style={{ background: 'var(--accent)', color: '#fff' }}
+              >
+                {HERO.ctaPrimary}
+              </a>
+              <a
+                href="#fuer-wen"
+                className="inline-flex items-center justify-center px-6 py-3 font-semibold rounded text-sm border transition-colors duration-150"
+                style={{
+                  color: 'var(--fg)',
+                  borderColor: 'var(--border)',
+                  background: 'transparent',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = 'var(--bg-elevated)'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget
+                  el.style.background = 'transparent'
+                }}
+              >
+                {HERO.ctaGhost}
+              </a>
+            </div>
+
+            {/* Micro-text */}
+            <div
+              className="flex flex-wrap gap-4 text-xs font-mono"
+              style={{ color: 'var(--muted)' }}
+            >
+              {HERO.micros.map((m) => (
+                <span key={m}>{m}</span>
+              ))}
+            </div>
           </div>
 
-          {/* Micro-text */}
-          <div
-            className="flex flex-wrap gap-4 text-xs font-mono"
-            style={{ color: 'var(--muted)' }}
-          >
-            {HERO.micros.map((m) => (
-              <span key={m}>{m}</span>
-            ))}
+          {/* Right — terminal (desktop only) */}
+          <div className="hidden lg:block">
+            <div
+              className="rounded-xl overflow-hidden border"
+              style={{
+                background: 'var(--card)',
+                borderColor: 'var(--border)',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04)',
+              }}
+            >
+              {/* Title bar */}
+              <div
+                className="flex items-center gap-2 px-4 py-3 border-b"
+                style={{ background: 'var(--bg-elevated)', borderColor: 'var(--border)' }}
+              >
+                <span className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
+                <span className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
+                <span className="font-mono text-xs ml-3" style={{ color: 'var(--muted)' }}>
+                  devos-terminal
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 font-mono text-sm flex flex-col gap-3">
+                <p style={{ color: 'var(--muted)' }}>
+                  $ devos --init projekt
+                </p>
+                <p className="terminal-line terminal-line-1" style={{ color: 'var(--accent)' }}>
+                  ✓ Anforderungen analysiert
+                </p>
+                <p className="terminal-line terminal-line-2" style={{ color: 'var(--fg)' }}>
+                  ✓ Design &amp; Struktur erstellt
+                </p>
+                <p className="terminal-line terminal-line-3" style={{ color: 'var(--fg)' }}>
+                  ✓ Code geschrieben &amp; getestet
+                </p>
+                <p className="terminal-line terminal-line-4" style={{ color: 'var(--accent)' }}>
+                  ✓ Auf Server deployed
+                </p>
+                <p className="terminal-line terminal-line-5" style={{ color: 'var(--fg)' }}>
+                  <span style={{ color: 'var(--accent)' }}>●</span> Ihre Website ist live.
+                  <span className="terminal-cursor" />
+                </p>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>

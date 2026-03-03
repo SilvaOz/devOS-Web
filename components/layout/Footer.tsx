@@ -5,13 +5,16 @@ export default function Footer() {
   return (
     <footer
       className="border-t"
-      style={{ borderColor: 'var(--border)', background: 'var(--bg-elevated)' }}
+      style={{ borderColor: '#1f2937', background: '#111827' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-        {/* Newsletter */}
+        {/* Newsletter lead magnet */}
         <div
-          className="mb-10 pb-10 border-b"
-          style={{ borderColor: 'var(--border)' }}
+          className="mb-10 pb-10 border-b rounded-xl p-6 sm:p-8 border"
+          style={{
+            borderColor: 'rgba(29,78,216,0.25)',
+            background: '#1a2035',
+          }}
         >
           <NewsletterForm />
         </div>
@@ -21,11 +24,11 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <span
               className="font-mono text-xl font-semibold"
-              style={{ color: 'var(--fg)' }}
+              style={{ color: '#f9fafb' }}
             >
               Dev<span style={{ color: 'var(--accent)' }}>OS</span>
             </span>
-            <p className="text-sm" style={{ color: 'var(--muted)' }}>
+            <p className="text-sm" style={{ color: '#9ca3af' }}>
               {FOOTER.tagline}
             </p>
           </div>
@@ -34,7 +37,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p
               className="text-xs font-semibold uppercase tracking-wider mb-1"
-              style={{ color: 'var(--muted)' }}
+              style={{ color: '#6b7280' }}
             >
               Navigation
             </p>
@@ -42,7 +45,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-hover text-sm"
+                className="link-hover-dark text-sm"
               >
                 {link.label}
               </a>
@@ -53,7 +56,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <p
               className="text-xs font-semibold uppercase tracking-wider mb-1"
-              style={{ color: 'var(--muted)' }}
+              style={{ color: '#6b7280' }}
             >
               Rechtliches
             </p>
@@ -61,7 +64,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="link-hover text-sm"
+                className="link-hover-dark text-sm"
               >
                 {link.label}
               </a>
@@ -72,12 +75,12 @@ export default function Footer() {
         {/* Bottom bar */}
         <div
           className="mt-10 pt-6 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
-          style={{ borderColor: 'var(--border)' }}
+          style={{ borderColor: '#1f2937' }}
         >
-          <p className="text-xs" style={{ color: 'var(--muted)' }}>
+          <p className="text-xs" style={{ color: '#6b7280' }}>
             {FOOTER.copyright}
           </p>
-          <p className="text-xs" style={{ color: 'var(--muted)' }}>
+          <p className="text-xs" style={{ color: '#6b7280' }}>
             {FOOTER.vatNote}
           </p>
         </div>

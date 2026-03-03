@@ -151,8 +151,8 @@ export default function MarqueeSection() {
     <section
       className="py-6 overflow-hidden border-y"
       style={{
-        background: 'var(--bg-elevated)',
-        borderColor: 'var(--border)',
+        background: 'var(--bg-light)',
+        borderColor: 'var(--border-light)',
       }}
       aria-label="Technologie-Stack"
     >
@@ -167,7 +167,7 @@ export default function MarqueeSection() {
               <li
                 key={`${item.label}-${i}`}
                 className={`logo-item flex items-center gap-2.5 select-none${item.wp ? ' logo-wp' : ''}`}
-                style={{ color: item.wp ? 'var(--accent-wp)' : 'var(--muted)' }}
+                style={{ color: item.wp ? 'var(--accent-wp)' : 'var(--muted-light)' }}
               >
                 {Logo && <Logo />}
                 <span className="text-sm font-mono font-medium">{item.label}</span>

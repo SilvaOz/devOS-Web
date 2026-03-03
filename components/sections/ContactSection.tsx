@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
 import { CONTACT, contactSchema, type ContactFormData } from '@/lib/constants'
+import { Mail, MapPin, Clock, CreditCard } from 'lucide-react'
 
 export default function ContactSection() {
   const router = useRouter()
@@ -52,9 +53,9 @@ export default function ContactSection() {
   }
 
   const inputBase: React.CSSProperties = {
-    background: 'var(--bg-elevated)',
-    border: '1px solid var(--border)',
-    color: 'var(--fg)',
+    background: 'var(--bg-light-alt)',
+    border: '1px solid var(--border-light)',
+    color: 'var(--fg-light)',
     borderRadius: '8px',
     padding: '10px 14px',
     fontSize: '14px',
@@ -73,7 +74,7 @@ export default function ContactSection() {
     <section
       id="kontakt"
       className="py-20 sm:py-28"
-      style={{ background: 'var(--bg)' }}
+      style={{ background: 'var(--bg-light)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
@@ -88,18 +89,18 @@ export default function ContactSection() {
               </p>
               <h2
                 className="text-3xl sm:text-4xl font-extrabold mb-3"
-                style={{ color: 'var(--fg)' }}
+                style={{ color: 'var(--fg-light)' }}
               >
                 {CONTACT.h2}
               </h2>
-              <p className="text-base" style={{ color: 'var(--muted)' }}>
+              <p className="text-base" style={{ color: 'var(--muted-light)' }}>
                 {CONTACT.paragraph}
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
-                <span style={{ color: 'var(--accent)' }}>📧</span>
+                <Mail size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                 <a
                   href={`mailto:${CONTACT.email}`}
                   className="text-sm transition-colors duration-150"
@@ -115,13 +116,13 @@ export default function ContactSection() {
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <span style={{ color: 'var(--accent)' }}>📍</span>
+                <MapPin size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                 <span className="text-sm" style={{ color: 'var(--fg)' }}>
                   {CONTACT.location}
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <span style={{ color: 'var(--accent)' }}>🕐</span>
+                <Clock size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
                 <span className="text-sm" style={{ color: 'var(--fg)' }}>
                   {CONTACT.hours}
                 </span>
@@ -130,29 +131,21 @@ export default function ContactSection() {
 
             <p
               className="text-sm italic"
-              style={{ color: 'var(--muted)' }}
+              style={{ color: 'var(--muted-light)' }}
             >
               {CONTACT.noPhone}
             </p>
 
             <div
-              className="rounded-lg p-4 border"
+              className="rounded-lg p-4 border flex gap-3"
               style={{
-                background: 'var(--card)',
-                borderColor: 'var(--border)',
+                background: 'var(--bg-light)',
+                borderColor: 'rgba(255,215,0,0.15)',
               }}
             >
-              <p
-                className="text-xs font-mono mb-1"
-                style={{ color: 'var(--muted)' }}
-              >
-                IBAN (Referenz)
-              </p>
-              <p
-                className="text-sm font-mono"
-                style={{ color: 'var(--fg)' }}
-              >
-                {CONTACT.ibanPlaceholder}
+              <CreditCard size={18} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }} />
+              <p className="text-sm" style={{ color: 'var(--muted-light)' }}>
+                {CONTACT.paymentNote}
               </p>
             </div>
           </div>
@@ -182,7 +175,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border)')
+                  (e.target.style.borderColor = 'var(--border-light)')
                 }
               />
               {errors.name && (
@@ -209,7 +202,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border)')
+                  (e.target.style.borderColor = 'var(--border-light)')
                 }
               />
               {errors.email && (
@@ -234,7 +227,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border)')
+                  (e.target.style.borderColor = 'var(--border-light)')
                 }
               >
                 <option value="" style={{ background: 'var(--bg-elevated)' }}>
@@ -273,7 +266,7 @@ export default function ContactSection() {
                   (e.target.style.borderColor = 'var(--accent)')
                 }
                 onBlur={(e) =>
-                  (e.target.style.borderColor = 'var(--border)')
+                  (e.target.style.borderColor = 'var(--border-light)')
                 }
               />
               {errors.message && (
@@ -293,7 +286,7 @@ export default function ContactSection() {
               <label
                 htmlFor="privacy"
                 className="text-sm"
-                style={{ color: 'var(--muted)' }}
+                style={{ color: 'var(--muted-light)' }}
               >
                 Ich akzeptiere die{' '}
                 <a

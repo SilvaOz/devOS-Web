@@ -1,6 +1,8 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { PRICING_PLANS, SUPPORT_PLANS } from '@/lib/constants'
+import { Icon } from '@/components/ui/Icon'
+import type { IconName } from '@/components/ui/Icon'
 
 export const metadata = {
   title: 'Leistungen & Support — DevOS Web',
@@ -189,7 +191,9 @@ export default function LeistungenPage() {
                 className="rounded-xl p-5 border flex gap-4"
                 style={{ background: 'rgba(239,68,68,0.06)', borderColor: 'rgba(239,68,68,0.2)' }}
               >
-                <span className="text-2xl flex-shrink-0">⚠️</span>
+                <span className="flex-shrink-0 mt-0.5">
+                  <Icon name="AlertTriangle" size={22} color="#f87171" />
+                </span>
                 <div>
                   <p className="text-sm font-bold mb-1" style={{ color: '#f87171' }}>
                     Ohne Pflege-Paket
@@ -205,7 +209,9 @@ export default function LeistungenPage() {
                 className="rounded-xl p-5 border flex gap-4"
                 style={{ background: 'var(--accent-dim)', borderColor: 'rgba(255,215,0,0.2)' }}
               >
-                <span className="text-2xl flex-shrink-0">✅</span>
+                <span className="flex-shrink-0 mt-0.5">
+                  <Icon name="CheckCircle2" size={22} style={{ color: 'var(--accent)' }} />
+                </span>
                 <div>
                   <p className="text-sm font-bold mb-1" style={{ color: 'var(--accent)' }}>
                     Mit Pflege-Paket
@@ -305,8 +311,9 @@ export default function LeistungenPage() {
               style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
             >
               <div className="flex-1">
-                <p className="text-sm font-bold mb-1" style={{ color: 'var(--fg)' }}>
-                  💡 Warum ein Paket sinnvoll ist
+                <p className="text-sm font-bold mb-1 flex items-center gap-2" style={{ color: 'var(--fg)' }}>
+                  <Icon name="Lightbulb" size={16} style={{ color: 'var(--accent)' }} />
+                  Warum ein Paket sinnvoll ist
                 </p>
                 <p className="text-sm" style={{ color: 'var(--muted)' }}>
                   Eine einzelne Stunde Arbeit außerhalb eines Pakets kostet <strong style={{ color: 'var(--fg)' }}>75 EUR/Std.</strong>{' '}
@@ -329,29 +336,34 @@ export default function LeistungenPage() {
 
             {/* What's covered in plain language */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {[
+              {([
                 {
-                  icon: '🔒',
+                  icon: 'ShieldCheck' as IconName,
                   title: 'Sicherheit',
                   text: 'Ich halte WordPress und alle Plugins aktuell. Sicherheitslücken werden geschlossen, bevor sie ein Problem werden.',
                 },
                 {
-                  icon: '💾',
+                  icon: 'Database' as IconName,
                   title: 'Ihre Daten sind sicher',
                   text: 'Tägliche oder wöchentliche Backups. Wenn etwas schiefgeht, stelle ich Ihre Website in Minuten wieder her.',
                 },
                 {
-                  icon: '✏️',
+                  icon: 'PenLine' as IconName,
                   title: 'Änderungen ohne Stress',
                   text: 'Neuer Text, neues Foto, neue Öffnungszeiten — Sie schreiben mir, ich erledige es. Kein technisches Wissen nötig.',
                 },
-              ].map((item) => (
+              ]).map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-xl p-5 border flex flex-col gap-2 card-hover"
+                  className="rounded-xl p-5 border flex flex-col gap-3 card-hover"
                   style={{ background: 'var(--card)' }}
                 >
-                  <span className="text-2xl">{item.icon}</span>
+                  <span
+                    className="w-10 h-10 flex items-center justify-center rounded-lg"
+                    style={{ background: 'var(--accent-dim)' }}
+                  >
+                    <Icon name={item.icon} size={20} style={{ color: 'var(--accent)' }} />
+                  </span>
                   <h3 className="text-sm font-bold" style={{ color: 'var(--fg)' }}>
                     {item.title}
                   </h3>
@@ -381,18 +393,23 @@ export default function LeistungenPage() {
               Kein Hin-und-Her per E-Mail, keine manuellen Bestätigungen.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { icon: '📅', title: 'Amelia Buchungssystem', text: 'Ihre Kunden buchen selbst — 24/7. Automatische Bestätigung per E-Mail.' },
-                { icon: '🗓️', title: 'Google Calendar Sync', text: 'Alle Termine landen direkt in Ihrem persönlichen Kalender.' },
-                { icon: '🎥', title: 'Zoom-Links automatisch', text: 'Bei Online-Terminen wird der Zoom-Link automatisch generiert und verschickt.' },
-                { icon: '💳', title: 'Stripe Zahlungen', text: 'Kunden zahlen direkt bei der Buchung. Geld auf Ihrem Konto, bevor der Termin stattfindet.' },
-              ].map((item) => (
+              {([
+                { icon: 'CalendarCheck' as IconName, title: 'Amelia Buchungssystem', text: 'Ihre Kunden buchen selbst — 24/7. Automatische Bestätigung per E-Mail.' },
+                { icon: 'CalendarDays' as IconName, title: 'Google Calendar Sync', text: 'Alle Termine landen direkt in Ihrem persönlichen Kalender.' },
+                { icon: 'Video' as IconName, title: 'Zoom-Links automatisch', text: 'Bei Online-Terminen wird der Zoom-Link automatisch generiert und verschickt.' },
+                { icon: 'CreditCard' as IconName, title: 'Stripe Zahlungen', text: 'Kunden zahlen direkt bei der Buchung. Geld auf Ihrem Konto, bevor der Termin stattfindet.' },
+              ]).map((item) => (
                 <div
                   key={item.title}
                   className="rounded-xl p-6 border card-hover flex gap-4"
                   style={{ background: 'var(--card)' }}
                 >
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                  <span
+                    className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0 mt-0.5"
+                    style={{ background: 'var(--accent-dim)' }}
+                  >
+                    <Icon name={item.icon} size={20} style={{ color: 'var(--accent)' }} />
+                  </span>
                   <div>
                     <h3 className="text-base font-bold mb-1" style={{ color: 'var(--fg)' }}>
                       {item.title}
@@ -477,18 +494,23 @@ export default function LeistungenPage() {
                 </a>
               </div>
               <div className="flex flex-col gap-3">
-                {[
-                  { icon: '⚛️', t: 'React / Next.js Frontend', d: 'Schnell, modern, TypeScript.' },
-                  { icon: '🗄️', t: 'Backend + Datenbank', d: 'Node.js, PostgreSQL, sichere Auth.' },
-                  { icon: '🔗', t: 'API-Integrationen', d: 'Stripe, CRMs, externe Dienste.' },
-                  { icon: '🚀', t: 'Deploy & Hosting', d: 'Vercel, Docker — wartbar und stabil.' },
-                ].map((item) => (
+                {([
+                  { icon: 'Code2' as IconName, t: 'React / Next.js Frontend', d: 'Schnell, modern, TypeScript.' },
+                  { icon: 'Database' as IconName, t: 'Backend + Datenbank', d: 'Node.js, PostgreSQL, sichere Auth.' },
+                  { icon: 'Plug' as IconName, t: 'API-Integrationen', d: 'Stripe, CRMs, externe Dienste.' },
+                  { icon: 'Rocket' as IconName, t: 'Deploy & Hosting', d: 'Vercel, Docker — wartbar und stabil.' },
+                ]).map((item) => (
                   <div
                     key={item.t}
                     className="rounded-lg p-4 border flex gap-3"
                     style={{ background: 'var(--card)' }}
                   >
-                    <span className="text-lg flex-shrink-0">{item.icon}</span>
+                    <span
+                      className="w-8 h-8 flex items-center justify-center rounded-md flex-shrink-0"
+                      style={{ background: 'var(--accent-dim)' }}
+                    >
+                      <Icon name={item.icon} size={16} style={{ color: 'var(--accent)' }} />
+                    </span>
                     <div>
                       <p className="text-sm font-bold" style={{ color: 'var(--fg)' }}>
                         {item.t}
