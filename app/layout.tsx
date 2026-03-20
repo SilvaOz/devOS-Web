@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Manrope, JetBrains_Mono } from 'next/font/google'
+import { Manrope, JetBrains_Mono, Fraunces } from 'next/font/google'
 import './globals.css'
 import AnimationInit from '@/components/ui/AnimationInit'
 
@@ -13,6 +13,13 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-jetbrains',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-fraunces',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -30,6 +37,7 @@ export const metadata: Metadata = {
     description: 'WordPress + Full-Stack. Ab 700 EUR. Leipzig.',
     type: 'website',
     locale: 'de_DE',
+    siteName: 'DevOS Web',
   },
 }
 
@@ -41,7 +49,8 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${manrope.variable} ${jetbrainsMono.variable}`}
+      className={`${manrope.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
     >
       <body className="antialiased">
         <AnimationInit />

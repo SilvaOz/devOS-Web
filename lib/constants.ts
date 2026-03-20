@@ -267,15 +267,38 @@ export type PortfolioCase = {
   stack: string[]
   metrics: string[]
   gradient: string
+  image?: string
+  description?: string
+  problem?: string
+  url?: string
+  github?: string
 }
 
 export const PORTFOLIO_CASES: PortfolioCase[] = [
+  {
+    title: 'RechnungsApp',
+    type: 'React / Next.js Web App',
+    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Resend', 'PDF-Export'],
+    metrics: ['§19 UStG konform', 'PDF per E-Mail', 'EÜR-Übersicht'],
+    gradient: 'from-blue-900/60 to-indigo-900/40',
+    image: '/portfolio-rechnungen.png',
+    description:
+      'Web-App für Kleinunternehmer und Freelancer: Rechnungen erstellen, fortlaufend nummerieren, als PDF versenden und den Jahresumsatz für das Finanzamt aufbereiten — alles in einem Tool, ohne Excel und ohne Steuerberater für den Grundkram.',
+    problem:
+      'Kleinunternehmer verlieren Stunden mit Word-Vorlagen, manuellen Nummern und Excel-Tabellen. Die App automatisiert alles: §19-UStG-Pflichtangaben, PDF-Erstellung, E-Mail-Versand per Klick und eine Monatsübersicht für die EÜR auf Knopfdruck.',
+    github: 'https://github.com/oscar-devos',
+  },
   {
     title: 'Psychotherapie Praxis',
     type: 'WordPress / Amelia Buchungen',
     stack: ['WordPress', 'Divi', 'Amelia', 'DSGVO'],
     metrics: ['Online buchbar 24/7', '3 Wochen Lieferzeit'],
     gradient: 'from-teal-900/60 to-emerald-900/40',
+    image: '/portfolio-praxis.jpg',
+    description:
+      'Eine Heilpraktikerin aus Leipzig wollte ihre Praxis online buchbar machen — ohne Telefonkette und WhatsApp-Chaos. Die Website ermöglicht Patienten, Termine 24/7 selbst zu buchen und direkt zu bezahlen.',
+    problem:
+      'Terminverwaltung lief komplett manuell: Anrufe, handschriftliche Listen, ständige Rückrufe. Lösung: Amelia Buchungssystem mit automatischer Bestätigung, Erinnerung und Abrechnung — voll DSGVO-konform für psychologische Praxen.',
   },
   {
     title: 'Centro Estetica',
@@ -283,6 +306,11 @@ export const PORTFOLIO_CASES: PortfolioCase[] = [
     stack: ['WordPress', 'Divi', 'Amelia'],
     metrics: ['+340% Buchungen', '2 Wochen Lieferzeit'],
     gradient: 'from-purple-900/60 to-pink-900/40',
+    image: '/portfolio-estetica.jpg',
+    description:
+      'Schönheitssalon mit 6 Mitarbeitern und 30+ Dienstleistungen. Ziel war ein professioneller Außenauftritt und vollautomatische Terminverwaltung — ohne extra Verwaltungsaufwand für das Team.',
+    problem:
+      '80 % der Buchungen kamen per WhatsApp und Telefon — täglich 2–3 Stunden Verwaltungsaufwand. Nach dem Launch laufen Buchungen vollautomatisch. Auslastung stieg um 340 % im ersten Quartal.',
   },
   {
     title: 'BioVital Store',
@@ -290,13 +318,23 @@ export const PORTFOLIO_CASES: PortfolioCase[] = [
     stack: ['WordPress', 'WooCommerce', 'Stripe'],
     metrics: ['2.400 EUR/Monat', '150+ Produkte'],
     gradient: 'from-green-900/60 to-teal-900/40',
+    image: '/portfolio-biovital.jpg',
+    description:
+      'Online-Shop für Bio- und Naturprodukte mit über 150 SKUs. Vollständige WooCommerce-Integration mit Stripe-Zahlungen, Lagerverwaltung und automatischen Bestellbestätigungen.',
+    problem:
+      'Vorher nur stationärer Verkauf, keine Online-Präsenz. Jetzt läuft ein zweiter Umsatzkanal komplett automatisch — 2.400 EUR Monatsumsatz ohne zusätzliches Personal.',
   },
   {
     title: 'Inmobiliaria',
     type: 'WordPress / SEO',
-    stack: ['WordPress', 'Divi', 'SEO'],
+    stack: ['WordPress', 'Divi', 'SEO', 'Google My Business'],
     metrics: ['+200 Leads/Monat', 'Top 3 Google'],
     gradient: 'from-orange-900/60 to-red-900/40',
+    image: '/portfolio-inmo.jpg',
+    description:
+      'Immobilienmakler wollte qualifizierte Leads über Google generieren — ohne teure Portale. SEO-optimierte WordPress-Website mit Immobilien-Listings, Filterfunktion und Kontaktformular.',
+    problem:
+      'Ranking auf Seite 4 bei Google, kaum organische Anfragen. Nach technischer SEO-Optimierung, strukturiertem Content und Google My Business: Top-3-Ranking und 200+ qualifizierte Leads pro Monat.',
   },
 ]
 
@@ -363,6 +401,7 @@ export const CONTACT = {
   noPhone: 'Kein Telefon — alles per E-Mail. Schneller, klarer, dokumentiert.',
   paymentNote: 'Zahlung per Banküberweisung nach schriftlichem Angebot. Sie erhalten eine Rechnung per E-Mail.',
   packageOptions: [
+    { value: 'express-24h', label: 'Website in 24 Stunden (ab 1.499 EUR)' },
     { value: 'wp-base', label: 'WP Base (ab 700 EUR)' },
     { value: 'wp-premium', label: 'WP Premium (ab 900 EUR)' },
     { value: 'wp-pro', label: 'WP Pro (ab 1.500 EUR)' },
@@ -386,6 +425,7 @@ export const contactSchema = z.object({
   message: z
     .string()
     .min(20, 'Nachricht muss mindestens 20 Zeichen haben'),
+  timing: z.string().optional(),
   privacy: z.literal(true, {
     error: 'Bitte akzeptieren Sie die Datenschutzerklärung',
   }),
@@ -434,7 +474,7 @@ export const FUER_WEN: FuerWenCard[] = [
 export const FOOTER = {
   tagline: 'Professionelle Webentwicklung · Leipzig, DE',
   copyright: '© 2026 DevOS Web · Leipzig · info@devos-web.de',
-  vatNote: 'Alle Preise zzgl. gesetzlicher MwSt.',
+  vatNote: 'Gem. §19 UStG wird keine Umsatzsteuer berechnet.',
   links: [
     { label: 'Leistungen', href: '/leistungen' },
     { label: 'Preise', href: '/#preise' },
@@ -586,10 +626,38 @@ export const NEWSLETTER = {
     'Wie Sie Ihre Seite selbst pflegen, ohne Programmierer',
   ],
   placeholder: 'ihre@email.de',
-  submit: 'PDF kostenlos erhalten →',
+  submit: 'Tipps kostenlos erhalten →',
   privacy: 'Kein Spam. Nur diese E-Mail. Abmeldung jederzeit.',
-  successMessage: '✓ Danke! Das PDF ist auf dem Weg zu Ihnen.',
+  successMessage: '✓ Danke! Der Link ist auf dem Weg zu Ihnen.',
   errorMessage: 'Fehler. Bitte versuchen Sie es erneut.',
+} as const
+
+// ─── Express Service ──────────────────────────────────────────────────────────
+
+export const EXPRESS_SERVICE = {
+  badge: 'EXPRESS · NUR 2 TERMINE / MONAT',
+  h2: 'Ihre Website in 24 Stunden.',
+  subtitle:
+    'Für Kunden, die keine Zeit verlieren wollen. Eine fertige Landing Page — von Briefing bis Launch in einem Werktag.',
+  price: 'ab 1.499 EUR',
+  priceNote: 'einmalig · Banküberweisung',
+  urgency: 'Nur 2 Express-Termine pro Monat verfügbar.',
+  features: [
+    '1-Page Landing Page',
+    'WordPress + Divi',
+    'Responsives Design (Mobile + Desktop)',
+    'Kontaktformular',
+    'Grundlegendes SEO',
+    '1 Revisionsrunde inklusive',
+  ],
+  timeline: [
+    { time: '09:00', label: 'Briefing', desc: 'Sie erklären Ihr Ziel. Wir klären alle Details per Videocall.' },
+    { time: '11:00', label: 'Design', desc: 'Ich zeige Ihnen den ersten Entwurf zur Freigabe.' },
+    { time: '16:00', label: 'Entwicklung', desc: 'Die Seite wird gebaut, getestet und finalisiert.' },
+    { time: 'Tag 2 · 09:00', label: 'Launch', desc: 'Ihre Website ist live. Einweisung per Kurzvideo.' },
+  ],
+  cta: 'Express-Termin anfragen →',
+  ctaHref: '/?package=express-24h#kontakt',
 } as const
 
 // ─── Leistungen Page ──────────────────────────────────────────────────────────

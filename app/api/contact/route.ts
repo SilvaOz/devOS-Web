@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { contactSchema } from '@/lib/constants'
-import { sendContactEmail } from '@/lib/resend'
+import { sendContactEmail, sendConfirmationEmail, sendInvoiceEmail, PACKAGE_INFO } from '@/lib/resend'
 
 // Simple in-memory rate limiter (resets per serverless instance)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
@@ -23,6 +23,16 @@ function isRateLimited(ip: string): boolean {
 
   entry.count++
   return false
+}
+
+const WEBSITE_PACKAGES = ['express-24h', 'wp-base', 'wp-premium', 'wp-pro', 'web-app']
+
+type InvoiceData = {
+  invoiceNumber: string
+  total: number
+  dueAt: string
+  pdfBase64: string
+  filename: string
 }
 
 export async function POST(req: NextRequest) {
@@ -52,10 +62,61 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { name, email, package: pkg, message } = parsed.data
+  const { name, email, package: pkg, message, timing } = parsed.data
+
+  // 1. If website package, call kleinunternehmer to create invoice
+  let invoiceData: InvoiceData | null = null
+
+  if (WEBSITE_PACKAGES.includes(pkg)) {
+    const pkgInfo = PACKAGE_INFO[pkg]
+    try {
+      const res = await fetch(
+        `${process.env.KLEINUNTERNEHMER_API_URL}/api/internal/angebot`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': process.env.INTERNAL_API_KEY!,
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            packageId:   pkg,
+            packageName: pkgInfo?.name ?? pkg,
+            description: message,
+            timing,
+          }),
+        }
+      )
+      if (res.ok) {
+        const json = await res.json()
+        invoiceData = json as InvoiceData
+      } else {
+        console.error('[invoice-integration] kleinunternehmer returned', res.status)
+      }
+    } catch (err) {
+      console.error('[invoice-integration] kleinunternehmer call failed:', err)
+      // graceful degradation → invoiceData stays null
+    }
+  }
 
   try {
-    await sendContactEmail({ name, email, package: pkg, message })
+    // 2. Send emails
+    await Promise.all([
+      sendContactEmail({ name, email, package: pkg, message, timing, invoiceNumber: invoiceData?.invoiceNumber }),
+      invoiceData
+        ? sendInvoiceEmail({
+            name,
+            email,
+            package:       pkg,
+            invoiceNumber: invoiceData.invoiceNumber,
+            total:         invoiceData.total,
+            dueAt:         invoiceData.dueAt,
+            pdfBase64:     invoiceData.pdfBase64,
+            filename:      invoiceData.filename,
+          })
+        : sendConfirmationEmail({ name, email, package: pkg }),
+    ])
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (err) {
     console.error('Resend error:', err)

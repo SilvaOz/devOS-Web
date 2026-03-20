@@ -19,21 +19,29 @@ export default function Navbar() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? 'rgba(232,232,237,0.45)' : 'transparent',
+        background: scrolled ? 'rgba(247,243,238,0.6)' : 'transparent',
         backdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(180%)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
-        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.08)' : 'none',
+        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+        boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.05)' : 'none',
       }}
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
         {/* Logo */}
         <a
           href="/"
-          className="font-mono text-xl font-semibold tracking-tight select-none"
-          style={{ color: 'var(--fg)' }}
+          className="flex items-center gap-1 select-none font-mono tracking-tight"
+          aria-label="DevOS Web — Startseite"
         >
-          Dev<span style={{ color: 'var(--accent)' }}>OS</span>
+          <span className="font-bold text-lg" style={{ color: 'var(--accent)' }}>
+            &gt;_
+          </span>
+          <span className="font-semibold text-lg" style={{ color: 'var(--fg)' }}>
+            DevOS
+          </span>
+          <span className="font-medium text-sm" style={{ color: 'var(--muted)' }}>
+            Web
+          </span>
         </a>
 
         {/* Desktop links */}
@@ -42,14 +50,7 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium transition-colors duration-150"
-                style={{ color: '#333' }}
-                onMouseEnter={(e) =>
-                  ((e.target as HTMLElement).style.color = '#000')
-                }
-                onMouseLeave={(e) =>
-                  ((e.target as HTMLElement).style.color = '#333')
-                }
+                className="nav-link text-sm font-medium"
               >
                 {link.label}
               </a>
@@ -60,10 +61,10 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <a
           href="/#kontakt"
-          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold rounded transition-opacity duration-150 hover:opacity-90"
+          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-sm transition-opacity duration-150 hover:opacity-90"
           style={{
             background: 'var(--accent)',
-            color: '#000',
+            color: '#fff',
           }}
         >
           {NAV_CTA}
@@ -79,7 +80,7 @@ export default function Navbar() {
             className="block w-5 h-0.5 transition-all duration-200"
             style={{
               background: 'var(--fg)',
-              transform: menuOpen ? 'rotate(45deg) translate(3px, 3px)' : '',
+              transform: menuOpen ? 'rotate(45deg) translate(3px, 3px)' : undefined,
             }}
           />
           <span
@@ -93,7 +94,7 @@ export default function Navbar() {
             className="block w-5 h-0.5 transition-all duration-200"
             style={{
               background: 'var(--fg)',
-              transform: menuOpen ? 'rotate(-45deg) translate(3px, -3px)' : '',
+              transform: menuOpen ? 'rotate(-45deg) translate(3px, -3px)' : undefined,
             }}
           />
         </button>
@@ -104,7 +105,7 @@ export default function Navbar() {
         <div
           className="md:hidden px-4 pb-4 pt-2 flex flex-col gap-3"
           style={{
-            background: '#e8e8ed',
+            background: 'var(--bg-elevated)',
             borderBottom: '1px solid var(--border)',
           }}
         >
@@ -122,8 +123,8 @@ export default function Navbar() {
           <a
             href="/#kontakt"
             onClick={handleNavClick}
-            className="mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded"
-            style={{ background: 'var(--accent)', color: '#000' }}
+            className="mt-2 inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-sm"
+            style={{ background: 'var(--accent)', color: '#fff' }}
           >
             {NAV_CTA}
           </a>
