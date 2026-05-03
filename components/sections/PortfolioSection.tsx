@@ -32,8 +32,8 @@ function PortfolioModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-      style={{ background: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(5px)' }}
+      className="fixed inset-0 flex items-center justify-center p-4 sm:p-6"
+      style={{ background: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(5px)', zIndex: 9999 }}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
