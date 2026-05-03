@@ -80,12 +80,12 @@ export default function HeroSection() {
               style={{ color: 'var(--muted)' }}
             >
               {HERO.micros.map((m, i) => (
-                <>
+                <span key={m} className="inline-flex items-center gap-x-6">
                   {i > 0 && (
-                    <span key={`dot-${i}`} style={{ color: 'var(--border)' }} aria-hidden="true">·</span>
+                    <span style={{ color: 'var(--border)' }} aria-hidden="true">·</span>
                   )}
-                  <span key={m}>{m}</span>
-                </>
+                  {m}
+                </span>
               ))}
             </div>
           </div>
