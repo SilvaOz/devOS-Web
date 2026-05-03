@@ -264,79 +264,126 @@ export const ABOUT = {
 // ─── Portfolio ────────────────────────────────────────────────────────────────
 
 export type PortfolioCase = {
+  id: string
+  kind: 'client' | 'own'
   title: string
-  type: string
+  subtitle: string
+  sector: string
+  location: string
+  problem: string
+  solution: string
+  result: string
   stack: string[]
-  metrics: string[]
+  liveUrl: string | null
+  featured: boolean
+  badge?: string
   gradient: string
   image?: string
-  description?: string
-  problem?: string
-  url?: string
-  github?: string
 }
 
 export const PORTFOLIO_CASES: PortfolioCase[] = [
+
+  // ── Kundenprojekte ────────────────────────────────────────────────────────
+
   {
-    title: 'RechnungsApp',
-    type: 'React / Next.js Web App',
-    stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Resend', 'PDF-Export'],
-    metrics: ['§19 UStG konform', 'PDF per E-Mail', 'EÜR-Übersicht'],
-    gradient: 'from-blue-900/60 to-indigo-900/40',
-    image: '/portfolio-rechnungen.png',
-    description:
-      'Web-App für Kleinunternehmer und Freelancer: Rechnungen erstellen, fortlaufend nummerieren, als PDF versenden und den Jahresumsatz für das Finanzamt aufbereiten — alles in einem Tool, ohne Excel und ohne Steuerberater für den Grundkram.',
-    problem:
-      'Kleinunternehmer verlieren Stunden mit Word-Vorlagen, manuellen Nummern und Excel-Tabellen. Die App automatisiert alles: §19-UStG-Pflichtangaben, PDF-Erstellung, E-Mail-Versand per Klick und eine Monatsübersicht für die EÜR auf Knopfdruck.',
-    github: 'https://github.com/oscar-devos',
+    id: 'lisa-saeggesser',
+    kind: 'client',
+    title: 'Lisa Sägesser Coaching',
+    subtitle: 'Von Wix zu WordPress — vollständiges Buchungssystem',
+    sector: 'Coaching / Beratung',
+    location: 'Schweiz',
+    problem: 'Veraltete Wix-Seite ohne Online-Buchung. Kunden konnten keine Termine buchen, kein Google Calendar Sync, keine professionelle E-Mail-Kommunikation.',
+    solution: 'Kompletter Umzug auf WordPress mit Divi. Amelia Booking mit Google Calendar Sync, Schweizer Telefon-Standard, Yoast SEO auf allen Seiten, SMTP-Setup, Wix-Domain-Redirect.',
+    result: 'Vollautomatisches Buchungssystem. Kunden buchen selbst, Calendar Sync in Echtzeit, Google Ads ready.',
+    stack: ['WordPress', 'Divi', 'Amelia Booking', 'Yoast SEO', 'Google Calendar API', 'SMTP'],
+    liveUrl: null,
+    featured: true,
+    gradient: 'from-teal-800 to-emerald-950',
   },
+
   {
-    title: 'Psychotherapie Praxis',
-    type: 'WordPress / Amelia Buchungen',
-    stack: ['WordPress', 'Divi', 'Amelia', 'DSGVO'],
-    metrics: ['Online buchbar 24/7', '3 Wochen Lieferzeit'],
-    gradient: 'from-teal-900/60 to-emerald-900/40',
-    image: '/portfolio-praxis.jpg',
-    description:
-      'Eine Heilpraktikerin aus Leipzig wollte ihre Praxis online buchbar machen — ohne Telefonkette und WhatsApp-Chaos. Die Website ermöglicht Patienten, Termine 24/7 selbst zu buchen und direkt zu bezahlen.',
-    problem:
-      'Terminverwaltung lief komplett manuell: Anrufe, handschriftliche Listen, ständige Rückrufe. Lösung: Amelia Buchungssystem mit automatischer Bestätigung, Erinnerung und Abrechnung — voll DSGVO-konform für psychologische Praxen.',
+    id: 'melanie-nitsch',
+    kind: 'client',
+    title: 'Melanie Nitsch',
+    subtitle: 'Responsive-Rettung + Blog + Events',
+    sector: 'Heilpraktikerin',
+    location: 'Deutschland',
+    problem: 'Website auf Mobilgeräten komplett kaputt. Kein Blog, kein Veranstaltungsbereich, Amelia-Benachrichtigungen nicht konfiguriert.',
+    solution: 'Responsive CSS komplett überarbeitet, Aktuelles-Blogseite erstellt, Messe-Event-Eintrag hinzugefügt, Amelia-Benachrichtigungen eingerichtet, Logo aktualisiert.',
+    result: 'Perfekte Darstellung auf allen Geräten. Blog und Events aktiv. Professionelle Kundenkommunikation via Amelia.',
+    stack: ['WordPress', 'Divi', 'Amelia Booking', 'CSS Responsive', 'Custom Logo'],
+    liveUrl: null,
+    featured: false,
+    gradient: 'from-stone-700 to-amber-950',
   },
+
   {
-    title: 'Centro Estetica',
-    type: 'WordPress / Amelia',
-    stack: ['WordPress', 'Divi', 'Amelia'],
-    metrics: ['+340% Buchungen', '2 Wochen Lieferzeit'],
-    gradient: 'from-purple-900/60 to-pink-900/40',
-    image: '/portfolio-estetica.jpg',
-    description:
-      'Schönheitssalon mit 6 Mitarbeitern und 30+ Dienstleistungen. Ziel war ein professioneller Außenauftritt und vollautomatische Terminverwaltung — ohne extra Verwaltungsaufwand für das Team.',
-    problem:
-      '80 % der Buchungen kamen per WhatsApp und Telefon — täglich 2–3 Stunden Verwaltungsaufwand. Nach dem Launch laufen Buchungen vollautomatisch. Auslastung stieg um 340 % im ersten Quartal.',
+    id: 'elke-tegel',
+    kind: 'client',
+    title: 'Elke Tegel Naturheilpraxis',
+    subtitle: 'Server-Rettung + Homepage-Redesign',
+    sector: 'Naturheilkunde',
+    location: 'Deutschland',
+    problem: 'Kein Zugang zum Server — wochenlang blockiert. Veraltetes Homepage-Design, das nicht zum professionellen Angebot passte.',
+    solution: 'Server-Zugangsproblem gelöst. Neues Divi JSON (v2) für die Homepage entwickelt — modernes Design mit klarer Struktur und verbesserter UX.',
+    result: 'Vollständiger Server-Zugang wiederhergestellt. Neues Homepage-Design live. Wiederverwendbares Divi JSON als Template.',
+    stack: ['WordPress', 'Divi', 'Divi JSON', 'IONOS Hosting', 'Server Recovery'],
+    liveUrl: null,
+    featured: false,
+    gradient: 'from-slate-700 to-teal-950',
   },
+
+  // ── Eigene Produkte ───────────────────────────────────────────────────────
+
   {
-    title: 'BioVital Store',
-    type: 'WooCommerce',
-    stack: ['WordPress', 'WooCommerce', 'Stripe'],
-    metrics: ['2.400 EUR/Monat', '150+ Produkte'],
-    gradient: 'from-green-900/60 to-teal-900/40',
-    image: '/portfolio-biovital.jpg',
-    description:
-      'Online-Shop für Bio- und Naturprodukte mit über 150 SKUs. Vollständige WooCommerce-Integration mit Stripe-Zahlungen, Lagerverwaltung und automatischen Bestellbestätigungen.',
-    problem:
-      'Vorher nur stationärer Verkauf, keine Online-Präsenz. Jetzt läuft ein zweiter Umsatzkanal komplett automatisch — 2.400 EUR Monatsumsatz ohne zusätzliches Personal.',
+    id: 'nazca-antara',
+    kind: 'own',
+    title: 'Nazca Antara',
+    subtitle: 'App móvil — instrumento ancestral peruano',
+    sector: 'Kultur / Musik-App',
+    location: 'Global',
+    problem: 'Ein 2000 Jahre altes Instrument — die Nazca-Antara — existierte in keiner digitalen Form. Kein Zugang für moderne Nutzer.',
+    solution: 'iOS/Android App mit authentischen Klangaufnahmen in 3 Größen (Chuli, Malta, Sanqa). Aufnahmefunktion, Demo-Melodien, Landing Page.',
+    result: 'Live Landing Page. App in Entwicklung für App Store + Google Play. Authentische Samples aus Nazca, Peru.',
+    stack: ['React Native', 'Next.js', 'Vercel', 'Audio Sampling', 'iOS', 'Android'],
+    liveUrl: 'https://nasca-landing.vercel.app',
+    featured: true,
+    badge: 'Live Demo →',
+    gradient: 'from-orange-900 to-red-950',
   },
+
   {
-    title: 'Inmobiliaria',
-    type: 'WordPress / SEO',
-    stack: ['WordPress', 'Divi', 'SEO', 'Google My Business'],
-    metrics: ['+200 Leads/Monat', 'Top 3 Google'],
-    gradient: 'from-orange-900/60 to-red-900/40',
-    image: '/portfolio-inmo.jpg',
-    description:
-      'Immobilienmakler wollte qualifizierte Leads über Google generieren — ohne teure Portale. SEO-optimierte WordPress-Website mit Immobilien-Listings, Filterfunktion und Kontaktformular.',
-    problem:
-      'Ranking auf Seite 4 bei Google, kaum organische Anfragen. Nach technischer SEO-Optimierung, strukturiertem Content und Google My Business: Top-3-Ranking und 200+ qualifizierte Leads pro Monat.',
+    id: 'kleinunternehmer-app',
+    kind: 'own',
+    title: 'Kleinunternehmer App',
+    subtitle: 'SaaS-Tool für Rechnungsstellung ohne MwSt.',
+    sector: 'FinTech / SaaS',
+    location: 'DACH',
+    problem: 'Kleinunternehmer in Deutschland brauchen eine einfache Lösung für §19-UStG-konforme Rechnungen — ohne teure Buchhaltungssoftware.',
+    solution: 'Vollständige SaaS-Webanwendung mit Kundenverwaltung, Rechnungsgenerator (PDF), Dashboard. Intern in DevOS Web integriert.',
+    result: 'Produktive App in Betrieb. Intern genutzt für DevOS-Rechnungen. Basis für zukünftiges B2B-Produkt.',
+    stack: ['Next.js', 'TypeScript', 'Vercel', 'PDF Generation', 'Auth', 'Stripe'],
+    liveUrl: null,
+    featured: true,
+    badge: 'SaaS Live →',
+    gradient: 'from-blue-900 to-indigo-950',
+  },
+
+  {
+    id: 'silva-journey-pipeline',
+    kind: 'own',
+    title: 'The Silva Journey',
+    subtitle: 'KI-Content-Pipeline — 1 Video/Woche automatisch',
+    sector: 'Content Automation / YouTube',
+    location: 'Global',
+    problem: 'YouTube-Kanal mit EMDR und Heilfrequenzen — manuelle Videoproduktion ist zeitaufwendig und nicht skalierbar.',
+    solution: 'Vollautomatische Pipeline: Suno (Audio-KI) → Python/FFmpeg (Video-Assembly) → Nebula-Visuals → YouTube Data API Upload. Metadata-Templates rotieren automatisch.',
+    result: '1 Video pro Woche ohne manuelle Arbeit. Slug-Konvention soundjourney_NNN. Skalierbar auf mehrere Kanäle.',
+    stack: ['Python', 'FFmpeg', 'Suno AI', 'YouTube Data API', 'Task Scheduler', 'fal.ai'],
+    liveUrl: 'https://youtube.com/@TheSilvaJourney',
+    featured: false,
+    badge: 'Kanal ansehen →',
+    gradient: 'from-violet-900 to-purple-950',
   },
 ]
 

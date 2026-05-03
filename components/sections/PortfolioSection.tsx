@@ -1,17 +1,16 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import Image from 'next/image'
 import { PORTFOLIO_CASES } from '@/lib/constants'
 import type { PortfolioCase } from '@/lib/constants'
-import { X, ExternalLink, Github, ArrowRight } from 'lucide-react'
+import { X, ExternalLink, ArrowRight } from 'lucide-react'
 
 type Props = {
   maxItems?: number
   showLink?: boolean
 }
 
-// ─── Modal ──────────────────────────────────────────────────────────────────
+// ─── Modal ───────────────────────────────────────────────────────────────────
 
 function PortfolioModal({
   project,
@@ -20,14 +19,12 @@ function PortfolioModal({
   project: PortfolioCase
   onClose: () => void
 }) {
-  // Close on Escape
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
@@ -35,7 +32,7 @@ function PortfolioModal({
 
   return (
     <div
-      className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
       style={{ background: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(5px)' }}
       onClick={onClose}
       role="dialog"
@@ -43,57 +40,35 @@ function PortfolioModal({
       aria-label={project.title}
     >
       <div
-        className="modal-panel relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl"
+        className="relative w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-2xl"
         style={{ background: 'var(--card)', boxShadow: '0 32px 80px rgba(0,0,0,0.4)' }}
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* ── Hero image ─────────────────────────────────────────────────── */}
-        <div className="relative h-56 sm:h-72 overflow-hidden rounded-t-2xl flex-shrink-0">
-          {project.image ? (
-            <Image
-              src={project.image}
-              alt={`Screenshot: ${project.title}`}
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 640px) 100vw, 672px"
-              priority
-            />
-          ) : (
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`}
-            />
-          )}
-
-          {/* Bottom gradient overlay */}
+        {/* Header gradient */}
+        <div
+          className={`relative h-44 bg-gradient-to-br ${project.gradient} rounded-t-2xl flex items-end px-6 pb-5`}
+        >
           <div
-            className="absolute inset-0"
+            className="absolute inset-0 rounded-t-2xl"
             style={{
-              background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.75) 100%)',
+              background: 'linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.65) 100%)',
             }}
             aria-hidden="true"
           />
-
-          {/* Close button */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-opacity hover:opacity-80"
-            style={{ background: 'rgba(0,0,0,0.55)', color: '#fff' }}
+            style={{ background: 'rgba(0,0,0,0.45)', color: '#fff' }}
             aria-label="Schließen"
           >
             <X size={16} />
           </button>
-
-          {/* Title over image */}
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-5">
-            <p
-              className="text-xs font-mono mb-1.5 uppercase tracking-widest"
-              style={{ color: 'rgba(255,255,255,0.65)' }}
-            >
-              {project.type}
+          <div className="relative z-10">
+            <p className="text-xs font-mono mb-1" style={{ color: 'rgba(255,255,255,0.6)' }}>
+              {project.sector} · {project.location}
             </p>
             <h2
-              className="text-2xl sm:text-3xl font-extrabold text-white leading-tight"
+              className="text-2xl font-bold text-white"
               style={{ fontFamily: 'var(--font-fraunces), Georgia, serif' }}
             >
               {project.title}
@@ -101,139 +76,93 @@ function PortfolioModal({
           </div>
         </div>
 
-        {/* ── Content ────────────────────────────────────────────────────── */}
-        <div className="p-6 sm:p-8 flex flex-col gap-7">
+        {/* Content */}
+        <div className="p-6 sm:p-8 flex flex-col gap-6">
+          <p className="text-sm" style={{ color: 'var(--muted)' }}>
+            {project.subtitle}
+          </p>
 
-          {/* Metrics */}
-          <div className="flex flex-wrap gap-2.5">
-            {project.metrics.map(m => (
+          <div className="flex flex-col gap-4">
+            {[
+              { label: project.kind === 'client' ? 'Problem' : 'Herausforderung', text: project.problem },
+              { label: project.kind === 'client' ? 'Lösung' : 'Was ich gebaut habe', text: project.solution },
+            ].map(({ label, text }) => (
+              <div key={label}>
+                <p
+                  className="text-xs font-mono uppercase tracking-widest mb-1.5"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  {label}
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+                  {text}
+                </p>
+              </div>
+            ))}
+
+            <div
+              className="rounded-lg p-4"
+              style={{ background: 'var(--accent-dim)', border: '1px solid rgba(46,125,122,0.15)' }}
+            >
+              <p
+                className="text-xs font-mono uppercase tracking-widest mb-1"
+                style={{ color: 'var(--accent)' }}
+              >
+                Ergebnis
+              </p>
+              <p className="text-sm font-semibold" style={{ color: 'var(--fg)' }}>
+                {project.result}
+              </p>
+            </div>
+          </div>
+
+          {/* Stack */}
+          <div className="flex flex-wrap gap-1.5">
+            {project.stack.map((tag) => (
               <span
-                key={m}
-                className="text-sm font-semibold px-3 py-1.5 rounded-full"
+                key={tag}
+                className="text-xs font-mono px-2.5 py-1 rounded border"
                 style={{
-                  background: 'var(--accent-dim)',
-                  color: 'var(--accent)',
-                  border: '1px solid rgba(194,65,12,0.2)',
+                  background: 'var(--bg)',
+                  color: 'var(--fg)',
+                  borderColor: 'var(--border)',
                 }}
               >
-                ✓ {m}
+                {tag}
               </span>
             ))}
           </div>
 
-          {/* Description + Problem/Lösung */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {project.description && (
-              <div>
-                <p
-                  className="text-xs font-mono uppercase tracking-widest mb-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Das Projekt
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-                  {project.description}
-                </p>
-              </div>
-            )}
-            {project.problem && (
-              <div>
-                <p
-                  className="text-xs font-mono uppercase tracking-widest mb-2"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Problem → Lösung
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
-                  {project.problem}
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Stack */}
-          <div>
-            <p
-              className="text-xs font-mono uppercase tracking-widest mb-2.5"
-              style={{ color: 'var(--muted)' }}
-            >
-              Tech Stack
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {project.stack.map(tag => (
-                <span
-                  key={tag}
-                  className="text-xs font-mono px-2.5 py-1 rounded border"
-                  style={{
-                    background: 'var(--bg)',
-                    color: 'var(--fg)',
-                    borderColor: 'var(--border)',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Links */}
-          {(project.url || project.github) && (
-            <div
-              className="flex flex-wrap gap-3 pt-5 border-t"
-              style={{ borderColor: 'var(--border)' }}
-            >
-              {project.url && (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded transition-opacity hover:opacity-90"
-                  style={{ background: 'var(--accent)', color: '#fff' }}
-                >
-                  <ExternalLink size={14} />
-                  Website besuchen
-                </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded border transition-colors hover:opacity-80"
-                  style={{
-                    color: 'var(--fg)',
-                    borderColor: 'var(--border)',
-                    background: 'var(--bg)',
-                  }}
-                >
-                  <Github size={14} />
-                  GitHub
-                </a>
-              )}
-            </div>
-          )}
-
-          {/* CTA */}
+          {/* Footer */}
           <div
-            className="rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4"
-            style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
+            className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4 border-t"
+            style={{ borderColor: 'var(--border)' }}
           >
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-lg transition-opacity hover:opacity-90"
+                style={{ background: 'var(--accent)', color: '#fff' }}
+              >
+                <ExternalLink size={14} />
+                {project.badge ?? 'Ansehen'}
+              </a>
+            )}
             <div className="flex-1">
               <p className="text-sm font-bold mb-0.5" style={{ color: 'var(--fg)' }}>
                 Ähnliches Projekt geplant?
               </p>
-              <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                Ich antworte innerhalb von 24–48 Stunden.
-              </p>
+              <a
+                href="/anfragen"
+                onClick={onClose}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+                style={{ color: 'var(--accent)' }}
+              >
+                Anfragen <ArrowRight size={13} />
+              </a>
             </div>
-            <a
-              href="/#kontakt"
-              onClick={onClose}
-              className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded whitespace-nowrap transition-opacity hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#fff' }}
-            >
-              Anfragen <ArrowRight size={13} />
-            </a>
           </div>
         </div>
       </div>
@@ -241,7 +170,7 @@ function PortfolioModal({
   )
 }
 
-// ─── Card ───────────────────────────────────────────────────────────────────
+// ─── Card ────────────────────────────────────────────────────────────────────
 
 function PortfolioCard({
   project,
@@ -256,44 +185,37 @@ function PortfolioCard({
       className="text-left rounded-xl border overflow-hidden group w-full transition-shadow duration-200 hover:shadow-lg"
       style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
     >
-      {/* Image */}
-      <div className="relative h-48 sm:h-56 overflow-hidden">
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={`Screenshot: ${project.title}`}
-            fill
-            className="object-cover object-top transition-all duration-500 blur-md group-hover:blur-0 group-hover:scale-[1.04]"
-            sizes="(max-width: 640px) 100vw, 50vw"
-          />
-        ) : (
-          <div
-            className={`absolute inset-0 bg-gradient-to-br ${project.gradient} flex items-center justify-center transition-all duration-500 blur-md group-hover:blur-0`}
-          >
-            <span className="text-3xl font-extrabold font-mono text-white/20">
-              {project.title.slice(0, 2).toUpperCase()}
-            </span>
-          </div>
-        )}
+      {/* Gradient image area */}
+      <div
+        className={`relative h-44 bg-gradient-to-br ${project.gradient} flex items-end px-5 pb-4`}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.65) 100%)',
+          }}
+          aria-hidden="true"
+        />
 
-        {/* Type badge */}
+        {/* Kind badge */}
         <div className="absolute top-3 left-3">
           <span
             className="text-xs font-mono px-2 py-1 rounded"
             style={{
-              background: 'rgba(28,25,23,0.72)',
+              background: 'rgba(28,25,23,0.60)',
               color: '#fff',
               backdropFilter: 'blur(6px)',
             }}
           >
-            {project.type}
+            {project.kind === 'client' ? 'Kundenprojekt' : 'Eigenprodukt'}
           </span>
         </div>
 
-        {/* Hover overlay hint */}
+        {/* Hover hint */}
         <div
           className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-          style={{ background: 'rgba(0,0,0,0.35)' }}
+          style={{ background: 'rgba(0,0,0,0.25)' }}
           aria-hidden="true"
         >
           <span
@@ -303,16 +225,26 @@ function PortfolioCard({
             Details ansehen →
           </span>
         </div>
+
+        {/* Title */}
+        <div className="relative z-10">
+          <p className="text-xs font-mono mb-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>
+            {project.sector}
+          </p>
+          <h3 className="text-base font-bold text-white leading-tight">
+            {project.title}
+          </h3>
+        </div>
       </div>
 
       {/* Info */}
       <div className="p-5 flex flex-col gap-3">
-        <h3 className="text-base font-bold" style={{ color: 'var(--fg)' }}>
-          {project.title}
-        </h3>
+        <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)' }}>
+          {project.subtitle}
+        </p>
 
         <div className="flex flex-wrap gap-1.5">
-          {project.stack.map(tag => (
+          {project.stack.slice(0, 4).map((tag) => (
             <span
               key={tag}
               className="text-xs font-mono px-2 py-0.5 rounded border"
@@ -325,27 +257,29 @@ function PortfolioCard({
               {tag}
             </span>
           ))}
-        </div>
-
-        <div
-          className="flex flex-wrap gap-4 pt-2 border-t"
-          style={{ borderColor: 'var(--border)' }}
-        >
-          {project.metrics.map(metric => (
-            <span key={metric} className="text-sm font-semibold" style={{ color: 'var(--accent)' }}>
-              {metric}
+          {project.stack.length > 4 && (
+            <span
+              className="text-xs font-mono px-2 py-0.5 rounded border"
+              style={{
+                background: 'var(--bg)',
+                color: 'var(--muted)',
+                borderColor: 'var(--border)',
+              }}
+            >
+              +{project.stack.length - 4}
             </span>
-          ))}
+          )}
         </div>
       </div>
     </button>
   )
 }
 
-// ─── Section ────────────────────────────────────────────────────────────────
+// ─── Section ─────────────────────────────────────────────────────────────────
 
 export default function PortfolioSection({ maxItems, showLink }: Props) {
-  const cases = maxItems !== undefined ? PORTFOLIO_CASES.slice(0, maxItems) : PORTFOLIO_CASES
+  const featured = PORTFOLIO_CASES.filter((c) => c.featured)
+  const cases = maxItems !== undefined ? featured.slice(0, maxItems) : PORTFOLIO_CASES
   const [selected, setSelected] = useState<PortfolioCase | null>(null)
   const closeModal = useCallback(() => setSelected(null), [])
 
@@ -354,8 +288,7 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
       <section id="portfolio" className="py-20 sm:py-28" style={{ background: 'var(--bg)' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
-          {/* Header */}
-          <div className="mb-12 flex items-end justify-between gap-4" data-animate>
+          <div className="mb-12 flex items-end justify-between gap-4">
             <div>
               <p
                 className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
@@ -363,22 +296,28 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
               >
                 PORTFOLIO
               </p>
-              <h2 className="text-3xl sm:text-4xl font-extrabold" style={{ color: 'var(--fg)' }}>
+              <h2
+                className="text-3xl sm:text-4xl font-extrabold"
+                style={{ fontFamily: 'var(--font-fraunces), Georgia, serif', color: 'var(--fg)' }}
+              >
                 Echte Projekte
               </h2>
             </div>
             {showLink && (
-              <a href="/portfolio" className="text-sm font-semibold whitespace-nowrap link-hover-accent">
+              <a
+                href="/portfolio"
+                className="text-sm font-semibold whitespace-nowrap transition-opacity hover:opacity-70"
+                style={{ color: 'var(--accent)' }}
+              >
                 Alle Projekte →
               </a>
             )}
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" data-animate data-animate-delay="1">
-            {cases.map(project => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {cases.map((project) => (
               <PortfolioCard
-                key={project.title}
+                key={project.id}
                 project={project}
                 onClick={() => setSelected(project)}
               />
@@ -387,7 +326,6 @@ export default function PortfolioSection({ maxItems, showLink }: Props) {
         </div>
       </section>
 
-      {/* Modal */}
       {selected && <PortfolioModal project={selected} onClose={closeModal} />}
     </>
   )
