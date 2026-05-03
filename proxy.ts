@@ -11,7 +11,7 @@ const BYPASS = [
   '/devos-logo.svg',
 ]
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const comingSoon = process.env.COMING_SOON === 'true'
   if (!comingSoon) return NextResponse.next()
 
