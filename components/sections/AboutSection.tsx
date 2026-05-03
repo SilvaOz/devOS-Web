@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import { ABOUT } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
-import PersonPlaceholder from '@/components/ui/PersonPlaceholder'
 
 export default function AboutSection() {
   return (
@@ -15,8 +15,16 @@ export default function AboutSection() {
 
           {/* Left column */}
           <div className="flex flex-col gap-6">
-            {/* Swap with <Image src="/oscar-foto.jpg"> when ready */}
-            <PersonPlaceholder name="Oscar · DevOS Web" ratio="1/1" className="max-w-xs" />
+            <div className="relative w-full max-w-xs rounded-2xl overflow-hidden" style={{ border: '1px solid var(--border)', aspectRatio: '3/4' }}>
+              <Image
+                src="/oscar.png"
+                alt="Oscar Silva — DevOS Web"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 768px) 80vw, 320px"
+                priority
+              />
+            </div>
 
             <div>
               <p

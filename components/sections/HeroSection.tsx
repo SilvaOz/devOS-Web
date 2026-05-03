@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { HERO } from '@/lib/constants'
 
 export default function HeroSection() {
@@ -90,97 +91,70 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right — browser mockup (desktop only) */}
-          <div className="hidden lg:block">
+          {/* Right — personal card (desktop only) */}
+          <div className="hidden lg:flex justify-center">
             <div
-              className="rounded-xl overflow-hidden"
+              className="relative rounded-2xl overflow-hidden w-72"
               style={{
                 border: '1px solid var(--border)',
-                boxShadow:
-                  '0 4px 12px rgba(0,0,0,0.04), 0 20px 56px rgba(0,0,0,0.08)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.04), 0 24px 64px rgba(0,0,0,0.09)',
+                background: 'var(--card)',
               }}
             >
-              {/* Browser title bar */}
-              <div
-                className="flex items-center gap-2 px-4 py-2.5"
-                style={{
-                  background: 'var(--bg-elevated)',
-                  borderBottom: '1px solid var(--border)',
-                }}
-              >
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#ff5f57' }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#febc2e' }} />
-                <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#28c840' }} />
-                <div className="flex-1 mx-3">
-                  <div
-                    className="rounded px-3 py-1 text-xs font-mono text-center"
-                    style={{
-                      background: 'var(--card)',
-                      color: 'var(--muted)',
-                      border: '1px solid var(--border)',
-                    }}
-                  >
-                    kunde.devos-web.de
-                  </div>
-                </div>
+              {/* Photo */}
+              <div className="relative h-80 w-full overflow-hidden">
+                <Image
+                  src="/oscar.png"
+                  alt="Oscar Silva — DevOS Web"
+                  fill
+                  className="object-cover object-top"
+                  sizes="288px"
+                  priority
+                />
+                {/* Subtle bottom gradient */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      'linear-gradient(to bottom, transparent 55%, rgba(28,25,23,0.45) 100%)',
+                  }}
+                  aria-hidden="true"
+                />
               </div>
 
-              {/* Website wireframe */}
-              <div
-                aria-hidden="true"
-                style={{
-                  aspectRatio: '4/3',
-                  background: 'var(--bg)',
-                  padding: '1.25rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.75rem',
-                }}
-              >
-                {/* Nav row */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ height: '10px', width: '56px', borderRadius: '4px', background: 'var(--border)' }} />
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    {[36, 44, 36, 56].map((w, i) => (
-                      <div key={i} style={{ height: '7px', width: `${w}px`, borderRadius: '3px', background: 'var(--border)', opacity: 0.7 }} />
-                    ))}
-                  </div>
-                </div>
-                {/* Hero text block */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '7px', marginTop: '6px' }}>
-                  <div style={{ height: '16px', width: '72%', borderRadius: '4px', background: 'var(--bg-elevated)' }} />
-                  <div style={{ height: '16px', width: '52%', borderRadius: '4px', background: 'var(--bg-elevated)' }} />
-                  <div style={{ height: '10px', width: '80%', borderRadius: '3px', background: 'var(--border)', opacity: 0.5, marginTop: '2px' }} />
-                  <div style={{ height: '10px', width: '60%', borderRadius: '3px', background: 'var(--border)', opacity: 0.5 }} />
-                  <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
-                    <div style={{ height: '26px', width: '88px', borderRadius: '6px', background: 'rgba(46,125,122,0.12)', border: '1px solid rgba(46,125,122,0.20)' }} />
-                    <div style={{ height: '26px', width: '64px', borderRadius: '6px', background: 'var(--border)', opacity: 0.45 }} />
-                  </div>
-                </div>
-                {/* Image placeholder */}
-                <div style={{
-                  flex: 1,
-                  borderRadius: '8px',
-                  background: 'var(--bg-elevated)',
-                  border: '1px solid var(--border)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <p style={{
-                    fontSize: '0.6rem',
-                    fontFamily: 'var(--font-jetbrains), monospace',
-                    color: 'var(--border)',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                  }}>
-                    Kunden-Projekt
+              {/* Info */}
+              <div className="p-5 flex flex-col gap-4">
+                <div>
+                  <p
+                    className="font-bold text-lg leading-tight"
+                    style={{ color: 'var(--fg)' }}
+                  >
+                    Oscar Silva
+                  </p>
+                  <p
+                    className="text-sm font-mono mt-0.5"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    Webentwickler · KI-Spezialist
+                  </p>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+                    Leipzig, Deutschland
                   </p>
                 </div>
-                {/* Bottom cards row */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px' }}>
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} style={{ height: '28px', borderRadius: '6px', background: 'var(--bg-elevated)' }} />
+
+                <div
+                  className="border-t pt-4 flex flex-col gap-2"
+                  style={{ borderColor: 'var(--border)' }}
+                >
+                  {[
+                    'Persönliche Betreuung',
+                    'Antwort in 24–48h',
+                    'DACH-Raum & international',
+                  ].map((t) => (
+                    <div key={t} className="flex items-center gap-2">
+                      <span style={{ color: 'var(--accent)', fontSize: '0.7rem' }}>✓</span>
+                      <span className="text-xs" style={{ color: 'var(--muted)' }}>{t}</span>
+                    </div>
                   ))}
                 </div>
               </div>

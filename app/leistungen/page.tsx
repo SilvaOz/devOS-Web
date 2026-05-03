@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer'
 import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
-import CheckoutButton from '@/components/ui/CheckoutButton'
 import { WorkflowDemo } from '@/components/ui/WorkflowDemo'
 
 export const metadata = {
@@ -754,7 +753,17 @@ export default function LeistungenPage() {
                     </div>
                   </div>
                   <FeatureList items={plan.features} />
-                  <CheckoutButton planId={plan.id} label={plan.featured ? 'Jetzt buchen' : 'Buchen'} primary={plan.featured} />
+                  <a
+                    href={`/anfragen?paket=${plan.id}`}
+                    className="block text-center py-2.5 px-4 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
+                    style={
+                      plan.featured
+                        ? { background: 'var(--accent)', color: '#fff' }
+                        : { background: 'var(--bg)', color: 'var(--fg)', border: '1px solid var(--border)' }
+                    }
+                  >
+                    {plan.featured ? 'Jetzt anfragen →' : 'Anfragen'}
+                  </a>
                 </div>
               ))}
             </div>
