@@ -1,9 +1,9 @@
-import Image from 'next/image'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { ABOUT_PAGE } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
+import PersonPlaceholder from '@/components/ui/PersonPlaceholder'
 
 export const metadata = {
   title: 'About — DevOS Web',
@@ -25,23 +25,12 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row gap-12 items-start">
               <div className="flex-shrink-0 w-full md:w-80 lg:w-96">
-                <div
-                  className="rounded-2xl overflow-hidden"
-                  style={{ border: '1px solid var(--border)' }}
-                >
-                  <Image
-                    src="/oscar.png"
-                    alt="Oscar — DevOS Web"
-                    width={640}
-                    height={900}
-                    className="w-full h-auto object-cover object-top"
-                    priority
-                  />
-                </div>
+                {/* Swap with <Image src="/oscar-foto.jpg"> when ready */}
+                <PersonPlaceholder name="Oscar" ratio="2/3" />
               </div>
 
               {/* Info */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4" data-animate>
                 <div>
                   <p
                     className="text-xs font-mono font-semibold uppercase tracking-widest mb-2"
@@ -85,10 +74,11 @@ export default function AboutPage() {
             <p
               className="text-xs font-mono font-semibold uppercase tracking-widest mb-6"
               style={{ color: 'var(--accent)' }}
+              data-animate
             >
               {p.stack.label}
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3" data-animate data-animate-delay="1">
               {p.stack.items.map((tech) => (
                 <span
                   key={tech}
@@ -118,10 +108,11 @@ export default function AboutPage() {
             <h2
               className="text-3xl sm:text-4xl font-extrabold mb-10"
               style={{ color: 'var(--fg)' }}
+              data-animate
             >
               Wie ich arbeite
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4" data-animate data-animate-delay="1">
               {p.values.items.map((item) => (
                 <div
                   key={item.title}
@@ -153,7 +144,7 @@ export default function AboutPage() {
           className="py-20 sm:py-28 text-center"
           style={{ background: 'var(--bg)' }}
         >
-          <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6" data-animate>
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-4" style={{ color: 'var(--fg)' }}>
               {p.cta.h2}
             </h2>
@@ -163,7 +154,7 @@ export default function AboutPage() {
             <a
               href="/#kontakt"
               className="inline-flex items-center justify-center px-8 py-3 font-semibold rounded text-sm transition-opacity duration-150 hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#000' }}
+              style={{ background: 'var(--accent)', color: '#fff' }}
             >
               {p.cta.button}
             </a>

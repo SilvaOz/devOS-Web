@@ -1,23 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { contactSchema } from '@/lib/constants'
+import { contactSchema, computePackageTotal } from '@/lib/constants'
 import { sendContactEmail, sendConfirmationEmail, sendInvoiceEmail, PACKAGE_INFO } from '@/lib/resend'
 
 // Simple in-memory rate limiter (resets per serverless instance)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
 
+const RATE_LIMIT_MAX = parseInt(process.env.CONTACT_RATE_LIMIT_MAX ?? '3', 10)
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000 // 1 hora
+
 function isRateLimited(ip: string): boolean {
-  const now = Date.now()
-  const windowMs = 60 * 60 * 1000 // 1 hour
-  const maxRequests = 3
-
-  const entry = rateLimitMap.get(ip)
-
-  if (!entry || now > entry.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + windowMs })
+  // En desarrollo o desde localhost nunca limitar
+  if (process.env.NODE_ENV === 'development' || ip === '127.0.0.1' || ip === '::1') {
     return false
   }
 
-  if (entry.count >= maxRequests) {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+
+  if (!entry || now > entry.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW_MS })
+    return false
+  }
+
+  if (entry.count >= RATE_LIMIT_MAX) {
     return true
   }
 
@@ -25,7 +30,7 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-const WEBSITE_PACKAGES = ['express-24h', 'wp-base', 'wp-premium', 'wp-pro', 'web-app']
+const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app']
 
 type InvoiceData = {
   invoiceNumber: string
@@ -62,7 +67,7 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  const { name, email, package: pkg, message, timing } = parsed.data
+  const { name, email, package: pkg, message, timing, pages, features, sections, contentReady, currentWebsite, companyName, street, zip, city, recommendedPackage } = parsed.data
 
   // 1. If website package, call kleinunternehmer to create invoice
   let invoiceData: InvoiceData | null = null
@@ -70,6 +75,8 @@ export async function POST(req: NextRequest) {
   if (WEBSITE_PACKAGES.includes(pkg)) {
     const pkgInfo = PACKAGE_INFO[pkg]
     try {
+      const unitPrice = computePackageTotal(pkg, features ?? [])
+
       const res = await fetch(
         `${process.env.KLEINUNTERNEHMER_API_URL}/api/internal/angebot`,
         {
@@ -85,6 +92,11 @@ export async function POST(req: NextRequest) {
             packageName: pkgInfo?.name ?? pkg,
             description: message,
             timing,
+            unitPrice,
+            companyName,
+            street,
+            zip,
+            city,
           }),
         }
       )
@@ -103,7 +115,7 @@ export async function POST(req: NextRequest) {
   try {
     // 2. Send emails
     await Promise.all([
-      sendContactEmail({ name, email, package: pkg, message, timing, invoiceNumber: invoiceData?.invoiceNumber }),
+      sendContactEmail({ name, email, package: pkg, message, timing, invoiceNumber: invoiceData?.invoiceNumber, pages, features, sections, contentReady, currentWebsite, recommendedPackage }),
       invoiceData
         ? sendInvoiceEmail({
             name,

@@ -8,20 +8,20 @@ export const PACKAGE_INFO: Record<string, { name: string; price: string; feature
     price: 'ab 1.499 EUR',
     features: ['1-Page Landing Page', 'WordPress + Divi', 'Responsives Design', 'Kontaktformular', 'Grundlegendes SEO', '1 Revisionsrunde'],
   },
-  'wp-base': {
-    name: 'WP Base',
-    price: 'ab 700 EUR',
-    features: ['WordPress + Divi', 'Bis 5 Seiten', 'Responsives Design', 'Kontaktformular', 'SSL'],
+  'landing-page': {
+    name: 'Landing Page',
+    price: 'ab 599 EUR',
+    features: ['1 Seite, individuelles Design', 'Kontaktformular', 'Responsiv (Mobile & Desktop)', 'SSL + Grundlegendes SEO'],
   },
   'wp-premium': {
-    name: 'WP Premium',
+    name: 'WP Design',
     price: 'ab 900 EUR',
-    features: ['Alles aus WP Base', 'Individuelles Design', 'Farbpalette + Typografie', 'Amelia Buchungen'],
+    features: ['Individuelles Design', 'Eigene Farbpalette & Typografie', 'Bis 8 Seiten', 'Responsiv (Mobile & Desktop)', 'Kontaktformular'],
   },
   'wp-pro': {
     name: 'WP Pro',
     price: 'ab 1.500 EUR',
-    features: ['Alles aus WP Premium', 'Google Calendar', 'Zoom', 'Stripe', 'DSGVO', '3 Monate Support'],
+    features: ['Alles aus WP Design', 'Amelia Buchungssystem', 'Google Calendar Sync', 'Zoom-Integration', 'Stripe-Zahlungen', 'DSGVO-Grundlage'],
   },
   'web-app': {
     name: 'Web App',
@@ -64,12 +64,54 @@ export async function sendContactEmail(data: {
   name: string
   email: string
   package: string
-  message: string
+  message?: string
   timing?: string
   invoiceNumber?: string
+  pages?: string
+  features?: string[]
+  sections?: string[]
+  contentReady?: string
+  currentWebsite?: string
+  recommendedPackage?: string
 }) {
   const resend = getResend()
   const pkg = PACKAGE_INFO[data.package]
+
+  const recommendedInfo = data.recommendedPackage ? PACKAGE_INFO[data.recommendedPackage] : null
+  const upgradeBlock = recommendedInfo ? `
+    <div style="background:#fefce8;border:2px solid #ca8a04;border-radius:8px;padding:16px;margin:0 0 16px">
+      <p style="margin:0 0 8px;font-size:13px;font-weight:700;color:#92400e;font-family:monospace;text-transform:uppercase;letter-spacing:1px">⚠ Paket-Konflikt — Angebot anpassen</p>
+      <p style="margin:0 0 6px;font-size:14px;color:#1c1917">
+        Kunde hat <strong>${pkg?.name ?? data.package}</strong> gewählt, aber die ausgewählten Funktionen erfordern
+        <strong style="color:#2e7d7a">${recommendedInfo.name} (${recommendedInfo.price})</strong>.
+      </p>
+      <p style="margin:0;font-size:13px;color:#78716c">Rechnung und Angebot bitte auf <strong>${recommendedInfo.name}</strong> anpassen.</p>
+    </div>
+  ` : ''
+
+  const qualifyingBlock = (data.pages || data.features?.length || data.sections?.length || data.contentReady || data.currentWebsite)
+    ? `
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:16px;margin:16px 0">
+        <p style="margin:0 0 12px;font-size:12px;font-weight:700;color:#166534;font-family:monospace;text-transform:uppercase;letter-spacing:1px">Qualifying-Infos</p>
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          ${data.pages ? `<tr><td style="padding:5px 0;color:#555;width:140px">Seiten</td><td style="padding:5px 0;font-weight:600;color:#1c1917">${data.pages}</td></tr>` : ''}
+          ${data.contentReady ? `<tr><td style="padding:5px 0;color:#555">Inhalte</td><td style="padding:5px 0;font-weight:600;color:#1c1917">${data.contentReady}</td></tr>` : ''}
+          ${data.currentWebsite ? `<tr><td style="padding:5px 0;color:#555">Aktuelle Website</td><td style="padding:5px 0"><a href="${data.currentWebsite}" style="color:#2e7d7a">${data.currentWebsite}</a></td></tr>` : ''}
+        </table>
+        ${data.sections?.length ? `
+          <p style="margin:10px 0 6px;font-size:13px;font-weight:600;color:#1c1917">Abschnitte:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            ${data.sections.map(s => `<span style="background:#dbeafe;color:#1e40af;font-size:12px;padding:3px 10px;border-radius:999px;font-weight:600">${s}</span>`).join('')}
+          </div>
+        ` : ''}
+        ${data.features?.length ? `
+          <p style="margin:10px 0 6px;font-size:13px;font-weight:600;color:#1c1917">Gewünschte Funktionen:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            ${data.features.map(f => `<span style="background:#dcfce7;color:#166534;font-size:12px;padding:3px 10px;border-radius:999px;font-weight:600">${f}</span>`).join('')}
+          </div>
+        ` : ''}
+      </div>
+    ` : ''
 
   return resend.emails.send({
     from: FROM,
@@ -78,17 +120,21 @@ export async function sendContactEmail(data: {
     subject: `📩 Neue Anfrage: ${pkg?.name ?? data.package} — ${data.name}`,
     html: `
       <div style="font-family:sans-serif;max-width:560px;margin:0 auto">
-        <h2 style="color:#c2410c">Neue Projektanfrage</h2>
+        <h2 style="color:#2e7d7a">Neue Projektanfrage</h2>
         <table style="width:100%;border-collapse:collapse">
-          <tr><td style="padding:6px 0;color:#666;width:120px">Name</td><td style="padding:6px 0;font-weight:600">${data.name}</td></tr>
+          <tr><td style="padding:6px 0;color:#666;width:140px">Name</td><td style="padding:6px 0;font-weight:600">${data.name}</td></tr>
           <tr><td style="padding:6px 0;color:#666">E-Mail</td><td style="padding:6px 0"><a href="mailto:${data.email}">${data.email}</a></td></tr>
           <tr><td style="padding:6px 0;color:#666">Paket</td><td style="padding:6px 0;font-weight:600">${pkg?.name ?? data.package} · ${pkg?.price ?? ''}</td></tr>
-          ${data.timing ? `<tr><td style="padding:6px 0;color:#666">Start</td><td style="padding:6px 0">${data.timing}</td></tr>` : ''}
-          ${data.invoiceNumber ? `<tr><td style="padding:6px 0;color:#666">Rechnungsnummer</td><td style="padding:6px 0;font-weight:600;color:#c2410c">${data.invoiceNumber}</td></tr>` : ''}
+          ${data.timing ? `<tr><td style="padding:6px 0;color:#666">Gewünschter Start</td><td style="padding:6px 0">${data.timing}</td></tr>` : ''}
+          ${data.invoiceNumber ? `<tr><td style="padding:6px 0;color:#666">Rechnungsnummer</td><td style="padding:6px 0;font-weight:600;color:#2e7d7a">${data.invoiceNumber}</td></tr>` : ''}
         </table>
-        <hr style="border:none;border-top:1px solid #eee;margin:16px 0"/>
-        <p style="color:#666;font-size:13px;margin:0 0 6px">Projektbeschreibung:</p>
-        <p style="background:#f5f5f5;padding:12px;border-radius:6px;font-size:14px">${data.message.replace(/\n/g, '<br/>')}</p>
+        ${upgradeBlock}
+        ${qualifyingBlock}
+        ${data.message ? `
+          <hr style="border:none;border-top:1px solid #eee;margin:16px 0"/>
+          <p style="color:#666;font-size:13px;margin:0 0 6px">Weitere Infos:</p>
+          <p style="background:#f5f5f5;padding:12px;border-radius:6px;font-size:14px">${data.message.replace(/\n/g, '<br/>')}</p>
+        ` : ''}
         <p style="color:#999;font-size:11px;margin-top:20px">Gesendet über devos-web.de · Direkt antworten um Kontakt aufzunehmen.</p>
       </div>
     `,
@@ -128,7 +174,7 @@ export async function sendConfirmationEmail(data: {
           <p style="margin:0 0 4px;font-size:11px;color:#78716c;font-family:monospace;text-transform:uppercase;letter-spacing:1.5px">Ihr gewähltes Paket</p>
           <div style="display:flex;align-items:baseline;gap:12px;margin:8px 0 16px">
             <span style="font-size:22px;font-weight:700;color:#1c1917">${pkg.name}</span>
-            <span style="font-size:16px;font-weight:600;color:#c2410c">${pkg.price}</span>
+            <span style="font-size:16px;font-weight:600;color:#2e7d7a">${pkg.price}</span>
           </div>
           <ul style="margin:0;padding-left:20px">
             ${featuresList}
@@ -139,21 +185,21 @@ export async function sendConfirmationEmail(data: {
           <p style="margin:0 0 12px;font-weight:600;color:#1c1917">Was passiert als Nächstes?</p>
           <div style="display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <span style="background:#c2410c;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">1</span>
+              <span style="background:#2e7d7a;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">1</span>
               <p style="margin:0;font-size:14px;color:#444">Ich prüfe Ihre Anfrage und bereite ein <strong>persönliches Angebot</strong> vor.</p>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <span style="background:#c2410c;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">2</span>
+              <span style="background:#2e7d7a;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">2</span>
               <p style="margin:0;font-size:14px;color:#444">Sie erhalten das Angebot per E-Mail — mit Preisübersicht und nächsten Schritten.</p>
             </div>
             <div style="display:flex;gap:12px;align-items:flex-start">
-              <span style="background:#c2410c;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">3</span>
+              <span style="background:#2e7d7a;color:#fff;font-size:11px;font-weight:700;padding:2px 7px;border-radius:999px;flex-shrink:0;margin-top:1px">3</span>
               <p style="margin:0;font-size:14px;color:#444">Nach Ihrer Bestätigung starten wir gemeinsam mit dem Projekt.</p>
             </div>
           </div>
         </div>
 
-        <p style="font-size:14px;color:#78716c">Fragen? Antworten Sie einfach auf diese E-Mail oder schreiben Sie direkt an <a href="mailto:info@devos-web.de" style="color:#c2410c">info@devos-web.de</a></p>
+        <p style="font-size:14px;color:#78716c">Fragen? Antworten Sie einfach auf diese E-Mail oder schreiben Sie direkt an <a href="mailto:info@devos-web.de" style="color:#2e7d7a">info@devos-web.de</a></p>
 
         <hr style="border:none;border-top:1px solid #e5e0d8;margin:24px 0"/>
         <p style="font-size:11px;color:#a8a29e;margin:0">DevOS Web · Leipzig, Deutschland · Gem. §19 UStG wird keine Umsatzsteuer berechnet.</p>
@@ -217,7 +263,7 @@ export async function sendInvoiceEmail(data: {
             </tr>
             <tr>
               <td style="padding:6px 0;color:#666">Betrag</td>
-              <td style="padding:6px 0;font-weight:700;font-size:18px;color:#c2410c">${formattedTotal}</td>
+              <td style="padding:6px 0;font-weight:700;font-size:18px;color:#2e7d7a">${formattedTotal}</td>
             </tr>
             <tr>
               <td style="padding:6px 0;color:#666">Zahlungsfrist</td>
@@ -236,7 +282,7 @@ export async function sendInvoiceEmail(data: {
           <p style="margin:0;font-size:14px;color:#666">Die Datei <strong>${data.filename}</strong> enthält alle Pflichtangaben gemäß §14 UStG.</p>
         </div>
 
-        <p style="font-size:14px;color:#78716c">Fragen? Antworten Sie einfach auf diese E-Mail oder schreiben Sie direkt an <a href="mailto:info@devos-web.de" style="color:#c2410c">info@devos-web.de</a></p>
+        <p style="font-size:14px;color:#78716c">Fragen? Antworten Sie einfach auf diese E-Mail oder schreiben Sie direkt an <a href="mailto:info@devos-web.de" style="color:#2e7d7a">info@devos-web.de</a></p>
 
         <hr style="border:none;border-top:1px solid #e5e0d8;margin:24px 0"/>
         <p style="font-size:11px;color:#a8a29e;margin:0">DevOS Web · Leipzig, Deutschland · Gem. §19 UStG wird keine Umsatzsteuer berechnet.</p>

@@ -1,6 +1,4 @@
 import { FUER_WEN } from '@/lib/constants'
-import { Icon } from '@/components/ui/Icon'
-import type { IconName } from '@/components/ui/Icon'
 
 export default function FuerWenSection() {
   return (
@@ -10,45 +8,59 @@ export default function FuerWenSection() {
       style={{ background: 'var(--bg-elevated)' }}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="mb-12" data-animate>
-          <p
-            className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
-            style={{ color: 'var(--muted)' }}
-          >
-            FÜR WEN
-          </p>
-          <h2
-            className="text-4xl sm:text-5xl font-extrabold mb-3"
-            style={{ color: 'var(--fg)' }}
-          >
-            Ich arbeite für Menschen, nicht für Konzerne
-          </h2>
-          <p className="text-base max-w-xl" style={{ color: 'var(--muted)' }}>
-            Egal ob Sie Therapeutin, Künstler oder Inhaber eines kleinen Unternehmens sind — ich bringe Sie professionell online.
-          </p>
+        {/* Header — editorial split */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16" data-animate>
+          <div>
+            <p
+              className="text-xs font-mono font-semibold uppercase tracking-widest mb-4"
+              style={{ color: 'var(--muted)' }}
+            >
+              FÜR WEN
+            </p>
+            <h2
+              className="text-4xl sm:text-5xl font-bold leading-tight"
+              style={{ color: 'var(--fg)' }}
+            >
+              Für Menschen,<br />
+              nicht für<br />
+              <span style={{ color: 'var(--accent)' }}>Konzerne.</span>
+            </h2>
+          </div>
+          <div className="flex items-end">
+            <p className="text-base leading-relaxed max-w-md" style={{ color: 'var(--muted)' }}>
+              Egal ob Sie Therapeutin, Künstler oder Inhaber eines kleinen Unternehmens sind —
+              ich bringe Sie professionell online. Persönlich, klar und ohne Fachjargon.
+            </p>
+          </div>
         </div>
 
-        {/* Cards */}
+        {/* Cards — numbered editorial */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-animate data-animate-delay="1">
-          {FUER_WEN.map((card) => (
+          {FUER_WEN.map((card, index) => (
             <div
               key={card.title}
-              className="rounded-2xl p-6 border flex flex-col gap-4 card-hover"
+              className="rounded-xl p-6 border flex flex-col gap-4 card-hover"
               style={{
-                background: 'var(--bg)',
+                background: 'var(--card)',
                 borderColor: 'var(--border)',
-                boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
               }}
             >
+              {/* Editorial number instead of icon */}
               <span
-                className="w-11 h-11 flex items-center justify-center rounded-xl"
-                style={{ background: 'rgba(0,0,0,0.05)' }}
+                aria-hidden="true"
+                style={{
+                  fontFamily: 'var(--font-fraunces), Georgia, serif',
+                  fontSize: '2.75rem',
+                  fontWeight: 900,
+                  lineHeight: 1,
+                  color: 'var(--border)',
+                  userSelect: 'none',
+                }}
               >
-                <Icon name={card.icon as IconName} size={22} style={{ color: 'var(--fg)' }} />
+                {String(index + 1).padStart(2, '0')}
               </span>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 flex-1">
                 <h3 className="text-base font-bold" style={{ color: 'var(--fg)' }}>
                   {card.title}
                 </h3>
@@ -57,12 +69,12 @@ export default function FuerWenSection() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t" style={{ borderColor: 'var(--border)' }}>
+              <div className="flex flex-wrap gap-1.5 pt-3 border-t" style={{ borderColor: 'var(--border)' }}>
                 {card.examples.map((ex) => (
                   <span
                     key={ex}
-                    className="text-xs font-mono px-2 py-0.5 rounded-lg"
-                    style={{ background: 'rgba(0,0,0,0.06)', color: 'var(--muted)' }}
+                    className="text-xs font-mono px-2 py-0.5 rounded"
+                    style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
                   >
                     {ex}
                   </span>

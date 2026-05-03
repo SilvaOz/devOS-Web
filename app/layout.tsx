@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Manrope, JetBrains_Mono, Fraunces } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import AnimationInit from '@/components/ui/AnimationInit'
+import { CookieConsent } from '@/components/ui/CookieConsent'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -23,23 +25,27 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'DevOS Web – Professionelle Webentwicklung in Leipzig',
+  title: 'DevOS Web – Digitale Systeme mit KI · Leipzig',
   description:
-    'WordPress-Websites und Full-Stack-Entwicklung für Unternehmen in Deutschland. Ab 700 EUR. Antwort in 24–48h.',
+    'Websites, Apps und KI-Automatisierungen für Therapeuten, Coaches und Kreative im DACH-Raum. Persönlich, klar und ohne Fachjargon.',
   keywords: [
     'Webentwicklung Leipzig',
-    'WordPress Leipzig',
+    'WordPress Therapeuten',
+    'KI Automatisierung',
     'Website erstellen lassen',
     'Divi Builder',
+    'DACH',
   ],
   openGraph: {
-    title: 'DevOS Web – Professionelle Webentwicklung Leipzig',
-    description: 'WordPress + Full-Stack. Ab 700 EUR. Leipzig.',
+    title: 'DevOS Web – Digitale Systeme mit KI',
+    description: 'Websites, Apps und KI-Automatisierungen für Therapeuten, Coaches und Kreative.',
     type: 'website',
     locale: 'de_DE',
     siteName: 'DevOS Web',
   },
 }
+
+const ADSENSE_ID = 'ca-pub-6393735346618361'
 
 export default function RootLayout({
   children,
@@ -52,9 +58,22 @@ export default function RootLayout({
       className={`${manrope.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* AdSense verification meta tag */}
+        <meta name="google-adsense-account" content={ADSENSE_ID} />
+      </head>
       <body className="antialiased">
         <AnimationInit />
         {children}
+        <CookieConsent />
+
+        {/* Google AdSense — loads after interaction, respects consent via AdSenseAd component */}
+        <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

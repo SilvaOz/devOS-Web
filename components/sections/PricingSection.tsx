@@ -9,12 +9,16 @@ export default function PricingSection() {
   return (
     <section
       id="preise"
-      className="py-20 sm:py-28"
+      className="py-20 sm:py-28 relative overflow-hidden"
       style={{ background: 'var(--bg)' }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Header */}
-        <div className="mb-12" data-animate>
+      {/* Grid background pattern (21st.dev style) */}
+      <div className="pricing-grid-bg absolute inset-0 pointer-events-none" aria-hidden="true" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+
+        {/* Header — centered */}
+        <div className="text-center mb-14" data-animate>
           <p
             className="text-xs font-mono font-semibold uppercase tracking-widest mb-3"
             style={{ color: 'var(--muted)' }}
@@ -27,73 +31,88 @@ export default function PricingSection() {
           >
             Klare Investition, keine Überraschungen
           </h2>
-          <p className="text-base" style={{ color: 'var(--muted)' }}>
+          <p className="text-base max-w-md mx-auto" style={{ color: 'var(--muted)' }}>
             Alle Preise auf Anfrage per Rechnung. Keine versteckten Kosten.
           </p>
         </div>
 
-        {/* Grid 2x2 */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8" data-animate data-animate-delay="1">
+        {/* 4-column grid (21st.dev layout) */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mb-8"
+          data-animate
+          data-animate-delay="1"
+        >
           {PRICING_PLANS.map((plan) => {
-            const isHighlighted = hoveredId ? hoveredId === plan.id : plan.featured
+            const isActive = hoveredId ? hoveredId === plan.id : plan.featured
             return (
               <div
                 key={plan.id}
-                className="rounded-2xl p-6 sm:p-8 border flex flex-col gap-5 cursor-default"
+                className="rounded-2xl p-6 border flex flex-col gap-5 cursor-default relative"
                 style={{
-                  background: 'var(--card)',
-                  borderColor: isHighlighted ? 'var(--accent)' : 'var(--border)',
-                  boxShadow: isHighlighted
-                    ? '0 0 0 1px var(--accent), 0 4px 24px var(--glow)'
+                  background: plan.featured ? 'var(--accent-dim)' : 'var(--card)',
+                  borderColor: isActive ? 'var(--accent)' : 'var(--border)',
+                  boxShadow: isActive
+                    ? '0 0 0 1px var(--accent), 0 8px 32px var(--glow)'
                     : 'none',
                   transition: 'border-color 0.2s, box-shadow 0.2s',
                 }}
                 onMouseEnter={() => setHoveredId(plan.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Plan header */}
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3
-                        className="text-lg font-bold"
-                        style={{ color: 'var(--fg)' }}
-                      >
-                        {plan.name}
-                      </h3>
-                      {plan.featured && (
-                        <span
-                          className="text-xs font-mono px-2 py-0.5 rounded-full"
-                          style={{ background: 'var(--accent)', color: '#000' }}
-                        >
-                          Empfohlen
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                      {plan.target}
-                    </p>
+                {/* Top badge */}
+                {plan.featured && (
+                  <div
+                    className="absolute -top-3.5 left-1/2 -translate-x-1/2 text-xs font-mono font-bold px-3 py-1 rounded-full whitespace-nowrap"
+                    style={{ background: 'var(--accent)', color: '#fff' }}
+                  >
+                    ★ Empfohlen
                   </div>
-                  <div className="text-right flex-shrink-0">
-                    <span
-                      className="text-xl font-extrabold font-mono"
-                      style={{ color: 'var(--fg)' }}
-                    >
-                      {plan.price}
-                    </span>
-                  </div>
+                )}
+
+                {/* Plan name + target */}
+                <div>
+                  <h3
+                    className="text-base font-bold mb-0.5"
+                    style={{ color: 'var(--fg)' }}
+                  >
+                    {plan.name}
+                  </h3>
+                  <p className="text-xs leading-snug" style={{ color: 'var(--muted)' }}>
+                    {plan.target}
+                  </p>
                 </div>
+
+                {/* Price */}
+                <div>
+                  <span
+                    className="text-2xl font-extrabold font-mono"
+                    style={{ color: isActive ? 'var(--accent)' : 'var(--fg)' }}
+                  >
+                    {plan.price}
+                  </span>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+                    einmalig
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div style={{ height: '1px', background: 'var(--border)' }} />
 
                 {/* Features included */}
                 {plan.features.length > 0 && (
-                  <ul className="flex flex-col gap-2">
+                  <ul className="flex flex-col gap-2 flex-1">
                     {plan.features.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2 text-sm"
+                        className="flex items-start gap-2 text-sm"
                         style={{ color: 'var(--fg)' }}
                       >
-                        <span style={{ color: 'var(--fg)' }}>✓</span>
+                        <span
+                          className="flex-shrink-0 mt-0.5"
+                          style={{ color: 'var(--accent)' }}
+                        >
+                          ✓
+                        </span>
                         {f}
                       </li>
                     ))}
@@ -102,14 +121,14 @@ export default function PricingSection() {
 
                 {/* Features excluded */}
                 {plan.excluded.length > 0 && (
-                  <ul className="flex flex-col gap-2">
+                  <ul className="flex flex-col gap-1.5">
                     {plan.excluded.map((f) => (
                       <li
                         key={f}
-                        className="flex items-center gap-2 text-sm"
+                        className="flex items-start gap-2 text-sm"
                         style={{ color: 'var(--muted)' }}
                       >
-                        <span>✗</span>
+                        <span className="flex-shrink-0 mt-0.5">✗</span>
                         {f}
                       </li>
                     ))}
@@ -118,30 +137,22 @@ export default function PricingSection() {
 
                 {/* CTA */}
                 <a
-                  href={`/?package=${plan.id}#kontakt`}
+                  href={`/anfragen?package=${plan.id}`}
                   className={`mt-auto inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded border transition-colors duration-150${!plan.featured ? ' pricing-btn-ghost' : ''}`}
                   style={
                     plan.featured
-                      ? {
-                          background: 'var(--accent)',
-                          color: '#000',
-                          borderColor: 'var(--accent)',
-                        }
-                      : {
-                          background: 'transparent',
-                          color: 'var(--fg)',
-                          borderColor: 'var(--border)',
-                        }
+                      ? { background: 'var(--accent)', color: '#fff', borderColor: 'var(--accent)' }
+                      : { background: 'transparent', color: 'var(--fg)', borderColor: 'var(--border)' }
                   }
                 >
-                  Anfragen
+                  Anfragen →
                 </a>
               </div>
             )
           })}
         </div>
 
-        {/* Note */}
+        {/* Footer note */}
         <p
           className="text-sm text-center max-w-xl mx-auto"
           style={{ color: 'var(--muted)' }}

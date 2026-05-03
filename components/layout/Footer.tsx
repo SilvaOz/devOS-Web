@@ -12,7 +12,7 @@ export default function Footer() {
         <div
           className="mb-10 pb-10 border-b rounded-xl p-6 sm:p-8 border"
           style={{
-            borderColor: 'rgba(255,215,0,0.18)',
+            borderColor: 'var(--border)',
             background: 'var(--card)',
           }}
         >
@@ -22,11 +22,10 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-2">
-            <span
-              className="font-mono text-xl font-semibold"
-              style={{ color: 'var(--fg)' }}
-            >
-              Dev<span style={{ color: 'var(--accent)' }}>OS</span>
+            <span className="flex items-center gap-1 font-mono tracking-tight">
+              <span className="font-bold text-lg" style={{ color: 'var(--accent)' }}>&gt;_</span>
+              <span className="font-semibold text-lg" style={{ color: 'var(--fg)' }}>DevOS</span>
+              <span className="font-medium text-sm" style={{ color: 'var(--muted)' }}>Web</span>
             </span>
             <p className="text-sm" style={{ color: 'var(--muted)' }}>
               {FOOTER.tagline}
@@ -50,6 +49,22 @@ export default function Footer() {
                 {link.label}
               </a>
             ))}
+          </div>
+
+          {/* Kunden */}
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs font-semibold uppercase tracking-wider mb-1"
+              style={{ color: 'var(--muted)' }}
+            >
+              Kunden
+            </p>
+            <a href="/pflege" className="link-hover text-sm">
+              Website-Pflege
+            </a>
+            <a href="/pflege?ref=bestandskunde" className="link-hover text-sm">
+              Bestandskunden
+            </a>
           </div>
 
           {/* Legal */}

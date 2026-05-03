@@ -6,8 +6,8 @@ export const NAV_LINKS = [
   { label: 'Start', href: '/' },
   { label: 'Leistungen', href: '/leistungen' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Über mich', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Ressourcen', href: '/ressourcen' },
   { label: 'Kontakt', href: '/#kontakt' },
 ] as const
 
@@ -16,17 +16,17 @@ export const NAV_CTA = 'Projekt starten →'
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 export const HERO = {
-  badge: 'Verfügbar für neue Projekte · Leipzig, DE',
-  h1Line1: 'Ihre Website.',
-  h1Line2: 'In guten Händen.',
+  badge: 'Leipzig, DE · DACH-Raum',
+  h1Line1: 'Digitale Systeme',
+  h1Line2: 'mit KI.',
   subtitle:
-    'Ich entwickle Websites für Therapeuten, Künstler und kleine Unternehmen — persönlich, klar und ohne Fachjargon.',
-  ctaPrimary: 'Projekt starten →',
-  ctaGhost: 'Für wen bin ich?',
+    'Websites, Apps und Automatisierungen für Therapeuten, Coaches und Kreative — persönlich, klar und auf den Punkt.',
+  ctaPrimary: 'Projekt besprechen →',
+  ctaGhost: 'Leistungen ansehen',
   micros: [
-    '● Antwort in 24–48h',
-    '● Kein technisches Wissen nötig',
-    '● Leipzig · Kunden in ganz DE',
+    'Antwort in 24–48h',
+    'Kein technisches Wissen nötig',
+    'Leipzig · DACH-Raum',
   ],
 } as const
 
@@ -132,45 +132,47 @@ export type PricingPlan = {
 
 export const PRICING_PLANS: PricingPlan[] = [
   {
-    id: 'wp-base',
-    name: 'WP Base',
-    price: 'ab 700 EUR',
-    target: 'Kleine Unternehmen, Startups',
+    id: 'landing-page',
+    name: 'Landing Page',
+    price: 'ab 599 EUR',
+    target: 'Für einen professionellen ersten Auftritt',
     features: [
-      'WordPress + Divi',
-      'Bis 5 Seiten',
-      'Responsives Design',
+      'Eine Seite, alles drauf',
+      'Individuelles Design',
       'Kontaktformular',
-      'SSL',
+      'Responsiv (Mobile & Desktop)',
+      'SSL + Grundlegendes SEO',
     ],
-    excluded: ['Buchungen', 'Zahlungen', 'Integrationen'],
+    excluded: ['Mehrere Seiten', 'Buchungssystem', 'Technische Integrationen'],
   },
   {
     id: 'wp-premium',
-    name: 'WP Premium',
+    name: 'WP Design',
     price: 'ab 900 EUR',
-    target: 'Unternehmen mit eigenem Branding',
+    target: 'Für eine Website, die wirklich nach Ihnen aussieht',
     features: [
-      'Alles aus WP Base',
-      'Individuelles Design',
-      'Farbpalette + Typografie',
-      'Amelia konfiguriert',
+      'WordPress + Divi',
+      'Individuelles Design nach Ihrem Stil',
+      'Eigene Farbpalette & Typografie',
+      'Bis 8 Seiten',
+      'Kontaktformular + SSL',
+      'Responsiv (Mobile & Desktop)',
     ],
-    excluded: ['Kalender/Zoom Integration', 'Stripe Zahlungen'],
+    excluded: ['Buchungssystem', 'Google Calendar', 'Zoom', 'Stripe-Zahlungen'],
     featured: true,
   },
   {
     id: 'wp-pro',
     name: 'WP Pro',
     price: 'ab 1.500 EUR',
-    target: 'Vollständige Automatisierung',
+    target: 'Design + alle technischen Integrationen',
     features: [
-      'Alles aus WP Premium',
-      'Google Calendar',
-      'Zoom',
-      'Stripe',
+      'Alles aus WP Design',
+      'Amelia Buchungssystem',
+      'Google Calendar Sync',
+      'Zoom-Integration',
+      'Stripe-Zahlungen',
       'DSGVO-Grundlage',
-      '3 Monate Support',
     ],
     excluded: [],
   },
@@ -178,13 +180,13 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: 'web-app',
     name: 'Web App',
     price: 'ab 3.500 EUR',
-    target: 'Maßgeschneiderte Plattformen',
+    target: 'Maßgeschneiderte Plattformen & Systeme',
     features: [
       'React / Next.js Frontend',
-      'Backend + Auth',
-      'Datenbank',
-      'CRUD + Rollen',
-      'Deploy',
+      'Backend + Authentifizierung',
+      'Datenbank & API',
+      'Dashboard & Rollen',
+      'Deploy & Hosting',
     ],
     excluded: [],
   },
@@ -402,8 +404,8 @@ export const CONTACT = {
   paymentNote: 'Zahlung per Banküberweisung nach schriftlichem Angebot. Sie erhalten eine Rechnung per E-Mail.',
   packageOptions: [
     { value: 'express-24h', label: 'Website in 24 Stunden (ab 1.499 EUR)' },
-    { value: 'wp-base', label: 'WP Base (ab 700 EUR)' },
-    { value: 'wp-premium', label: 'WP Premium (ab 900 EUR)' },
+    { value: 'landing-page', label: 'Landing Page (ab 599 EUR)' },
+    { value: 'wp-premium', label: 'WP Design (ab 900 EUR)' },
     { value: 'wp-pro', label: 'WP Pro (ab 1.500 EUR)' },
     { value: 'web-app', label: 'Web App (ab 3.500 EUR)' },
     { value: 'support', label: 'Support / Wartung' },
@@ -416,22 +418,76 @@ export const CONTACT = {
     'Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@devos-web.de',
 } as const
 
+// ─── Add-on prices (used server-side to compute invoice total) ────────────────
+
+export const WP_DESIGN_ADDON_PRICES: Record<string, number> = {
+  'Amelia Buchungssystem':  199,
+  'Google Calendar Sync':   99,
+  'Zoom Integration':       79,
+  'Newsletter / Mailchimp': 99,
+  'Freebie / E-Book':       79,
+  'Google Ads Tracking':    99,
+  'Mehrsprachig':           149,
+}
+
+export const LANDING_ADDON_PRICES: Record<string, number> = {
+  'Buchungslink einrichten (Calendly)': 49,
+  'Newsletter-Anmeldung (Mailchimp)':   79,
+}
+
+export const BASE_PACKAGE_PRICES: Record<string, number> = {
+  'express-24h':  1499,
+  'landing-page': 599,
+  'wp-premium':   900,
+  'wp-pro':       1500,
+  'web-app':      3500,
+}
+
+export function computePackageTotal(packageId: string, features: string[] = []): number {
+  const base = BASE_PACKAGE_PRICES[packageId]
+  if (base === undefined) return 0
+  if (packageId === 'wp-premium') {
+    return base + features.reduce((sum, f) => sum + (WP_DESIGN_ADDON_PRICES[f] ?? 0), 0)
+  }
+  if (packageId === 'landing-page') {
+    return base + features.reduce((sum, f) => sum + (LANDING_ADDON_PRICES[f] ?? 0), 0)
+  }
+  return base
+}
+
 // ─── Contact Form Schema ──────────────────────────────────────────────────────
 
 export const contactSchema = z.object({
   name: z.string().min(1, 'Name ist erforderlich'),
   email: z.string().email('Ungültige E-Mail-Adresse'),
   package: z.string().min(1, 'Bitte wählen Sie ein Paket'),
-  message: z
-    .string()
-    .min(20, 'Nachricht muss mindestens 20 Zeichen haben'),
+  message: z.string().optional().default(''),
   timing: z.string().optional(),
   privacy: z.literal(true, {
     error: 'Bitte akzeptieren Sie die Datenschutzerklärung',
   }),
+  // Qualifying fields (website packages only)
+  pages: z.string().optional(),
+  features: z.array(z.string()).optional(),
+  sections: z.array(z.string()).optional(),
+  contentReady: z.string().optional(),
+  currentWebsite: z.string().optional(),
+  // Billing address (for invoice)
+  companyName: z.string().optional(),
+  street: z.string().optional(),
+  zip: z.string().optional(),
+  city: z.string().optional(),
+  // Recommended package if different from selected
+  recommendedPackage: z.string().optional(),
 })
 
 export type ContactFormData = z.infer<typeof contactSchema>
+
+// ContactSection uses this stricter schema (message required)
+export const contactSectionSchema = contactSchema.extend({
+  message: z.string().min(20, 'Nachricht muss mindestens 20 Zeichen haben'),
+})
+export type ContactSectionData = z.infer<typeof contactSectionSchema>
 
 // ─── Für wen ──────────────────────────────────────────────────────────────────
 
@@ -472,13 +528,14 @@ export const FUER_WEN: FuerWenCard[] = [
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
 export const FOOTER = {
-  tagline: 'Professionelle Webentwicklung · Leipzig, DE',
+  tagline: 'Digitale Systeme mit KI · Leipzig, DE',
   copyright: '© 2026 DevOS Web · Leipzig · info@devos-web.de',
   vatNote: 'Gem. §19 UStG wird keine Umsatzsteuer berechnet.',
   links: [
     { label: 'Leistungen', href: '/leistungen' },
-    { label: 'Preise', href: '/#preise' },
     { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Ressourcen', href: '/ressourcen' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Kontakt', href: '/#kontakt' },
   ],
@@ -500,6 +557,7 @@ export type SupportPlan = {
   savings?: number
   features: string[]
   featured?: boolean
+  billingType: 'subscription' | 'payment'
 }
 
 export const SUPPORT_PLANS: SupportPlan[] = [
@@ -510,6 +568,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
     duration: '1 Monat',
     totalPrice: 99,
     perMonth: 99,
+    billingType: 'subscription',
     features: [
       'WordPress & Plugin-Updates',
       'Wöchentliches Backup',
@@ -525,6 +584,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
     totalPrice: 249,
     perMonth: 83,
     savings: 16,
+    billingType: 'payment',
     features: [
       'WordPress & Plugin-Updates',
       'Wöchentliches Backup',
@@ -542,6 +602,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
     totalPrice: 699,
     perMonth: 58,
     savings: 41,
+    billingType: 'payment',
     features: [
       'Alles aus Quartalspflege',
       '3 Std. Änderungen/Monat',
@@ -560,6 +621,7 @@ export const SUPPORT_PLANS: SupportPlan[] = [
     totalPrice: 1099,
     perMonth: 46,
     savings: 54,
+    billingType: 'payment',
     features: [
       'Alles aus Jahrespflege',
       '4 Std. Änderungen/Monat',
@@ -674,20 +736,20 @@ export const LEISTUNGEN_PAGE = {
     description: 'Professionelle, editierbare Websites mit Divi. Ideal für Unternehmen, die online wachsen wollen.',
     plans: [
       {
-        name: 'WP Base',
-        price: 'ab 700 EUR',
-        features: ['WordPress + Divi', 'Bis 5 Seiten', 'Responsives Design', 'Kontaktformular', 'SSL'],
+        name: 'Landing Page',
+        price: 'ab 599 EUR',
+        features: ['1 Seite', 'Individuelles Design', 'Kontaktformular', 'Responsiv', 'SSL + SEO'],
       },
       {
-        name: 'WP Premium',
+        name: 'WP Design',
         price: 'ab 900 EUR',
-        features: ['Alles aus WP Base', 'Individuelles Design', 'Farbpalette + Typografie', 'Amelia Buchungen'],
+        features: ['Individuelles Design', 'Eigene Farben & Typografie', 'Bis 8 Seiten', 'Responsiv', 'Kein Buchungssystem'],
         featured: true,
       },
       {
         name: 'WP Pro',
         price: 'ab 1.500 EUR',
-        features: ['Alles aus WP Premium', 'Google Calendar', 'Zoom', 'Stripe', 'DSGVO', '3 Monate Support'],
+        features: ['Alles aus WP Design', 'Amelia Buchungen', 'Google Calendar', 'Zoom', 'Stripe-Zahlungen'],
       },
     ],
   },

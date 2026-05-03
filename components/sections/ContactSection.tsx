@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import { CONTACT, contactSchema, type ContactFormData } from '@/lib/constants'
+import { CONTACT, contactSectionSchema, type ContactSectionData } from '@/lib/constants'
 import { Mail, MapPin, Clock, CreditCard } from 'lucide-react'
 
 export default function ContactSection() {
@@ -17,8 +17,8 @@ export default function ContactSection() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
+  } = useForm<ContactSectionData>({
+    resolver: zodResolver(contactSectionSchema),
   })
 
   // Read ?package= from URL and pre-select
@@ -31,7 +31,7 @@ export default function ContactSection() {
     }
   }, [setValue])
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async (data: ContactSectionData) => {
     setIsLoading(true)
     setSendError(false)
     try {
@@ -140,7 +140,7 @@ export default function ContactSection() {
               className="rounded-lg p-4 border flex gap-3"
               style={{
                 background: 'var(--bg)',
-                borderColor: 'rgba(255,215,0,0.15)',
+                borderColor: 'rgba(194,65,12,0.15)',
               }}
             >
               <CreditCard size={18} style={{ color: 'var(--accent)', flexShrink: 0, marginTop: '2px' }} />

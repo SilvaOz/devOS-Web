@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import { ABOUT } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
+import PersonPlaceholder from '@/components/ui/PersonPlaceholder'
 
 export default function AboutSection() {
   return (
@@ -15,19 +15,8 @@ export default function AboutSection() {
 
           {/* Left column */}
           <div className="flex flex-col gap-6">
-            <div
-              className="w-full max-w-xs rounded-2xl overflow-hidden border"
-              style={{ borderColor: 'var(--border)' }}
-            >
-              <Image
-                src="/oscar-about.png"
-                alt="Oscar — DevOS Web"
-                width={400}
-                height={400}
-                className="w-full h-auto object-cover object-top"
-                priority
-              />
-            </div>
+            {/* Swap with <Image src="/oscar-foto.jpg"> when ready */}
+            <PersonPlaceholder name="Oscar · DevOS Web" ratio="1/1" className="max-w-xs" />
 
             <div>
               <p
@@ -56,7 +45,7 @@ export default function AboutSection() {
             <a
               href="/#kontakt"
               className="self-start inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-xl transition-opacity duration-150 hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#000' }}
+              style={{ background: 'var(--accent)', color: '#fff' }}
             >
               {ABOUT.cta}
             </a>

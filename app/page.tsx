@@ -4,13 +4,14 @@ import HeroSection from '@/components/sections/HeroSection'
 import MarqueeSection from '@/components/sections/MarqueeSection'
 import FuerWenSection from '@/components/sections/FuerWenSection'
 import ServicesSection from '@/components/sections/ServicesSection'
-import PricingSection from '@/components/sections/PricingSection'
+import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ProcessSection from '@/components/sections/ProcessSection'
+import PricingSection from '@/components/sections/PricingSection'
 import AboutSection from '@/components/sections/AboutSection'
 import PortfolioSection from '@/components/sections/PortfolioSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
+import FAQTeaser from '@/components/sections/FAQTeaser'
 import ContactSection from '@/components/sections/ContactSection'
-import CTASection from '@/components/sections/CTASection'
+import ExpressSection from '@/components/sections/ExpressSection'
 
 export default function Home() {
   return (
@@ -21,31 +22,13 @@ export default function Home() {
         <MarqueeSection />
         <FuerWenSection />
         <ServicesSection />
-        <PricingSection />
+        <ExpressSection />
+        <TestimonialsSection />
         <ProcessSection />
         <AboutSection />
+        <PricingSection />
         <PortfolioSection maxItems={2} showLink={true} />
-        <TestimonialsSection />
-        <CTASection />
-
-        {/* FAQ teaser */}
-        <div
-          className="py-10 border-t"
-          style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
-        >
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
-            <p className="text-sm" style={{ color: 'var(--muted)' }}>
-              Haben Sie Fragen zu Ablauf, Preisen oder Technik?
-            </p>
-            <a
-              href="/faq"
-              className="text-sm font-semibold whitespace-nowrap link-hover-accent"
-            >
-              Häufige Fragen →
-            </a>
-          </div>
-        </div>
-
+        <FAQTeaser />
         <ContactSection />
       </main>
       <Footer />

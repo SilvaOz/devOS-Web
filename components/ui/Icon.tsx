@@ -32,6 +32,12 @@ import {
   PenLine,
   MailCheck,
   Lock,
+  Bot,
+  Smartphone,
+  Rss,
+  Stethoscope,
+  Youtube,
+  Pin,
 } from 'lucide-react'
 
 const MAP = {
@@ -67,6 +73,12 @@ const MAP = {
   PenLine,
   MailCheck,
   Lock,
+  Bot,
+  Smartphone,
+  Rss,
+  Stethoscope,
+  Youtube,
+  Pin,
 } as const
 
 export type IconName = keyof typeof MAP
