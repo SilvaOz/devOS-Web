@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
 }
 
-const ADSENSE_ID = 'ca-pub-6393735346618361'
+const ADSENSE_ID = 'ca-pub-7730346462920964'
 
 export default function RootLayout({
   children,
