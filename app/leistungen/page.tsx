@@ -3,7 +3,6 @@ import Footer from '@/components/layout/Footer'
 import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
-import { WorkflowDemo } from '@/components/ui/WorkflowDemo'
 import PaketeGrid from '@/components/sections/PaketeGrid'
 
 export const metadata = {
@@ -357,17 +356,6 @@ export default function LeistungenPage() {
               ))}
             </div>
 
-            {/* Workflow Demo */}
-            <div className="mt-14">
-              <p className="text-xs font-mono font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--muted)' }}>
-                Live Demo
-              </p>
-              <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--fg)' }}>Interaktive Plattformen — ausprobieren.</h3>
-              <p className="text-sm mb-6" style={{ color: 'var(--muted)' }}>
-                Nodes verschieben, neue hinzufügen. So sehen die Oberflächen aus, die ich für Sie baue.
-              </p>
-              <WorkflowDemo />
-            </div>
           </div>
         </section>
 
