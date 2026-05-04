@@ -81,7 +81,7 @@ function getResend() {
   return new Resend(apiKey)
 }
 
-const FROM = 'DevOS Web <onboarding@resend.dev>' // → nach Domain-Verifizierung: info@devos-web.de
+const FROM = 'DevOS Web <info@devos-web.de>'
 
 // ─── Email to Oscar ────────────────────────────────────────────────────────────
 
