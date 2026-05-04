@@ -4,6 +4,7 @@ import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
 import { WorkflowDemo } from '@/components/ui/WorkflowDemo'
+import PaketeGrid from '@/components/sections/PaketeGrid'
 
 export const metadata = {
   title: 'Leistungen — DevOS Web · Digitale Systeme mit KI',
@@ -68,79 +69,6 @@ const LAYERS = [
     desc: 'YouTube-Kanal-Aufbau mit KI-gestützter Content-Pipeline. Blog + Pinterest-Integration. Mehrsprachige Strategie für den DACH-Raum.',
     tags: ['YouTube', 'Pinterest', 'Blog', 'Mehrsprachig'],
     anchor: '#content',
-  },
-]
-
-// ─── Neue Pakete (Festpreis-orientiert, kein Stripe) ─────────────────────────
-
-const NEW_PACKAGES = [
-  {
-    id: 'praxis-digital',
-    icon: 'Stethoscope' as IconName,
-    name: 'Praxis Digital',
-    target: 'Therapeuten & Coaches',
-    price: 'auf Anfrage',
-    desc: 'Vollständige Website für Ihre Praxis — mit Online-Buchung, Google-Kalender-Sync, SEO und Hosting-Setup.',
-    features: [
-      'WordPress + Divi oder Next.js',
-      'Amelia Online-Buchungssystem',
-      'Google Calendar Sync',
-      'SEO-Grundlage + Yoast',
-      'DSGVO-konform',
-      'IONOS / All-Inkl Hosting',
-    ],
-    href: '/anfragen?paket=praxis-digital',
-  },
-  {
-    id: 'ki-automation',
-    icon: 'Zap' as IconName,
-    name: 'KI-Automatisierung',
-    target: 'Selbstständige & Teams',
-    price: 'Setup + Retainer',
-    desc: 'Automatisierter Workflow nach Maß — Make.com, Python-Pipelines oder Claude-API-Agent. Einmalig einrichten, dauerhaft sparen.',
-    features: [
-      'Anforderungsanalyse inklusive',
-      'Make.com oder Python-Pipeline',
-      'Claude API / OpenAI Integration',
-      'Google Sheets / Drive Anbindung',
-      'Dokumentation + Übergabe',
-      'Optionaler monatlicher Support',
-    ],
-    href: '/anfragen?paket=ki-automation',
-  },
-  {
-    id: 'app-mvp',
-    icon: 'Smartphone' as IconName,
-    name: 'App MVP',
-    target: 'Gründer & Kreative',
-    price: '4–6 Wochen',
-    desc: 'Funktionaler Prototyp für iOS, Android oder Web. Kein langer Entwicklungszyklus — in wenigen Wochen einsatzbereit.',
-    features: [
-      'React Native (iOS + Android)',
-      'Oder Next.js Web-App',
-      'Design + Entwicklung',
-      'Authentifizierung + Datenbank',
-      'Deploy auf App Store / Vercel',
-      'Festpreis nach Scope',
-    ],
-    href: '/anfragen?paket=app-mvp',
-  },
-  {
-    id: 'content-system',
-    icon: 'Rss' as IconName,
-    name: 'Content-System',
-    target: 'Creator & Coaches',
-    price: 'einmalig',
-    desc: 'YouTube-Kanal-Setup mit KI-Pipeline, Pinterest-Integration und Blog — alles automatisiert, sodass Sie sich aufs Erstellen konzentrieren.',
-    features: [
-      'YouTube-Kanal-Strategie + SEO',
-      'KI-Content-Pipeline (Python)',
-      'Pinterest Business Setup',
-      'Blog auf Next.js',
-      'Mehrsprachige Strategie',
-      'Make.com Automatisierung',
-    ],
-    href: '/anfragen?paket=content-system',
   },
 ]
 
@@ -293,51 +221,8 @@ export default function LeistungenPage() {
               Jedes Paket beginnt mit einem kostenlosen Gespräch.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5" data-animate data-animate-delay="2">
-              {NEW_PACKAGES.map((pkg) => (
-                <div
-                  key={pkg.id}
-                  className="rounded-xl p-7 border flex flex-col gap-5 card-hover"
-                  style={{ background: 'var(--card)' }}
-                >
-                  <div className="flex items-start gap-4">
-                    <span
-                      className="w-10 h-10 flex items-center justify-center rounded-lg flex-shrink-0"
-                      style={{ background: 'var(--accent-dim)' }}
-                    >
-                      <Icon name={pkg.icon} size={20} style={{ color: 'var(--accent)' }} />
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-bold" style={{ color: 'var(--fg)' }}>
-                        {pkg.name}
-                      </h3>
-                      <p className="text-xs font-mono" style={{ color: 'var(--muted)' }}>
-                        {pkg.target}
-                      </p>
-                    </div>
-                    <span
-                      className="ml-auto text-xs font-mono font-bold px-2.5 py-1 rounded-full flex-shrink-0"
-                      style={{ background: 'var(--bg-elevated)', color: 'var(--accent)' }}
-                    >
-                      {pkg.price}
-                    </span>
-                  </div>
-
-                  <p className="text-sm leading-relaxed" style={{ color: 'var(--muted)', lineHeight: '1.7' }}>
-                    {pkg.desc}
-                  </p>
-
-                  <FeatureList items={pkg.features} />
-
-                  <a
-                    href={pkg.href}
-                    className="mt-auto inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded border transition-colors duration-150 pricing-btn-ghost"
-                    style={{ background: 'transparent', color: 'var(--fg)', borderColor: 'var(--border)', borderRadius: '6px' }}
-                  >
-                    Kostenlos anfragen →
-                  </a>
-                </div>
-              ))}
+            <div data-animate data-animate-delay="2">
+              <PaketeGrid />
             </div>
 
             <p className="text-xs text-center mt-6" style={{ color: 'var(--muted)' }}>
