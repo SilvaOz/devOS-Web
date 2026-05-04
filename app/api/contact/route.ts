@@ -30,7 +30,7 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app']
+const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app', 'praxis-digital', 'praxis-digital-design']
 
 type InvoiceData = {
   invoiceNumber: string

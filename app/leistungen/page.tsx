@@ -394,7 +394,7 @@ export default function LeistungenPage() {
                   Festpreis nach Scope
                 </p>
                 <a
-                  href="/anfragen?paket=app-mvp"
+                  href="/anfragen?package=app-mvp"
                   className="btn-primary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold"
                   style={{ background: 'var(--accent)', color: '#fff', borderRadius: '6px' }}
                 >
@@ -639,7 +639,7 @@ export default function LeistungenPage() {
                   </div>
                   <FeatureList items={plan.features} />
                   <a
-                    href={`/anfragen?paket=${plan.id}`}
+                    href={`/anfragen?package=${plan.id}`}
                     className="block text-center py-2.5 px-4 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
                     style={
                       plan.featured

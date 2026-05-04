@@ -48,6 +48,31 @@ export const PACKAGE_INFO: Record<string, { name: string; price: string; feature
     price: '1.099 EUR (24 Monate)',
     features: ['Alles aus Jahrespflege', '4 Std. Änderungen/Monat', 'Priorität: Antwort in 12h', 'SEO-Check alle 6 Monate'],
   },
+  'praxis-digital': {
+    name: 'Praxis Digital',
+    price: '1.500 EUR',
+    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting'],
+  },
+  'praxis-digital-design': {
+    name: 'Praxis Digital — Nur Design',
+    price: '900 EUR',
+    features: ['Individuelles Design nach Ihrem Stil', 'Bis 5 Seiten', 'Mobile-optimiert', 'DSGVO-Grundlage', 'IONOS / All-Inkl Hosting'],
+  },
+  'ki-automation': {
+    name: 'KI-Automatisierung',
+    price: 'ab 500 EUR',
+    features: ['Anforderungsanalyse inklusive', 'Make.com oder Python-Pipeline', 'Claude API / OpenAI Integration', 'Google Sheets / Drive Anbindung', 'Dokumentation + Übergabe'],
+  },
+  'app-mvp': {
+    name: 'App MVP',
+    price: 'ab 2.500 EUR',
+    features: ['React Native (iOS + Android) oder Next.js', 'Design + Entwicklung', 'Authentifizierung + Datenbank', 'Deploy auf App Store / Vercel', 'Festpreis nach Scope-Gespräch'],
+  },
+  'content-system': {
+    name: 'Content-System',
+    price: 'ab 1.200 EUR',
+    features: ['YouTube-Kanal-Strategie + SEO', 'KI-Content-Pipeline (Python)', 'Pinterest Business Setup', 'Blog auf Next.js', 'Make.com Automatisierung'],
+  },
 }
 
 function getResend() {

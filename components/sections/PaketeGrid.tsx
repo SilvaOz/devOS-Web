@@ -60,7 +60,7 @@ const OTHER_PACKAGES = [
       'Optionaler monatlicher Support',
     ] as const,
     scopeNote: 'Einfache Workflows ab 500 EUR · Komplexe Systeme auf Anfrage',
-    href: '/anfragen?paket=ki-automation',
+    href: '/anfragen?package=ki-automation',
   },
   {
     id: 'app-mvp',
@@ -78,7 +78,7 @@ const OTHER_PACKAGES = [
       'Festpreis nach Scope-Gespräch',
     ] as const,
     scopeNote: 'Web-App ab 2.500 EUR · Native App & komplexe Plattformen auf Anfrage',
-    href: '/anfragen?paket=app-mvp',
+    href: '/anfragen?package=app-mvp',
   },
   {
     id: 'content-system',
@@ -96,7 +96,7 @@ const OTHER_PACKAGES = [
       'Make.com Automatisierung',
     ] as const,
     scopeNote: 'Umfang je nach Kanälen und Automatisierungsgrad',
-    href: '/anfragen?paket=content-system',
+    href: '/anfragen?package=content-system',
   },
 ]
 
@@ -189,7 +189,7 @@ export default function PaketeGrid() {
         )}
 
         <a
-          href={`/anfragen?paket=praxis-digital${praxisFull ? '' : '&variante=design'}`}
+          href={praxisFull ? '/anfragen?package=praxis-digital' : '/anfragen?package=praxis-digital-design'}
           className="mt-auto inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded border transition-colors duration-150 pricing-btn-ghost"
           style={{ background: 'transparent', color: 'var(--fg)', borderColor: 'var(--border)', borderRadius: '6px' }}
         >

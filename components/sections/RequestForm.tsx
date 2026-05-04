@@ -14,6 +14,13 @@ const ALL_PACKAGES = [
     features: EXPRESS_SERVICE.features,
   },
   ...PRICING_PLANS.map(p => ({ id: p.id, name: p.name, price: p.price, features: p.features })),
+  // Neue Pakete (Festpreis + variable)
+  { id: 'praxis-digital',        name: 'Praxis Digital',                  price: '1.500 EUR',    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting'] as readonly string[] },
+  { id: 'praxis-digital-design', name: 'Praxis Digital — Nur Design',     price: '900 EUR',      features: ['Individuelles Design nach Ihrem Stil', 'Bis 5 Seiten', 'Mobile-optimiert', 'DSGVO-Grundlage', 'IONOS / All-Inkl Hosting'] as readonly string[] },
+  { id: 'ki-automation',         name: 'KI-Automatisierung',              price: 'ab 500 EUR',   features: ['Anforderungsanalyse inklusive', 'Make.com oder Python-Pipeline', 'Claude API / OpenAI Integration', 'Google Sheets / Drive Anbindung', 'Dokumentation + Übergabe'] as readonly string[] },
+  { id: 'app-mvp',               name: 'App MVP',                         price: 'ab 2.500 EUR', features: ['React Native (iOS + Android) oder Next.js', 'Design + Entwicklung', 'Authentifizierung + Datenbank', 'Deploy auf App Store / Vercel', 'Festpreis nach Scope-Gespräch'] as readonly string[] },
+  { id: 'content-system',        name: 'Content-System',                  price: 'ab 1.200 EUR', features: ['YouTube-Kanal-Strategie + SEO', 'KI-Content-Pipeline (Python)', 'Pinterest Business Setup', 'Blog auf Next.js', 'Make.com Automatisierung'] as readonly string[] },
+  // Pflege / Support
   ...SUPPORT_PLANS.map(p => ({
     id: p.id,
     name: p.name,
@@ -29,7 +36,7 @@ const TIMING_OPTIONS = [
   'Noch nicht sicher',
 ]
 
-const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app']
+const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app', 'praxis-digital', 'praxis-digital-design']
 
 const LANDING_SECTIONS = [
   'Hero / Startbereich',
@@ -567,9 +574,9 @@ export default function RequestForm() {
                     </>
                   ) : (
                     <>
-                      <label style={labelStyle}>Inklusive Funktionen (WP Pro)</label>
+                      <label style={labelStyle}>Inklusive Leistungen</label>
                       <div className="flex flex-wrap gap-2">
-                        {WP_PRO_INCLUDED.map(f => (
+                        {pkg.features.slice(0, 6).map(f => (
                           <span
                             key={f}
                             className="text-sm px-3 py-1.5 rounded-full border"

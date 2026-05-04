@@ -420,13 +420,20 @@ export const CONTACT = {
   noPhone: 'Kein Telefon — alles per E-Mail. Schneller, klarer, dokumentiert.',
   paymentNote: 'Zahlung per Banküberweisung nach schriftlichem Angebot. Sie erhalten eine Rechnung per E-Mail.',
   packageOptions: [
-    { value: 'express-24h', label: 'Website in 24 Stunden (ab 1.499 EUR)' },
-    { value: 'landing-page', label: 'Landing Page (ab 599 EUR)' },
-    { value: 'wp-premium', label: 'WP Design (ab 900 EUR)' },
-    { value: 'wp-pro', label: 'WP Pro (ab 1.500 EUR)' },
-    { value: 'web-app', label: 'Web App (ab 3.500 EUR)' },
-    { value: 'support', label: 'Support / Wartung' },
-    { value: 'other', label: 'Sonstiges / Anderes' },
+    { value: 'praxis-digital',        label: 'Praxis Digital — Mit Funktionen (1.500 EUR)' },
+    { value: 'praxis-digital-design', label: 'Praxis Digital — Nur Design (900 EUR)' },
+    { value: 'ki-automation',         label: 'KI-Automatisierung (ab 500 EUR)' },
+    { value: 'app-mvp',               label: 'App MVP (ab 2.500 EUR)' },
+    { value: 'content-system',        label: 'Content-System (ab 1.200 EUR)' },
+    { value: 'express-24h',           label: 'Website Express 24h (ab 1.499 EUR)' },
+    { value: 'wp-premium',            label: 'WP Design (ab 900 EUR)' },
+    { value: 'wp-pro',                label: 'WP Pro (ab 1.500 EUR)' },
+    { value: 'web-app',               label: 'Web App (ab 3.500 EUR)' },
+    { value: 'monthly',               label: 'Monatspflege (99 EUR/Monat)' },
+    { value: 'quarterly',             label: 'Quartalspflege (249 EUR / 3 Monate)' },
+    { value: 'annual',                label: 'Jahrespflege (699 EUR / 12 Monate)' },
+    { value: 'biennial',              label: '2-Jahres-Partner (1.099 EUR / 24 Monate)' },
+    { value: 'other',                 label: 'Sonstiges / Anderes' },
   ],
   submitLabel: 'Nachricht senden →',
   successMessage:
@@ -453,11 +460,13 @@ export const LANDING_ADDON_PRICES: Record<string, number> = {
 }
 
 export const BASE_PACKAGE_PRICES: Record<string, number> = {
-  'express-24h':  1499,
-  'landing-page': 599,
-  'wp-premium':   900,
-  'wp-pro':       1500,
-  'web-app':      3500,
+  'express-24h':           1499,
+  'landing-page':          599,
+  'wp-premium':            900,
+  'wp-pro':                1500,
+  'web-app':               3500,
+  'praxis-digital':        1500,
+  'praxis-digital-design': 900,
 }
 
 export function computePackageTotal(packageId: string, features: string[] = []): number {
