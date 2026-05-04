@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { SUPPORT_PLANS } from '@/lib/constants'
-import CheckoutButton from '@/components/ui/CheckoutButton'
 
 // ─── Hourly cost comparison ───────────────────────────────────────────────────
 
@@ -236,18 +235,23 @@ export default function PflegeSection() {
                   ))}
                 </ul>
 
-                <CheckoutButton
-                  planId={plan.id}
-                  label={plan.billingType === 'subscription' ? 'Abonnieren →' : 'Jetzt buchen →'}
-                  primary={!plan.featured}
-                  ref={clientRef}
-                />
+                <a
+                  href={`/anfragen?package=${plan.id}${clientRef ? `&ref=${clientRef}` : ''}`}
+                  className="block text-center py-2.5 px-4 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
+                  style={
+                    plan.featured
+                      ? { background: '#fff', color: 'var(--accent)' }
+                      : { background: 'var(--accent)', color: '#fff' }
+                  }
+                >
+                  Jetzt anfragen →
+                </a>
               </div>
             ))}
           </div>
 
           <p className="text-xs text-center mt-6" style={{ color: 'var(--muted)' }}>
-            Zahlung über Stripe · Sicher & verschlüsselt · Keine MwSt. gem. §19 UStG
+            Zahlung per Banküberweisung nach Angebot · Keine MwSt. gem. §19 UStG
           </p>
         </div>
       </section>

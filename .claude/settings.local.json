@@ -4,7 +4,17 @@
       "Bash(npm install:*)",
       "Bash(npm run:*)",
       "Bash(npx tsc:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "WebFetch(domain:21st.dev)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:claudetory.com)",
+      "WebFetch(domain:www.uupm.cc)",
+      "WebFetch(domain:skills.sh)",
+      "Bash(ffmpeg:*)",
+      "Bash(rm:*)",
+      "Bash(npm uninstall:*)"
     ]
   }
 }

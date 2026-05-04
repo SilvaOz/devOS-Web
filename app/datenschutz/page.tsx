@@ -96,16 +96,13 @@ export default function DatenschutzPage() {
             </section>
 
             <section>
-              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>4. Stripe (Zahlungsabwicklung)</h2>
+              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>4. Zahlungsabwicklung</h2>
               <p>
-                Für die Abwicklung von Zahlungen setzen wir den Dienst <strong>Stripe</strong>
-                (Stripe Inc., USA / Stripe Payments Europe Ltd., Irland) ein.
-                Bei einer Zahlung werden die von Ihnen eingegebenen Zahlungsdaten direkt an
-                Stripe übermittelt. Wir erhalten keine vollständigen Zahlungsdaten
-                (z.B. Kreditkartennummern).
+                Die Zahlung erfolgt ausschließlich per <strong>Banküberweisung</strong> nach schriftlichem Angebot.
+                Es werden keine Zahlungsdaten (Kreditkarten, IBAN) über diese Website verarbeitet.
+                Sie erhalten eine Rechnung per E-Mail mit den vollständigen Bankdaten.
               </p>
               <p style={{ marginTop: '0.75rem' }}>
-                Weitere Informationen: stripe.com/de/privacy.
                 Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.
               </p>
             </section>
