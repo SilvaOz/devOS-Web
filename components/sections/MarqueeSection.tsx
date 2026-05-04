@@ -133,13 +133,12 @@ const LOGOS: Record<string, () => ReactElement> = {
   'TypeScript': LogoTypeScript,
   'Node.js': LogoNodejs,
   'Tailwind CSS': LogoTailwind,
-  'Stripe': LogoStripe,
   'Google': LogoGoogle,
   'GitHub': LogoGitHub,
-  'Divi': LogoDivi,
-  'WooCommerce': LogoWooCommerce,
   'Amelia': LogoAmelia,
   'Zoom': LogoZoom,
+  'Docker': LogoDocker,
+  'PostgreSQL': LogoPostgreSQL,
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────

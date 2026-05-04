@@ -76,7 +76,7 @@ export default function PflegeSection() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-20" style={{ background: 'var(--bg-elevated)' }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6" data-animate="true">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           {isBestand && (
             <div
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-6"

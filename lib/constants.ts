@@ -8,7 +8,7 @@ export const NAV_LINKS = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Blog', href: '/blog' },
   { label: 'Ressourcen', href: '/ressourcen' },
-  { label: 'Kontakt', href: '/#kontakt' },
+  { label: 'Kontakt', href: '/kontakt' },
 ] as const
 
 export const NAV_CTA = 'Projekt starten →'
@@ -39,11 +39,8 @@ export type MarqueeItem = {
 
 export const MARQUEE_ITEMS: MarqueeItem[] = [
   { label: 'WordPress', wp: true },
-  { label: 'Divi', wp: true },
-  { label: 'WooCommerce', wp: true },
   { label: 'Amelia', wp: true },
   { label: 'Google', wp: false },
-  { label: 'Stripe', wp: false },
   { label: 'Zoom', wp: false },
   { label: 'React', wp: false },
   { label: 'Next.js', wp: false },
@@ -51,6 +48,8 @@ export const MARQUEE_ITEMS: MarqueeItem[] = [
   { label: 'Node.js', wp: false },
   { label: 'Tailwind CSS', wp: false },
   { label: 'GitHub', wp: false },
+  { label: 'Docker', wp: false },
+  { label: 'PostgreSQL', wp: false },
 ]
 
 // ─── Services ─────────────────────────────────────────────────────────────────
@@ -132,49 +131,20 @@ export type PricingPlan = {
 
 export const PRICING_PLANS: PricingPlan[] = [
   {
-    id: 'landing-page',
-    name: 'Landing Page',
-    price: 'ab 599 EUR',
-    target: 'Für einen professionellen ersten Auftritt',
-    features: [
-      'Eine Seite, alles drauf',
-      'Individuelles Design',
-      'Kontaktformular',
-      'Responsiv (Mobile & Desktop)',
-      'SSL + Grundlegendes SEO',
-    ],
-    excluded: ['Mehrere Seiten', 'Buchungssystem', 'Technische Integrationen'],
-  },
-  {
-    id: 'wp-premium',
-    name: 'WP Design',
-    price: 'ab 900 EUR',
-    target: 'Für eine Website, die wirklich nach Ihnen aussieht',
-    features: [
-      'WordPress + Divi',
-      'Individuelles Design nach Ihrem Stil',
-      'Eigene Farbpalette & Typografie',
-      'Bis 8 Seiten',
-      'Kontaktformular + SSL',
-      'Responsiv (Mobile & Desktop)',
-    ],
-    excluded: ['Buchungssystem', 'Google Calendar', 'Zoom', 'Stripe-Zahlungen'],
-    featured: true,
-  },
-  {
     id: 'wp-pro',
     name: 'WP Pro',
     price: 'ab 1.500 EUR',
     target: 'Design + alle technischen Integrationen',
     features: [
-      'Alles aus WP Design',
+      'Individuelles Design nach Ihrem Stil',
+      'Bis 8 Seiten',
       'Amelia Buchungssystem',
       'Google Calendar Sync',
       'Zoom-Integration',
-      'Stripe-Zahlungen',
       'DSGVO-Grundlage',
     ],
     excluded: [],
+    featured: true,
   },
   {
     id: 'web-app',
@@ -584,7 +554,7 @@ export const FOOTER = {
     { label: 'Blog', href: '/blog' },
     { label: 'Ressourcen', href: '/ressourcen' },
     { label: 'FAQ', href: '/faq' },
-    { label: 'Kontakt', href: '/#kontakt' },
+    { label: 'Kontakt', href: '/kontakt' },
   ],
   legal: [
     { label: 'Impressum', href: '/impressum' },
