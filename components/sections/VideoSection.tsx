@@ -8,71 +8,82 @@ function fade(progress: number, start: number, end: number) {
   return (progress - start) / (end - start)
 }
 
-const LERP = 0.038 // velocidad de seguimiento — más bajo = más lento
-
 export default function VideoSection() {
-  const containerRef    = useRef<HTMLDivElement>(null)
-  const targetRef       = useRef(0)   // progreso real del scroll (0-1)
-  const currentRef      = useRef(0)   // progreso suavizado (lerped)
-  const rafRef          = useRef<number | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const targetRef    = useRef(0)
+  const currentRef   = useRef(0)
+  const rafRef       = useRef<number | null>(null)
 
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    const video  = document.getElementById('water-video')  as HTMLVideoElement | null
-    const fill   = document.getElementById('water-progress-fill') as HTMLElement | null
-    const line1  = document.getElementById('wv-line1')     as HTMLElement | null
-    const line2  = document.getElementById('wv-line2')     as HTMLElement | null
-    const line3  = document.getElementById('wv-line3')     as HTMLElement | null
-    const cta    = document.getElementById('wv-cta')       as HTMLElement | null
+    const isMobile = window.matchMedia('(max-width: 768px)').matches ||
+      /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    const LERP = isMobile ? 0.12 : 0.038 // más rápido en móvil → responde al momentum scroll
 
-    // Scroll handler — solo actualiza el target
+    const video = document.getElementById('water-video')  as HTMLVideoElement | null
+    const fill  = document.getElementById('water-progress-fill') as HTMLElement | null
+    const line1 = document.getElementById('wv-line1') as HTMLElement | null
+    const line2 = document.getElementById('wv-line2') as HTMLElement | null
+    const line3 = document.getElementById('wv-line3') as HTMLElement | null
+    const cta   = document.getElementById('wv-cta')   as HTMLElement | null
+
+    // iOS Safari bloquea currentTime hasta que el video haya jugado al menos 1 frame.
+    // play() + pause() inmediato desbloquea el seeking sin iniciar reproducción real.
+    const unlockSeeking = async () => {
+      if (!video) return
+      try {
+        await video.play()
+        video.pause()
+        video.currentTime = 0
+      } catch {
+        // autoplay policy bloqueó — el seeking no funcionará hasta interacción del usuario
+      }
+    }
+    unlockSeeking()
+
     const handleScroll = () => {
-      const rect      = container.getBoundingClientRect()
-      const scrolled  = -rect.top
+      const rect       = container.getBoundingClientRect()
+      const scrolled   = -rect.top
       const scrollZone = container.offsetHeight - window.innerHeight
       if (scrollZone <= 0) return
       targetRef.current = Math.min(Math.max(scrolled / scrollZone, 0), 1)
     }
 
-    // rAF loop — lerp + aplica todos los efectos visuales
     const tick = () => {
-      // Suavizado: currentRef sigue al targetRef con inercia
       currentRef.current += (targetRef.current - currentRef.current) * LERP
       const p = currentRef.current
 
-      // Video — solo actualiza si el cambio es >= 1 frame (evita micro-seek y parpadeo)
-      if (video && video.readyState >= 2 && video.duration) {
-        const newTime = p * video.duration
+      // readyState >= 1 (HAVE_METADATA) es suficiente después del unlock
+      if (video && video.readyState >= 1 && video.duration) {
+        const newTime   = p * video.duration
         const frameStep = 1 / 30
         if (Math.abs(newTime - video.currentTime) >= frameStep) {
           video.currentTime = newTime
         }
       }
 
-      // Barra de progreso
       if (fill) fill.style.width = `${p * 100}%`
 
-      // Texto — aparece lentamente conforme baja
       if (line1) {
         const o = fade(p, 0.50, 0.60)
-        line1.style.opacity  = String(o)
+        line1.style.opacity   = String(o)
         line1.style.transform = `translateY(${(1 - o) * 24}px)`
       }
       if (line2) {
         const o = fade(p, 0.60, 0.70)
-        line2.style.opacity  = String(o)
+        line2.style.opacity   = String(o)
         line2.style.transform = `translateY(${(1 - o) * 24}px)`
       }
       if (line3) {
         const o = fade(p, 0.70, 0.80)
-        line3.style.opacity  = String(o)
+        line3.style.opacity   = String(o)
         line3.style.transform = `translateY(${(1 - o) * 24}px)`
       }
       if (cta) {
         const o = fade(p, 0.82, 0.92)
-        cta.style.opacity  = String(o)
+        cta.style.opacity   = String(o)
         cta.style.transform = `translateY(${(1 - o) * 16}px)`
       }
 
