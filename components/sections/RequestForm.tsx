@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE } from '@/lib/constants'
+import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE, PRAXIS_DESIGN_ADDON_PRICES } from '@/lib/constants'
 
 // ─── Package lookup ───────────────────────────────────────────────────────────
 
@@ -81,14 +81,11 @@ const WP_DESIGN_ADDONS: { label: string; price: number }[] = [
 // Threshold: if add-ons >= this, recommend WP Pro instead
 const WP_PRO_RECOMMENDATION_THRESHOLD = 300
 
-// WP Pro — shown as included (informational)
-const WP_PRO_INCLUDED = [
-  'Amelia Buchungssystem',
-  'Google Calendar Sync',
-  'Zoom Integration',
-  'Stripe-Zahlungen',
-  'DSGVO-Grundlage',
-]
+// Praxis Design add-ons — selectable, increase price toward 1.500€ full package
+const PRAXIS_DESIGN_ADDONS: { label: string; price: number }[] = Object.entries(PRAXIS_DESIGN_ADDON_PRICES).map(
+  ([label, price]) => ({ label, price })
+)
+const PRAXIS_DESIGN_RECOMMENDATION_THRESHOLD = 300
 
 const CONTENT_OPTIONS = [
   'Alles bereit (Texte & Bilder)',
@@ -230,6 +227,21 @@ export default function RequestForm() {
     : []
   const wpDesignRecommendPro = isWpDesign && wpDesignAddonsTotal >= WP_PRO_RECOMMENDATION_THRESHOLD
   const wpDesignSaving       = wpDesignRecommendPro ? wpDesignTotal - 1500 : 0
+
+  // Praxis Digital Design add-on total
+  const isPraxisDesign = pkg.id === 'praxis-digital-design'
+  const praxisDesignAddonsTotal = isPraxisDesign
+    ? features.reduce((sum, f) => {
+        const addon = PRAXIS_DESIGN_ADDONS.find(x => x.label === f)
+        return sum + (addon?.price ?? 0)
+      }, 0)
+    : 0
+  const praxisDesignTotal      = isPraxisDesign ? 900 + praxisDesignAddonsTotal : 0
+  const praxisDesignAddonsPicked = isPraxisDesign
+    ? PRAXIS_DESIGN_ADDONS.filter(x => features.includes(x.label))
+    : []
+  const praxisDesignRecommendFull = isPraxisDesign && praxisDesignAddonsTotal >= PRAXIS_DESIGN_RECOMMENDATION_THRESHOLD
+  const praxisDesignSaving        = praxisDesignRecommendFull ? praxisDesignTotal - 1500 : 0
 
   // Landing page add-on total
   const landingAddonsTotal = isLanding
@@ -572,6 +584,34 @@ export default function RequestForm() {
                         })}
                       </div>
                     </>
+                  ) : isPraxisDesign ? (
+                    <>
+                      <label style={labelStyle}>Technische Funktionen hinzufügen (optional)</label>
+                      <p className="text-xs mb-3" style={{ color: 'var(--muted)' }}>
+                        Im Nur-Design-Paket nicht enthalten — einzeln dazubuchbar.
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {PRAXIS_DESIGN_ADDONS.map(({ label, price }) => {
+                          const active = features.includes(label)
+                          return (
+                            <button
+                              key={label}
+                              type="button"
+                              onClick={() => toggleFeature(label)}
+                              className="text-sm px-3 py-1.5 rounded-full border transition-all duration-150 flex items-center gap-1.5"
+                              style={{
+                                background: active ? 'var(--accent)' : 'var(--card)',
+                                color: active ? '#fff' : 'var(--muted)',
+                                borderColor: active ? 'var(--accent)' : 'var(--border)',
+                              }}
+                            >
+                              {active ? '✓ ' : ''}{label}
+                              <span className="text-xs font-bold opacity-80">+{price}€</span>
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </>
                   ) : (
                     <>
                       <label style={labelStyle}>Inklusive Leistungen</label>
@@ -673,15 +713,15 @@ export default function RequestForm() {
               <div
                 className="rounded-xl border p-4 mb-5"
                 style={{
-                  background: isUpgrade ? 'rgba(234,179,8,0.08)' : 'var(--card)',
-                  borderColor: isUpgrade ? '#ca8a04' : 'var(--border)',
+                  background: (isUpgrade || wpDesignRecommendPro || praxisDesignRecommendFull) ? 'rgba(234,179,8,0.08)' : 'var(--card)',
+                  borderColor: (isUpgrade || wpDesignRecommendPro || praxisDesignRecommendFull) ? '#ca8a04' : 'var(--border)',
                 }}
               >
                 <div className="flex items-start justify-between gap-3 mb-2">
                   <div>
                     <p className="text-xs font-mono font-semibold uppercase tracking-widest mb-1"
-                      style={{ color: (isUpgrade || wpDesignRecommendPro) ? '#ca8a04' : 'var(--muted)' }}>
-                      {(isUpgrade || wpDesignRecommendPro) ? '⚠ Paket-Empfehlung' : '✓ Geschätzte Kosten'}
+                      style={{ color: (isUpgrade || wpDesignRecommendPro || praxisDesignRecommendFull) ? '#ca8a04' : 'var(--muted)' }}>
+                      {(isUpgrade || wpDesignRecommendPro || praxisDesignRecommendFull) ? '⚠ Paket-Empfehlung' : '✓ Geschätzte Kosten'}
                     </p>
                     <p className="text-base font-bold" style={{ color: 'var(--fg)' }}>
                       {isLanding ? 'Landing Page' : pkg.name}
@@ -692,7 +732,9 @@ export default function RequestForm() {
                       ? `ab ${landingTotal.toLocaleString('de-DE')} EUR`
                       : isWpDesign
                         ? `ab ${wpDesignTotal.toLocaleString('de-DE')} EUR`
-                        : (recommended?.label ?? pkg.price)
+                        : isPraxisDesign
+                          ? `ab ${praxisDesignTotal.toLocaleString('de-DE')} EUR`
+                          : (recommended?.label ?? pkg.price)
                     }
                   </span>
                 </div>
@@ -719,6 +761,33 @@ export default function RequestForm() {
                       <p className="text-xs mt-2 p-2 rounded" style={{ background: 'rgba(234,179,8,0.1)', color: '#92400e' }}>
                         Bei diesem Umfang lohnt sich <strong>WP Pro (ab 1.500 EUR)</strong> mehr
                         {wpDesignSaving > 0 ? ` — Sie sparen ${wpDesignSaving} EUR` : ' und Sie erhalten alle Integrationen inklusive'}.
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Praxis Design add-ons breakdown */}
+                {isPraxisDesign && praxisDesignAddonsPicked.length > 0 && (
+                  <div className="mt-2 flex flex-col gap-1">
+                    <div className="flex justify-between text-sm" style={{ color: 'var(--muted)' }}>
+                      <span>Praxis Digital — Nur Design</span>
+                      <span>900 EUR</span>
+                    </div>
+                    {praxisDesignAddonsPicked.map(a => (
+                      <div key={a.label} className="flex justify-between text-sm" style={{ color: 'var(--muted)' }}>
+                        <span>+ {a.label}</span>
+                        <span>+{a.price} EUR</span>
+                      </div>
+                    ))}
+                    <div className="flex justify-between text-sm font-bold mt-1 pt-1"
+                      style={{ color: 'var(--fg)', borderTop: '1px solid var(--border)' }}>
+                      <span>Gesamt</span>
+                      <span style={{ color: 'var(--accent)' }}>ab {praxisDesignTotal.toLocaleString('de-DE')} EUR</span>
+                    </div>
+                    {praxisDesignRecommendFull && (
+                      <p className="text-xs mt-2 p-2 rounded" style={{ background: 'rgba(234,179,8,0.1)', color: '#92400e' }}>
+                        Bei diesem Umfang lohnt sich <strong>Praxis Digital mit Funktionen (1.500 EUR)</strong> mehr
+                        {praxisDesignSaving > 0 ? ` — Sie sparen ${praxisDesignSaving} EUR` : ' und erhalten alle Integrationen inklusive'}.
                       </p>
                     )}
                   </div>

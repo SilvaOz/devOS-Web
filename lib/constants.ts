@@ -459,6 +459,13 @@ export const LANDING_ADDON_PRICES: Record<string, number> = {
   'Newsletter-Anmeldung (Mailchimp)':   79,
 }
 
+export const PRAXIS_DESIGN_ADDON_PRICES: Record<string, number> = {
+  'Amelia Buchungssystem':  249,
+  'Google Calendar Sync':   99,
+  'SEO-Grundlage + Yoast':  149,
+  'Zoom-Integration':        79,
+}
+
 export const BASE_PACKAGE_PRICES: Record<string, number> = {
   'express-24h':           1499,
   'landing-page':          599,
@@ -477,6 +484,9 @@ export function computePackageTotal(packageId: string, features: string[] = []):
   }
   if (packageId === 'landing-page') {
     return base + features.reduce((sum, f) => sum + (LANDING_ADDON_PRICES[f] ?? 0), 0)
+  }
+  if (packageId === 'praxis-digital-design') {
+    return base + features.reduce((sum, f) => sum + (PRAXIS_DESIGN_ADDON_PRICES[f] ?? 0), 0)
   }
   return base
 }
@@ -745,7 +755,7 @@ export const EXPRESS_SERVICE = {
     { time: 'Tag 2 · 09:00', label: 'Launch', desc: 'Ihre Website ist live. Einweisung per Kurzvideo.' },
   ],
   cta: 'Express-Termin anfragen →',
-  ctaHref: '/?package=express-24h#kontakt',
+  ctaHref: '/anfragen?package=express-24h',
 } as const
 
 // ─── Leistungen Page ──────────────────────────────────────────────────────────
