@@ -115,10 +115,14 @@ export default function VideoSection() {
         <div className="wv-text">
           <span
             id="wv-line1"
-            className="wv-line wv-line-sm"
-            style={{ opacity: 0, transform: 'translateY(24px)' }}
+            className="wv-line"
+            style={{ opacity: 0, transform: 'translateY(24px)', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}
           >
-            KI-gestützte Entwicklung
+            <span className="wv-badge">
+              <span className="wv-badge-dot" />
+              KI-gestützte Entwicklung
+            </span>
+            <span className="wv-badge">📍 Leipzig, DE</span>
           </span>
           <p
             id="wv-line2"
