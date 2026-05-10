@@ -77,10 +77,13 @@ export async function POST(req: NextRequest) {
     try {
       const unitPrice = computePackageTotal(pkg, features ?? [])
 
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 8000)
       const res = await fetch(
         `${process.env.KLEINUNTERNEHMER_API_URL}/api/internal/angebot`,
         {
           method: 'POST',
+          signal: controller.signal,
           headers: {
             'Content-Type': 'application/json',
             'x-api-key': process.env.INTERNAL_API_KEY!,
@@ -100,6 +103,7 @@ export async function POST(req: NextRequest) {
           }),
         }
       )
+      clearTimeout(timeoutId)
       if (res.ok) {
         const json = await res.json()
         invoiceData = json as InvoiceData
