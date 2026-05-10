@@ -167,12 +167,24 @@ function Steps({ current }: { current: number }) {
   )
 }
 
+// ─── Quick-pick packages shown at the top of the form ────────────────────────
+
+const QUICK_PICKS = [
+  { id: 'praxis-digital',  label: 'Praxis Digital',     price: '1.500 EUR'    },
+  { id: 'ki-automation',   label: 'KI-Automatisierung', price: 'ab 500 EUR'   },
+  { id: 'app-mvp',         label: 'App MVP',            price: 'ab 2.500 EUR' },
+  { id: 'content-system',  label: 'Content-System',     price: 'ab 1.200 EUR' },
+  { id: 'web-app',         label: 'Web App',            price: 'ab 3.500 EUR' },
+] as const
+
 // ─── Main form ────────────────────────────────────────────────────────────────
 
 export default function RequestForm() {
   const params = useSearchParams()
-  const packageId = params.get('package') ?? 'wp-premium'
-  const pkg = ALL_PACKAGES.find(p => p.id === packageId) ?? ALL_PACKAGES[1]
+  const initialId = params.get('package') ?? 'praxis-digital'
+
+  const [selectedPkgId, setSelectedPkgId] = useState(initialId)
+  const pkg = ALL_PACKAGES.find(p => p.id === selectedPkgId) ?? ALL_PACKAGES.find(p => p.id === 'praxis-digital')!
 
   const isWebsite   = WEBSITE_PACKAGES.includes(pkg.id)
   const isLanding   = pkg.id === 'landing-page'
@@ -195,6 +207,17 @@ export default function RequestForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState('')
+
+  function switchPackage(id: string) {
+    setSelectedPkgId(id)
+    setFeatures([])
+    setSections([])
+    setPages('')
+    setContentReady('')
+    setCurrentWebsite('')
+    setErrors({})
+    setStep(1)
+  }
 
   // Errors per step
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -392,6 +415,35 @@ export default function RequestForm() {
           <p className="mt-2 text-base" style={{ color: 'var(--muted)' }}>
             3 kurze Schritte — dann erhalten Sie Ihr Angebot in 24–48h.
           </p>
+        </div>
+
+        {/* ── Quick package switcher ── */}
+        <div className="mb-8">
+          <p className="text-xs font-mono uppercase tracking-widest mb-3" style={{ color: 'var(--muted)' }}>
+            Dienst wählen
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {QUICK_PICKS.map(({ id, label, price }) => {
+              const active = selectedPkgId === id
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => switchPackage(id)}
+                  className="flex flex-col items-start px-3 py-2 rounded-lg border text-left transition-all duration-150"
+                  style={{
+                    background:   active ? 'var(--accent)'     : 'var(--card)',
+                    borderColor:  active ? 'var(--accent)'     : 'var(--border)',
+                    color:        active ? '#fff'              : 'var(--fg)',
+                    boxShadow:    active ? '0 2px 8px var(--glow)' : 'none',
+                  }}
+                >
+                  <span className="text-xs font-semibold leading-tight">{label}</span>
+                  <span className="text-xs mt-0.5" style={{ opacity: 0.7, fontFamily: 'var(--font-mono)' }}>{price}</span>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         <Steps current={step} />
