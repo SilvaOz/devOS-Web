@@ -29,9 +29,9 @@ export default function CTASection() {
         </p>
 
         <a
-          href="/#kontakt"
+          href="/kontakt"
           className="inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-2xl transition-opacity duration-150 hover:opacity-90"
-          style={{ background: 'var(--accent)', color: '#000' }}
+          style={{ background: 'var(--accent)', color: '#fff' }}
         >
           Jetzt Projekt anfragen →
         </a>

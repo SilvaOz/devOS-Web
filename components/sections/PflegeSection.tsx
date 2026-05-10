@@ -49,7 +49,7 @@ Statt €75 pro Stunde zahlen Sie einen festen Betrag pro Monat:
 → Monatspflege: 99 EUR/Monat (monatlich kündbar)
 → Jahrespflege:  699 EUR/Jahr  (= 58 EUR/Monat — Sie sparen 41%)
 
-Details und Buchung: https://devos-web.de/pflege?ref=bestandskunde
+Details und Buchung: https://devos-web.de/leistungen?ref=bestandskunde
 
 Falls Sie Fragen haben, antworten Sie einfach auf diese E-Mail.
 

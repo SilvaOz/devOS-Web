@@ -14,7 +14,12 @@
       "WebFetch(domain:skills.sh)",
       "Bash(ffmpeg:*)",
       "Bash(rm:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Bash(vercel link:*)",
+      "Bash(vercel env:*)",
+      "Bash(printf %s:*)",
+      "Bash(vercel ls:*)",
+      "Bash(vercel:*)"
     ]
   }
 }

@@ -577,10 +577,10 @@ export default function LeistungenPage() {
               </div>
               <div className="rounded-xl p-5 border flex gap-4" style={{ background: 'var(--accent-dim)', borderColor: 'rgba(46,125,122,0.18)' }}>
                 <span className="flex-shrink-0 mt-0.5">
-                  <Icon name="CheckCircle2" size={22} style={{ color: '#22c55e' }} />
+                  <Icon name="CheckCircle2" size={22} style={{ color: 'var(--accent)' }} />
                 </span>
                 <div>
-                  <p className="text-sm font-bold mb-1" style={{ color: '#22c55e' }}>Mit Pflege-Paket</p>
+                  <p className="text-sm font-bold mb-1" style={{ color: 'var(--accent)' }}>Mit Pflege-Paket</p>
                   <p className="text-sm" style={{ color: 'var(--muted)', lineHeight: '1.6' }}>
                     Ihre Website bleibt aktuell, sicher und schnell — ohne dass Sie einen Finger rühren müssen.
                   </p>
@@ -621,7 +621,7 @@ export default function LeistungenPage() {
                         {plan.totalPrice} EUR / {plan.duration}
                       </span>
                       {plan.savings !== undefined && (
-                        <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded" style={{ background: 'rgba(34,197,94,0.12)', color: '#4ade80' }}>
+                        <span className="text-xs font-mono font-bold px-1.5 py-0.5 rounded" style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}>
                           −{plan.savings}%
                         </span>
                       )}
@@ -657,7 +657,7 @@ export default function LeistungenPage() {
                 </p>
               </div>
               <div className="flex-shrink-0 text-center px-6 py-3 rounded-lg" style={{ background: 'var(--accent-dim)' }}>
-                <p className="text-2xl font-extrabold font-mono" style={{ color: '#22c55e' }}>{featuredSupport.perMonth} EUR</p>
+                <p className="text-2xl font-extrabold font-mono" style={{ color: 'var(--accent)' }}>{featuredSupport.perMonth} EUR</p>
                 <p className="text-xs" style={{ color: 'var(--muted)' }}>pro Monat im {featuredSupport.name}</p>
               </div>
             </div>
@@ -685,7 +685,7 @@ export default function LeistungenPage() {
                   <div
                     key={m}
                     className="px-4 py-2.5 rounded-lg border text-sm font-mono font-semibold"
-                    style={{ background: 'rgba(34,197,94,0.10)', borderColor: 'rgba(34,197,94,0.25)', color: '#22c55e' }}
+                    style={{ background: 'var(--accent-dim)', borderColor: 'rgba(46,125,122,0.25)', color: 'var(--accent)' }}
                   >
                     {m}
                   </div>
