@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { SUPPORT_PLANS } from '@/lib/constants'
+import { SUPPORT_PLANS, PAYPAL_LINKS, type PayPalKey } from '@/lib/constants'
 
 // ─── Hourly cost comparison ───────────────────────────────────────────────────
 
@@ -236,7 +236,9 @@ export default function PflegeSection() {
                 </ul>
 
                 <a
-                  href={`/anfragen?package=${plan.id}${clientRef ? `&ref=${clientRef}` : ''}`}
+                  href={PAYPAL_LINKS[plan.id as PayPalKey]}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-center py-2.5 px-4 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
                   style={
                     plan.featured
@@ -244,14 +246,14 @@ export default function PflegeSection() {
                       : { background: 'var(--accent)', color: '#fff' }
                   }
                 >
-                  Jetzt anfragen →
+                  Jetzt buchen <span style={{ fontSize: '0.6rem', opacity: 0.65, fontFamily: 'monospace' }}>via PayPal</span>
                 </a>
               </div>
             ))}
           </div>
 
           <p className="text-xs text-center mt-6" style={{ color: 'var(--muted)' }}>
-            Zahlung per Banküberweisung nach Angebot · Keine MwSt. gem. §19 UStG
+            Zahlung sicher via PayPal · Keine MwSt. gem. §19 UStG
           </p>
         </div>
       </section>

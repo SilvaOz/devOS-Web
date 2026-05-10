@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
+import { PAYPAL_LINKS } from '@/lib/constants'
 
 function FeatureList({ items, accent = 'var(--accent)' }: { items: readonly string[]; accent?: string }) {
   return (
@@ -189,11 +190,13 @@ export default function PaketeGrid() {
         )}
 
         <a
-          href={praxisFull ? '/anfragen?package=praxis-digital' : '/anfragen?package=praxis-digital-design'}
-          className="mt-auto inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded border transition-colors duration-150 pricing-btn-ghost"
-          style={{ background: 'transparent', color: 'var(--fg)', borderColor: 'var(--border)', borderRadius: '6px' }}
+          href={praxisFull ? PAYPAL_LINKS['praxis-digital'] : PAYPAL_LINKS['praxis-design']}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-auto paypal-btn paypal-btn-primary"
         >
-          Kostenlos anfragen →
+          Jetzt buchen →
+          <span className="paypal-badge">via PayPal</span>
         </a>
       </div>
 

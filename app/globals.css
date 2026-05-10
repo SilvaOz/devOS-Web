@@ -427,6 +427,51 @@ h1, h2 {
   background: var(--muted);
 }
 
+/* ── PayPal Button ───────────────────────────────────────── */
+
+.paypal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.paypal-btn-primary {
+  background: var(--accent);
+  color: #f3f5f3;
+}
+
+.paypal-btn-primary:hover {
+  background: #245f5c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(46, 125, 122, 0.25);
+}
+
+.paypal-btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.paypal-btn-secondary:hover {
+  background: var(--bg-elevated);
+}
+
+.paypal-badge {
+  font-size: 0.6rem;
+  font-weight: 400;
+  opacity: 0.65;
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
 /* ── Mobile ─────────────────────────────────────────────── */
 
 @media (max-width: 640px) {

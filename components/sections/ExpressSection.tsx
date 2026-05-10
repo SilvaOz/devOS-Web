@@ -1,4 +1,4 @@
-import { EXPRESS_SERVICE } from '@/lib/constants'
+import { EXPRESS_SERVICE, PAYPAL_LINKS } from '@/lib/constants'
 
 export default function ExpressSection() {
   const { badge, h2, subtitle, price, priceNote, urgency, features, timeline, cta, ctaHref } =
@@ -73,11 +73,13 @@ export default function ExpressSection() {
             </div>
 
             <a
-              href={ctaHref}
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold rounded transition-opacity duration-150 hover:opacity-90"
-              style={{ background: 'var(--accent)', color: '#fff' }}
+              href={PAYPAL_LINKS['express-24h']}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="paypal-btn paypal-btn-primary"
             >
               {cta}
+              <span className="paypal-badge">via PayPal</span>
             </a>
           </div>
 

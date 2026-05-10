@@ -1,6 +1,6 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE } from '@/lib/constants'
+import { PRICING_PLANS, SUPPORT_PLANS, EXPRESS_SERVICE, PAYPAL_LINKS, type PayPalKey } from '@/lib/constants'
 import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/Icon'
 import PaketeGrid from '@/components/sections/PaketeGrid'
@@ -274,11 +274,13 @@ export default function LeistungenPage() {
                   </span>
                 </div>
                 <a
-                  href={EXPRESS_SERVICE.ctaHref}
-                  className="btn-primary inline-flex items-center justify-center px-6 py-3 text-sm font-semibold"
-                  style={{ background: 'var(--accent)', color: '#fff', borderRadius: '6px' }}
+                  href={PAYPAL_LINKS['express-24h']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="paypal-btn paypal-btn-primary"
                 >
                   {EXPRESS_SERVICE.cta}
+                  <span className="paypal-badge">via PayPal</span>
                 </a>
               </div>
               <div data-animate data-animate-delay="1">
@@ -627,7 +629,9 @@ export default function LeistungenPage() {
                   </div>
                   <FeatureList items={plan.features} />
                   <a
-                    href={`/anfragen?package=${plan.id}`}
+                    href={PAYPAL_LINKS[plan.id as PayPalKey]}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block text-center py-2.5 px-4 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
                     style={
                       plan.featured
@@ -635,7 +639,7 @@ export default function LeistungenPage() {
                         : { background: 'var(--bg)', color: 'var(--fg)', border: '1px solid var(--border)' }
                     }
                   >
-                    {plan.featured ? 'Jetzt anfragen →' : 'Anfragen'}
+                    Jetzt buchen <span style={{ fontSize: '0.6rem', opacity: 0.6, fontFamily: 'monospace' }}>via PayPal</span>
                   </a>
                 </div>
               ))}

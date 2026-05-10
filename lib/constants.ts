@@ -581,6 +581,23 @@ export const FOOTER = {
   ],
 } as const
 
+// ─── PayPal Payment Links ─────────────────────────────────────────────────────
+
+export const PAYPAL_LINKS = {
+  // Paquetes web (precio fijo)
+  'praxis-design':  'https://www.paypal.com/ncp/payment/ULNMDPKNH6XHY',
+  'praxis-digital': 'https://www.paypal.com/ncp/payment/4UJBK46V2B5RW',
+  // Express 24h
+  'express-24h':    'https://www.paypal.com/ncp/payment/U5XKT9XR77DNL',
+  // Planes de soporte
+  'monthly':        'https://www.paypal.com/ncp/payment/4B6Y9LLRNHLQY',
+  'quarterly':      'https://www.paypal.com/ncp/payment/SMW4LZREZRUL8',
+  'annual':         'https://www.paypal.com/ncp/payment/PVE9PX3ATWXQ6',
+  'biennial':       'https://www.paypal.com/ncp/payment/AZ5JPKWPJYVF4',
+} as const
+
+export type PayPalKey = keyof typeof PAYPAL_LINKS
+
 // ─── Support Plans ────────────────────────────────────────────────────────────
 
 export type SupportPlan = {
