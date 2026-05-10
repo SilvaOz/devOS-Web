@@ -6,7 +6,7 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import FuerWenSection from '@/components/sections/FuerWenSection'
 import ProcessSection from '@/components/sections/ProcessSection'
 import PricingSection from '@/components/sections/PricingSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
+// import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import AboutSection from '@/components/sections/AboutSection'
 import CTASection from '@/components/sections/CTASection'
 import FAQSection from '@/components/sections/FAQSection'
@@ -23,7 +23,7 @@ export default function Home() {
         <FuerWenSection />
         <ProcessSection />
         <PricingSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <AboutSection />
         <CTASection />
         <FAQSection />
