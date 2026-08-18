@@ -25,6 +25,7 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://devos-web.de'),
   title: 'DevOS Web – Websites & digitale Lösungen · Leipzig',
   description:
     'Professionelle Websites, Buchungen und digitale Lösungen für Therapeuten, Coaches und Kreative — persönlich entwickelt, verständlich erklärt, zuverlässig betreut.',
