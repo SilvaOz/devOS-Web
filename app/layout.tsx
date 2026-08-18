@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     siteName: 'DevOS Web',
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
+  },
 }
 
 const ADSENSE_ID = 'ca-pub-7730346462920964'

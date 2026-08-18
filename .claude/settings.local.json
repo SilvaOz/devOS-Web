@@ -19,7 +19,8 @@
       "Bash(vercel env:*)",
       "Bash(printf %s:*)",
       "Bash(vercel ls:*)",
-      "Bash(vercel:*)"
+      "Bash(vercel:*)",
+      "Bash(ls limpiando\\\\proyectos\\\\2026\\\\devos-web\\\\content\\\\blog\\\\\":*)"
     ]
   }
 }
