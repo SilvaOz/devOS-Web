@@ -5,7 +5,7 @@ import { Resend } from 'resend'
 export const PACKAGE_INFO: Record<string, { name: string; price: string; features: string[] }> = {
   'express-24h': {
     name: 'Website Express 24h',
-    price: 'ab 1.499 EUR',
+    price: 'ab 2.000 EUR',
     features: ['1-Page Landing Page', 'WordPress + Divi', 'Responsives Design', 'Kontaktformular', 'Grundlegendes SEO', '1 Revisionsrunde'],
   },
   'landing-page': {

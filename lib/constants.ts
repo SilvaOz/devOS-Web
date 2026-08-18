@@ -16,17 +16,17 @@ export const NAV_CTA = 'Projekt starten →'
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 export const HERO = {
-  badge: 'Leipzig, DE · DACH-Raum',
-  h1Line1: 'Digitale Systeme',
-  h1Line2: 'mit KI.',
+  badge: 'Leipzig · Deutschland · Persönlich betreut',
+  h1Line1: 'Sie kümmern sich um Ihr Geschäft.',
+  h1Line2: 'Ich kümmere mich um den Rest.',
   subtitle:
-    'Websites, Apps und Automatisierungen für Therapeuten, Coaches und Kreative — persönlich, klar und auf den Punkt.',
+    'Professionelle Websites, Buchungen und digitale Lösungen — persönlich entwickelt, verständlich erklärt und zuverlässig betreut.',
   ctaPrimary: 'Projekt besprechen →',
   ctaGhost: 'Leistungen ansehen',
   micros: [
-    'Antwort in 24–48h',
     'Kein technisches Wissen nötig',
-    'Leipzig · DACH-Raum',
+    'Persönlicher Ansprechpartner',
+    'Antwort in 24–48h',
   ],
 } as const
 
@@ -425,7 +425,7 @@ export const CONTACT = {
     { value: 'ki-automation',         label: 'KI-Automatisierung (ab 500 EUR)' },
     { value: 'app-mvp',               label: 'App MVP (ab 2.500 EUR)' },
     { value: 'content-system',        label: 'Content-System (ab 1.200 EUR)' },
-    { value: 'express-24h',           label: 'Website Express 24h (ab 1.499 EUR)' },
+    { value: 'express-24h',           label: 'Website Express 24h (ab 2.000 EUR)' },
     { value: 'wp-premium',            label: 'WP Design (ab 900 EUR)' },
     { value: 'wp-pro',                label: 'WP Pro (ab 1.500 EUR)' },
     { value: 'web-app',               label: 'Web App (ab 3.500 EUR)' },
@@ -467,7 +467,7 @@ export const PRAXIS_DESIGN_ADDON_PRICES: Record<string, number> = {
 }
 
 export const BASE_PACKAGE_PRICES: Record<string, number> = {
-  'express-24h':           1499,
+  'express-24h':           2000,
   'landing-page':          599,
   'wp-premium':            900,
   'wp-pro':                1500,
@@ -564,7 +564,7 @@ export const FUER_WEN: FuerWenCard[] = [
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
 export const FOOTER = {
-  tagline: 'Digitale Systeme mit KI · Leipzig, DE',
+  tagline: 'Websites & digitale Lösungen · Leipzig, DE',
   copyright: '© 2026 DevOS Web · Leipzig · info@devos-web.de',
   vatNote: 'Gem. §19 UStG wird keine Umsatzsteuer berechnet.',
   links: [
@@ -580,23 +580,6 @@ export const FOOTER = {
     { label: 'Datenschutz', href: '/datenschutz' },
   ],
 } as const
-
-// ─── PayPal Payment Links ─────────────────────────────────────────────────────
-
-export const PAYPAL_LINKS = {
-  // Paquetes web (precio fijo)
-  'praxis-design':  'https://www.paypal.com/ncp/payment/ULNMDPKNH6XHY',
-  'praxis-digital': 'https://www.paypal.com/ncp/payment/4UJBK46V2B5RW',
-  // Express 24h
-  'express-24h':    'https://www.paypal.com/ncp/payment/U5XKT9XR77DNL',
-  // Planes de soporte
-  'monthly':        'https://www.paypal.com/ncp/payment/4B6Y9LLRNHLQY',
-  'quarterly':      'https://www.paypal.com/ncp/payment/SMW4LZREZRUL8',
-  'annual':         'https://www.paypal.com/ncp/payment/PVE9PX3ATWXQ6',
-  'biennial':       'https://www.paypal.com/ncp/payment/AZ5JPKWPJYVF4',
-} as const
-
-export type PayPalKey = keyof typeof PAYPAL_LINKS
 
 // ─── Support Plans ────────────────────────────────────────────────────────────
 
@@ -754,7 +737,7 @@ export const EXPRESS_SERVICE = {
   h2: 'Ihre Website in 24 Stunden.',
   subtitle:
     'Für Kunden, die keine Zeit verlieren wollen. Eine fertige Landing Page — von Briefing bis Launch in einem Werktag.',
-  price: 'ab 1.499 EUR',
+  price: 'ab 2.000 EUR',
   priceNote: 'einmalig · Banküberweisung',
   urgency: 'Nur 2 Express-Termine pro Monat verfügbar.',
   features: [

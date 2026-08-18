@@ -25,20 +25,20 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: 'DevOS Web – Digitale Systeme mit KI · Leipzig',
+  title: 'DevOS Web – Websites & digitale Lösungen · Leipzig',
   description:
-    'Websites, Apps und KI-Automatisierungen für Therapeuten, Coaches und Kreative im DACH-Raum. Persönlich, klar und ohne Fachjargon.',
+    'Professionelle Websites, Buchungen und digitale Lösungen für Therapeuten, Coaches und Kreative — persönlich entwickelt, verständlich erklärt, zuverlässig betreut.',
   keywords: [
     'Webentwicklung Leipzig',
     'WordPress Therapeuten',
-    'KI Automatisierung',
+    'Website Coaches',
     'Website erstellen lassen',
     'Divi Builder',
     'DACH',
   ],
   openGraph: {
-    title: 'DevOS Web – Digitale Systeme mit KI',
-    description: 'Websites, Apps und KI-Automatisierungen für Therapeuten, Coaches und Kreative.',
+    title: 'DevOS Web – Websites & digitale Lösungen · Leipzig',
+    description: 'Professionelle Websites für Therapeuten, Coaches und Kreative — persönlich entwickelt, verständlich erklärt.',
     type: 'website',
     locale: 'de_DE',
     siteName: 'DevOS Web',

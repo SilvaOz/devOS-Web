@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CONSENT_KEY } from './CookieConsent'
 
-const CLIENT = 'ca-pub-6393735346618361'
+const CLIENT = 'ca-pub-7730346462920964'
 
 type AdFormat = 'auto' | 'fluid' | 'rectangle' | 'vertical' | 'horizontal'
 

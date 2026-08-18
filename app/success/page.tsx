@@ -44,13 +44,13 @@ export default async function SuccessPage({ searchParams }: Props) {
           {type === 'express' && (
             <>
               <h1 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--fg)' }}>
-                Express-Termin gebucht!
+                Vielen Dank!
               </h1>
               <p className="text-base mb-2" style={{ color: 'var(--muted)' }}>
-                Vielen Dank! Ihre Zahlung via PayPal ist eingegangen.
+                Ihre Rechnung wurde erstellt und wird Ihnen per E-Mail zugesendet.
               </p>
               <p className="text-sm mb-2" style={{ color: 'var(--muted)' }}>
-                Ich melde mich innerhalb von 24h bei Ihnen, um den Termin zu bestätigen und alle Details zu klären.
+                Bitte überweisen Sie den Rechnungsbetrag gemäß den Zahlungsinformationen auf der Rechnung.
               </p>
               <p className="text-sm mb-8" style={{ color: 'var(--muted)' }}>
                 Bei Fragen: <a href="mailto:info@devos-web.de" style={{ color: 'var(--accent)' }}>info@devos-web.de</a>
@@ -61,19 +61,18 @@ export default async function SuccessPage({ searchParams }: Props) {
           {type === 'support' && (
             <>
               <h1 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: 'var(--fg)' }}>
-                Pflege-Paket gebucht!
+                Vielen Dank!
               </h1>
               <p className="text-base mb-2" style={{ color: 'var(--muted)' }}>
                 {supportPlan
-                  ? `Vielen Dank! Ihr „${supportPlan.name}" (${supportPlan.duration}) ist aktiv.`
-                  : 'Vielen Dank! Ihr Pflege-Paket ist aktiv.'}
+                  ? `Ihre Anfrage für „${supportPlan.name}" (${supportPlan.duration}) wurde erhalten.`
+                  : 'Ihre Anfrage wurde erhalten.'}
               </p>
               <p className="text-sm mb-2" style={{ color: 'var(--muted)' }}>
-                Sie erhalten eine Bestätigung via PayPal.
+                Ihre Rechnung wurde erstellt und wird Ihnen per E-Mail zugesendet. Bitte überweisen Sie den Rechnungsbetrag gemäß den Zahlungsinformationen auf der Rechnung.
               </p>
               <p className="text-sm mb-8" style={{ color: 'var(--muted)' }}>
-                Ich melde mich innerhalb von 24h, um alles einzurichten. Fragen:{' '}
-                <a href="mailto:info@devos-web.de" style={{ color: 'var(--accent)' }}>info@devos-web.de</a>
+                Bei Fragen: <a href="mailto:info@devos-web.de" style={{ color: 'var(--accent)' }}>info@devos-web.de</a>
               </p>
             </>
           )}

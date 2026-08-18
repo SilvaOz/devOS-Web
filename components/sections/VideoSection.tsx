@@ -8,6 +8,8 @@ function fade(progress: number, start: number, end: number) {
   return (progress - start) / (end - start)
 }
 
+const MICROS = ['Kein technisches Wissen nötig', 'Persönlicher Ansprechpartner', 'Antwort in 24–48h']
+
 export default function VideoSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const targetRef    = useRef(0)
@@ -20,7 +22,7 @@ export default function VideoSection() {
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches ||
       /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    const LERP = isMobile ? 0.12 : 0.038 // más rápido en móvil → responde al momentum scroll
+    const LERP = isMobile ? 0.12 : 0.038
 
     const video = document.getElementById('water-video')  as HTMLVideoElement | null
     const fill  = document.getElementById('water-progress-fill') as HTMLElement | null
@@ -29,8 +31,6 @@ export default function VideoSection() {
     const line3 = document.getElementById('wv-line3') as HTMLElement | null
     const cta   = document.getElementById('wv-cta')   as HTMLElement | null
 
-    // iOS Safari bloquea currentTime hasta que el video haya jugado al menos 1 frame.
-    // play() + pause() inmediato desbloquea el seeking sin iniciar reproducción real.
     const unlockSeeking = async () => {
       if (!video) return
       try {
@@ -55,7 +55,6 @@ export default function VideoSection() {
       currentRef.current += (targetRef.current - currentRef.current) * LERP
       const p = currentRef.current
 
-      // readyState >= 1 (HAVE_METADATA) es suficiente después del unlock
       if (video && video.readyState >= 1 && video.duration) {
         const newTime   = p * video.duration
         const frameStep = 1 / 30
@@ -113,6 +112,8 @@ export default function VideoSection() {
         />
 
         <div className="wv-text">
+
+          {/* Badge */}
           <span
             id="wv-line1"
             className="wv-line"
@@ -120,36 +121,82 @@ export default function VideoSection() {
           >
             <span className="wv-badge">
               <span className="wv-badge-dot" />
-              KI-gestützte Entwicklung
+              Leipzig · Deutschland
             </span>
-            <span className="wv-badge">📍 Leipzig, DE</span>
+            <span className="wv-badge">Persönlich betreut</span>
           </span>
+
+          {/* Headline */}
           <p
             id="wv-line2"
             className="wv-line wv-line-lg"
             style={{ opacity: 0, transform: 'translateY(24px)' }}
           >
-            Ich baue digitale<br />Systeme
+            Gute digitale Arbeit
           </p>
+
+          {/* Headline accent */}
           <p
             id="wv-line3"
             className="wv-line wv-line-accent"
             style={{ opacity: 0, transform: 'translateY(24px)' }}
           >
-            mit KI.
+            beginnt unter der Oberfläche.
           </p>
+
+          {/* Subheadline + CTA + Micros */}
           <div
             id="wv-cta"
-            className="wv-cta-row"
-            style={{ opacity: 0, transform: 'translateY(16px)' }}
+            style={{
+              opacity: 0,
+              transform: 'translateY(16px)',
+              willChange: 'opacity, transform',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.25rem',
+              marginTop: '2.5rem',
+            }}
           >
-            <a href="/anfragen" className="wv-cta-btn wv-cta-primary">
-              Projekt anfragen →
-            </a>
-            <a href="/leistungen" className="wv-cta-btn wv-cta-secondary">
-              Leistungen ansehen
-            </a>
+            <p style={{
+              color: 'rgba(243,245,243,0.78)',
+              fontSize: 'clamp(0.875rem, 1.4vw, 1.05rem)',
+              maxWidth: 500,
+              lineHeight: 1.65,
+              margin: 0,
+              textShadow: '0 1px 8px rgba(0,0,0,0.5)',
+            }}>
+              Professionelle Websites, Buchungen und digitale Lösungen — persönlich entwickelt, verständlich erklärt und zuverlässig betreut.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="/anfragen" className="wv-cta-btn wv-cta-primary">
+                Projekt besprechen →
+              </a>
+              <a href="/leistungen" className="wv-cta-btn wv-cta-secondary">
+                Leistungen ansehen
+              </a>
+            </div>
+
+            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+              {MICROS.map(m => (
+                <span
+                  key={m}
+                  style={{
+                    color: 'rgba(243,245,243,0.62)',
+                    fontSize: '0.75rem',
+                    fontFamily: 'var(--font-mono)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.35rem',
+                  }}
+                >
+                  <span style={{ color: '#5bbdba' }}>✓</span>
+                  {m}
+                </span>
+              ))}
+            </div>
           </div>
+
         </div>
 
         <div className="reel-progress-bar">

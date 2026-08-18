@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { contactSchema, computePackageTotal } from '@/lib/constants'
+import { contactSchema, computePackageTotal, SUPPORT_PLANS } from '@/lib/constants'
 import { sendContactEmail, sendConfirmationEmail, sendInvoiceEmail, PACKAGE_INFO } from '@/lib/resend'
 
 // Simple in-memory rate limiter (resets per serverless instance)
@@ -31,6 +31,7 @@ function isRateLimited(ip: string): boolean {
 }
 
 const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app', 'praxis-digital', 'praxis-digital-design']
+const SUPPORT_PLAN_IDS = SUPPORT_PLANS.map(p => p.id)
 
 type InvoiceData = {
   invoiceNumber: string
@@ -69,13 +70,23 @@ export async function POST(req: NextRequest) {
 
   const { name, email, package: pkg, message, timing, pages, features, sections, contentReady, currentWebsite, companyName, street, zip, city, recommendedPackage } = parsed.data
 
-  // 1. If website package, call kleinunternehmer to create invoice
+  // 1. If website or support package, call kleinunternehmer to create invoice
   let invoiceData: InvoiceData | null = null
 
-  if (WEBSITE_PACKAGES.includes(pkg)) {
+  if (WEBSITE_PACKAGES.includes(pkg) || SUPPORT_PLAN_IDS.includes(pkg)) {
     const pkgInfo = PACKAGE_INFO[pkg]
     try {
-      const unitPrice = computePackageTotal(pkg, features ?? [])
+      // For support plans, price is fixed server-side — never trust client input
+      let unitPrice: number
+      if (SUPPORT_PLAN_IDS.includes(pkg)) {
+        const plan = SUPPORT_PLANS.find(p => p.id === pkg)
+        if (!plan) {
+          return NextResponse.json({ error: 'Ungültiges Paket.' }, { status: 422 })
+        }
+        unitPrice = plan.totalPrice
+      } else {
+        unitPrice = computePackageTotal(pkg, features ?? [])
+      }
 
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 8000)

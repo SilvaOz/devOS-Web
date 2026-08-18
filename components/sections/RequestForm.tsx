@@ -112,7 +112,7 @@ const PACKAGE_PRICES: Record<string, { name: string; price: number; label: strin
   'wp-premium':   { name: 'WP Design',   price: 900,  label: 'ab 900 EUR'   },
   'wp-pro':     { name: 'WP Pro',      price: 1500, label: 'ab 1.500 EUR' },
   'web-app':    { name: 'Web App',     price: 3500, label: 'ab 3.500 EUR' },
-  'express-24h':{ name: 'Express 24h', price: 1499, label: 'ab 1.499 EUR' },
+  'express-24h':{ name: 'Express 24h', price: 2000, label: 'ab 2.000 EUR' },
 }
 
 function getRecommendedPackage(pkgId: PackageTier, selectedFeatures: string[]): PackageTier {
