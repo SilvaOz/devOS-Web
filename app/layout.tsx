@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'DevOS Web',
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '',
+    google: '_TeGMen5h8wjhS1wDDlfj9AWLl8oJVbqqViztIzWt0k',
   },
 }
 
