@@ -256,6 +256,142 @@ export default function PflegeSection() {
         </div>
       </section>
 
+      {/* ── Wachstum ─────────────────────────────────────────────────────── */}
+      <section id="wachstum" className="py-16" style={{ background: 'var(--bg)' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <p className="text-xs font-mono font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--muted)' }}>
+            WACHSTUM
+          </p>
+          <h2 className="text-3xl font-extrabold mb-3" style={{ color: 'var(--fg)' }}>
+            Ihre Website läuft. Jetzt wachsen lassen.
+          </h2>
+          <p className="text-base mb-10 max-w-2xl" style={{ color: 'var(--muted)', lineHeight: '1.7' }}>
+            Für Bestandskunden mit laufender Website — und alle, die mehr aus ihrer Online-Präsenz herausholen möchten.
+          </p>
+
+          {/* Einzelleistungen */}
+          <div className="rounded-xl border overflow-hidden mb-6" style={{ borderColor: 'var(--border)' }}>
+            {([
+              { label: 'Google Ads — Kampagnen-Einrichtung',              price: 350 },
+              { label: 'SEO-Grundoptimierung (Yoast + Search Console)',   price: 350 },
+              { label: 'Google Unternehmensprofil + Maps',                price: 150 },
+              { label: 'KI-Sichtbarkeit (Optimierung für ChatGPT & Co.)', price: 200 },
+            ] as const).map((item, i, arr) => (
+              <div
+                key={item.label}
+                className="flex items-center justify-between px-5 py-4"
+                style={{
+                  background: 'var(--card)',
+                  borderBottom: i < arr.length - 1 ? '1px solid var(--border)' : undefined,
+                }}
+              >
+                <span className="text-sm" style={{ color: 'var(--fg)' }}>{item.label}</span>
+                <span className="text-sm font-mono font-semibold" style={{ color: 'var(--muted)' }}>{item.price} EUR</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between px-5 py-4" style={{ background: 'var(--bg-elevated)' }}>
+              <span className="text-sm font-semibold" style={{ color: 'var(--muted)' }}>Gesamt einzeln</span>
+              <span className="text-sm font-mono font-bold" style={{ color: 'var(--fg)' }}>1.050 EUR</span>
+            </div>
+          </div>
+
+          {/* Wachstumspaket */}
+          <div
+            className="rounded-xl border p-6 mb-6"
+            style={{ background: 'var(--card)', borderColor: 'var(--accent)', boxShadow: '0 0 0 1px var(--accent), 0 4px 32px var(--glow)' }}
+          >
+            <div className="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <span
+                  className="inline-block text-xs font-mono font-bold uppercase tracking-widest px-2 py-1 rounded-full mb-2"
+                  style={{ background: 'var(--accent)', color: '#fff' }}
+                >
+                  ★ Empfohlen
+                </span>
+                <h3 className="text-xl font-bold" style={{ color: 'var(--fg)' }}>Wachstumspaket</h3>
+                <p className="text-sm" style={{ color: 'var(--muted)' }}>Alle 4 Dienste kombiniert — einmalig eingerichtet.</p>
+              </div>
+              <div className="text-right flex-shrink-0">
+                <span className="text-3xl font-extrabold font-mono" style={{ color: 'var(--accent)' }}>790 EUR</span>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>einmalig</p>
+                <span
+                  className="text-xs font-bold px-2 py-0.5 rounded mt-1 inline-block"
+                  style={{ background: 'var(--accent-dim)', color: 'var(--accent)' }}
+                >
+                  260 EUR gespart
+                </span>
+              </div>
+            </div>
+            <ul className="flex flex-col gap-2 mb-5">
+              {([
+                'Google Ads — Kampagnen-Einrichtung (350 EUR)',
+                'SEO-Grundoptimierung (Yoast + Search Console) (350 EUR)',
+                'Google Unternehmensprofil + Maps (150 EUR)',
+                'KI-Sichtbarkeit — was kaum ein Entwickler noch anbietet.',
+              ] as const).map(f => (
+                <li key={f} className="flex items-start gap-2 text-sm" style={{ color: 'var(--fg)' }}>
+                  <span className="mt-0.5 flex-shrink-0" style={{ color: 'var(--accent)' }}>✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="/anfragen?package=wachstum"
+              className="inline-flex items-center justify-center w-full py-2.5 px-5 text-sm font-semibold rounded-lg transition-opacity hover:opacity-85"
+              style={{ background: 'var(--accent)', color: '#fff' }}
+            >
+              Jetzt anfragen → Rechnung erhalten
+            </a>
+          </div>
+
+          {/* Ads-Betreuung */}
+          <div
+            className="rounded-xl border p-5 mb-6 flex flex-col sm:flex-row sm:items-center gap-4"
+            style={{ background: 'var(--card)', borderColor: 'var(--border)' }}
+          >
+            <div className="flex-1">
+              <h3 className="text-base font-bold mb-1" style={{ color: 'var(--fg)' }}>Ads-Betreuung</h3>
+              <p className="text-sm" style={{ color: 'var(--muted)', lineHeight: '1.6' }}>
+                Laufende Kampagnen-Optimierung, Conversion-Überprüfung und Budget-Anpassung.
+                Das Werbebudget selbst zahlen Sie direkt an Google — transparent und getrennt.
+              </p>
+            </div>
+            <div className="flex-shrink-0 text-right sm:text-left">
+              <p className="text-2xl font-extrabold font-mono" style={{ color: 'var(--accent)' }}>ab 150 EUR</p>
+              <p className="text-xs" style={{ color: 'var(--muted)' }}>pro Monat, je nach Umfang</p>
+            </div>
+          </div>
+
+          {/* Combo Praxis Digital + Wachstum */}
+          <div
+            className="rounded-xl border p-5"
+            style={{ background: 'var(--accent-dim)', borderColor: 'rgba(46,125,122,0.25)' }}
+          >
+            <p className="text-xs font-mono font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>
+              NEU HIER?
+            </p>
+            <p className="text-sm font-semibold mb-1" style={{ color: 'var(--fg)' }}>
+              Praxis Digital (1.990 EUR) + Wachstumspaket (790 EUR) zusammen:{' '}
+              <span style={{ color: 'var(--accent)' }}>2.490 EUR</span>
+            </p>
+            <p className="text-sm mb-3" style={{ color: 'var(--muted)' }}>
+              Sie sparen 290 EUR gegenüber Einzelbuchung — und haben vom ersten Tag an eine vollständige Online-Präsenz.
+            </p>
+            <a
+              href="/leistungen#pakete"
+              className="text-sm font-semibold hover:underline transition-opacity hover:opacity-70"
+              style={{ color: 'var(--accent)' }}
+            >
+              Praxis Digital ansehen →
+            </a>
+          </div>
+
+          <p className="text-xs text-center mt-6" style={{ color: 'var(--muted)' }}>
+            Gem. §19 UStG wird keine Umsatzsteuer berechnet. · Zahlung per Banküberweisung nach Angebot.
+          </p>
+        </div>
+      </section>
+
       {/* ── FAQ ──────────────────────────────────────────────────────────── */}
       <section className="py-16" style={{ background: 'var(--bg)' }}>
         <div className="max-w-2xl mx-auto px-4 sm:px-6">
@@ -264,6 +400,10 @@ export default function PflegeSection() {
           </h2>
           <div className="flex flex-col gap-6">
             {[
+              {
+                q: 'Was passiert nach den 2 kostenlosen Pflege-Monaten im Praxis Digital Paket?',
+                a: 'Nach dem Launch kümmere ich mich automatisch 2 Monate lang kostenlos um Updates, Backups und Sicherheit. Danach läuft die Pflege ganz natürlich im Monatspflege-Paket weiter (99 EUR/Monat) — kündbar jederzeit zum Monatsende, falls Sie das nicht möchten.',
+              },
               {
                 q: 'Was passiert, wenn ich mehr als die enthaltenen Stunden brauche?',
                 a: 'Jede weitere Stunde wird zu €75/Std. berechnet — ich informiere Sie immer vorher.',

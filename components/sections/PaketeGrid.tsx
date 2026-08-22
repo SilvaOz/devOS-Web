@@ -18,7 +18,7 @@ function FeatureList({ items, accent = 'var(--accent)' }: { items: readonly stri
 }
 
 const PRAXIS_FULL = {
-  price: '1.500 EUR',
+  price: '1.990 EUR',
   features: [
     'WordPress + Divi oder Next.js',
     'Amelia Online-Buchungssystem',
@@ -27,6 +27,7 @@ const PRAXIS_FULL = {
     'Zoom-Integration',
     'DSGVO-konform',
     'IONOS / All-Inkl Hosting',
+    '🎁 2 Monate Website-Pflege inklusive',
   ] as const,
 }
 
@@ -188,6 +189,17 @@ export default function PaketeGrid() {
           </div>
         )}
 
+        {/* Desglose + 2-Monate-Hinweis */}
+        {praxisFull && (
+          <div
+            className="rounded-lg px-4 py-3 text-xs"
+            style={{ background: 'var(--bg-elevated)', borderLeft: '3px solid var(--accent)', color: 'var(--muted)', lineHeight: '1.6' }}
+          >
+            <span style={{ color: 'var(--fg)', fontWeight: 600 }}>Inbegriffen: </span>
+            Webdesign 1.200 EUR + Technisches Setup 790 EUR. Nach dem Launch kümmere ich mich 2 Monate kostenlos um Updates, Backups und Sicherheit.
+          </div>
+        )}
+
         <a
           href={praxisFull ? '/anfragen?package=praxis-digital' : '/anfragen?package=praxis-digital-design'}
           className="mt-auto inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded border transition-colors duration-150 pricing-btn-ghost"
@@ -195,6 +207,16 @@ export default function PaketeGrid() {
         >
           Kostenlos anfragen →
         </a>
+
+        {praxisFull && (
+          <a
+            href="/pflege#wachstum"
+            className="text-xs text-center transition-opacity hover:opacity-70"
+            style={{ color: 'var(--muted)' }}
+          >
+            + Wachstumspaket hinzufügen und 290 EUR sparen →
+          </a>
+        )}
       </div>
 
       {/* ── Otros 3 paquetes ── */}

@@ -133,7 +133,7 @@ export const PRICING_PLANS: PricingPlan[] = [
   {
     id: 'wp-pro',
     name: 'WP Pro',
-    price: 'ab 1.500 EUR',
+    price: 'ab 1.990 EUR',
     target: 'Design + alle technischen Integrationen',
     features: [
       'Individuelles Design nach Ihrem Stil',
@@ -420,14 +420,16 @@ export const CONTACT = {
   noPhone: 'Kein Telefon — alles per E-Mail. Schneller, klarer, dokumentiert.',
   paymentNote: 'Zahlung per Banküberweisung nach schriftlichem Angebot. Sie erhalten eine Rechnung per E-Mail.',
   packageOptions: [
-    { value: 'praxis-digital',        label: 'Praxis Digital — Mit Funktionen (1.500 EUR)' },
+    { value: 'praxis-digital',        label: 'Praxis Digital — Mit Funktionen (1.990 EUR)' },
     { value: 'praxis-digital-design', label: 'Praxis Digital — Nur Design (900 EUR)' },
     { value: 'ki-automation',         label: 'KI-Automatisierung (ab 500 EUR)' },
     { value: 'app-mvp',               label: 'App MVP (ab 2.500 EUR)' },
     { value: 'content-system',        label: 'Content-System (ab 1.200 EUR)' },
+    { value: 'startklar',             label: 'Startklar-Paket (450 EUR)' },
+    { value: 'wachstum',              label: 'Wachstumspaket (790 EUR)' },
     { value: 'express-24h',           label: 'Website Express 24h (ab 2.000 EUR)' },
     { value: 'wp-premium',            label: 'WP Design (ab 900 EUR)' },
-    { value: 'wp-pro',                label: 'WP Pro (ab 1.500 EUR)' },
+    { value: 'wp-pro',                label: 'WP Pro (ab 1.990 EUR)' },
     { value: 'web-app',               label: 'Web App (ab 3.500 EUR)' },
     { value: 'monthly',               label: 'Monatspflege (99 EUR/Monat)' },
     { value: 'quarterly',             label: 'Quartalspflege (249 EUR / 3 Monate)' },
@@ -470,10 +472,12 @@ export const BASE_PACKAGE_PRICES: Record<string, number> = {
   'express-24h':           2000,
   'landing-page':          599,
   'wp-premium':            900,
-  'wp-pro':                1500,
+  'wp-pro':                1990,
   'web-app':               3500,
-  'praxis-digital':        1500,
+  'praxis-digital':        1990,
   'praxis-digital-design': 900,
+  'startklar':             450,
+  'wachstum':              790,
 }
 
 export function computePackageTotal(packageId: string, features: string[] = []): number {
@@ -784,7 +788,7 @@ export const LEISTUNGEN_PAGE = {
       },
       {
         name: 'WP Pro',
-        price: 'ab 1.500 EUR',
+        price: 'ab 1.990 EUR',
         features: ['Alles aus WP Design', 'Amelia Buchungen', 'Google Calendar', 'Zoom', 'Stripe-Zahlungen'],
       },
     ],

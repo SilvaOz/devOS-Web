@@ -30,7 +30,7 @@ function isRateLimited(ip: string): boolean {
   return false
 }
 
-const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app', 'praxis-digital', 'praxis-digital-design']
+const WEBSITE_PACKAGES = ['express-24h', 'landing-page', 'wp-premium', 'wp-pro', 'web-app', 'praxis-digital', 'praxis-digital-design', 'startklar', 'wachstum']
 const SUPPORT_PLAN_IDS = SUPPORT_PLANS.map(p => p.id)
 
 type InvoiceData = {

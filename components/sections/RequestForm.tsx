@@ -15,8 +15,10 @@ const ALL_PACKAGES = [
   },
   ...PRICING_PLANS.map(p => ({ id: p.id, name: p.name, price: p.price, features: p.features })),
   // Neue Pakete (Festpreis + variable)
-  { id: 'praxis-digital',        name: 'Praxis Digital',                  price: '1.500 EUR',    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting'] as readonly string[] },
+  { id: 'praxis-digital',        name: 'Praxis Digital',                  price: '1.990 EUR',    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting', '🎁 2 Monate Website-Pflege inklusive'] as readonly string[] },
   { id: 'praxis-digital-design', name: 'Praxis Digital — Nur Design',     price: '900 EUR',      features: ['Individuelles Design nach Ihrem Stil', 'Bis 5 Seiten', 'Mobile-optimiert', 'DSGVO-Grundlage', 'IONOS / All-Inkl Hosting'] as readonly string[] },
+  { id: 'startklar',             name: 'Startklar-Paket',                 price: '450 EUR',      features: ['Website-Überprüfung + Fehlerbehebung', 'Domain + Hosting verbinden', 'Veröffentlichung', 'Amelia einrichten', 'SEO-Grundlage + Search Console'] as readonly string[] },
+  { id: 'wachstum',              name: 'Wachstumspaket',                  price: '790 EUR',      features: ['Google Ads — Kampagnen-Einrichtung', 'SEO-Grundoptimierung', 'Google Unternehmensprofil + Maps', 'KI-Sichtbarkeit'] as readonly string[] },
   { id: 'ki-automation',         name: 'KI-Automatisierung',              price: 'ab 500 EUR',   features: ['Anforderungsanalyse inklusive', 'Make.com oder Python-Pipeline', 'Claude API / OpenAI Integration', 'Google Sheets / Drive Anbindung', 'Dokumentation + Übergabe'] as readonly string[] },
   { id: 'app-mvp',               name: 'App MVP',                         price: 'ab 2.500 EUR', features: ['React Native (iOS + Android) oder Next.js', 'Design + Entwicklung', 'Authentifizierung + Datenbank', 'Deploy auf App Store / Vercel', 'Festpreis nach Scope-Gespräch'] as readonly string[] },
   { id: 'content-system',        name: 'Content-System',                  price: 'ab 1.200 EUR', features: ['YouTube-Kanal-Strategie + SEO', 'KI-Content-Pipeline (Python)', 'Pinterest Business Setup', 'Blog auf Next.js', 'Make.com Automatisierung'] as readonly string[] },
@@ -81,7 +83,7 @@ const WP_DESIGN_ADDONS: { label: string; price: number }[] = [
 // Threshold: if add-ons >= this, recommend WP Pro instead
 const WP_PRO_RECOMMENDATION_THRESHOLD = 300
 
-// Praxis Design add-ons — selectable, increase price toward 1.500€ full package
+// Praxis Design add-ons — selectable, increase price toward 1.990€ full package
 const PRAXIS_DESIGN_ADDONS: { label: string; price: number }[] = Object.entries(PRAXIS_DESIGN_ADDON_PRICES).map(
   ([label, price]) => ({ label, price })
 )
@@ -110,7 +112,7 @@ type PackageTier = 'wp-base' | 'wp-premium' | 'wp-pro' | 'web-app' | 'express-24
 const PACKAGE_PRICES: Record<string, { name: string; price: number; label: string }> = {
   'landing-page': { name: 'Landing Page', price: 599,  label: 'ab 599 EUR'   },
   'wp-premium':   { name: 'WP Design',   price: 900,  label: 'ab 900 EUR'   },
-  'wp-pro':     { name: 'WP Pro',      price: 1500, label: 'ab 1.500 EUR' },
+  'wp-pro':     { name: 'WP Pro',      price: 1990, label: 'ab 1.990 EUR' },
   'web-app':    { name: 'Web App',     price: 3500, label: 'ab 3.500 EUR' },
   'express-24h':{ name: 'Express 24h', price: 2000, label: 'ab 2.000 EUR' },
 }
@@ -170,7 +172,7 @@ function Steps({ current }: { current: number }) {
 // ─── Quick-pick packages shown at the top of the form ────────────────────────
 
 const QUICK_PICKS = [
-  { id: 'praxis-digital',  label: 'Praxis Digital',     price: '1.500 EUR'    },
+  { id: 'praxis-digital',  label: 'Praxis Digital',     price: '1.990 EUR'    },
   { id: 'ki-automation',   label: 'KI-Automatisierung', price: 'ab 500 EUR'   },
   { id: 'app-mvp',         label: 'App MVP',            price: 'ab 2.500 EUR' },
   { id: 'content-system',  label: 'Content-System',     price: 'ab 1.200 EUR' },
@@ -249,7 +251,7 @@ export default function RequestForm() {
     ? WP_DESIGN_ADDONS.filter(x => features.includes(x.label))
     : []
   const wpDesignRecommendPro = isWpDesign && wpDesignAddonsTotal >= WP_PRO_RECOMMENDATION_THRESHOLD
-  const wpDesignSaving       = wpDesignRecommendPro ? wpDesignTotal - 1500 : 0
+  const wpDesignSaving       = wpDesignRecommendPro ? wpDesignTotal - 1990 : 0
 
   // Praxis Digital Design add-on total
   const isPraxisDesign = pkg.id === 'praxis-digital-design'
@@ -264,7 +266,7 @@ export default function RequestForm() {
     ? PRAXIS_DESIGN_ADDONS.filter(x => features.includes(x.label))
     : []
   const praxisDesignRecommendFull = isPraxisDesign && praxisDesignAddonsTotal >= PRAXIS_DESIGN_RECOMMENDATION_THRESHOLD
-  const praxisDesignSaving        = praxisDesignRecommendFull ? praxisDesignTotal - 1500 : 0
+  const praxisDesignSaving        = praxisDesignRecommendFull ? praxisDesignTotal - 1990 : 0
 
   // Landing page add-on total
   const landingAddonsTotal = isLanding
@@ -291,11 +293,9 @@ export default function RequestForm() {
     const e: Record<string, string> = {}
     if (!name.trim()) e.name = 'Name ist erforderlich.'
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = 'Bitte geben Sie eine gültige E-Mail ein.'
-    if (isWebsite) {
-      if (!street.trim()) e.street = 'Straße ist erforderlich.'
-      if (!zip.trim()) e.zip = 'PLZ ist erforderlich.'
-      if (!city.trim()) e.city = 'Stadt ist erforderlich.'
-    }
+    if (!street.trim()) e.street = 'Straße ist erforderlich.'
+    if (!zip.trim()) e.zip = 'PLZ ist erforderlich.'
+    if (!city.trim()) e.city = 'Stadt ist erforderlich.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -811,7 +811,7 @@ export default function RequestForm() {
                     </div>
                     {wpDesignRecommendPro && (
                       <p className="text-xs mt-2 p-2 rounded" style={{ background: 'rgba(234,179,8,0.1)', color: '#92400e' }}>
-                        Bei diesem Umfang lohnt sich <strong>WP Pro (ab 1.500 EUR)</strong> mehr
+                        Bei diesem Umfang lohnt sich <strong>WP Pro (ab 1.990 EUR)</strong> mehr
                         {wpDesignSaving > 0 ? ` — Sie sparen ${wpDesignSaving} EUR` : ' und Sie erhalten alle Integrationen inklusive'}.
                       </p>
                     )}
@@ -838,7 +838,7 @@ export default function RequestForm() {
                     </div>
                     {praxisDesignRecommendFull && (
                       <p className="text-xs mt-2 p-2 rounded" style={{ background: 'rgba(234,179,8,0.1)', color: '#92400e' }}>
-                        Bei diesem Umfang lohnt sich <strong>Praxis Digital mit Funktionen (1.500 EUR)</strong> mehr
+                        Bei diesem Umfang lohnt sich <strong>Praxis Digital mit Funktionen (1.990 EUR)</strong> mehr
                         {praxisDesignSaving > 0 ? ` — Sie sparen ${praxisDesignSaving} EUR` : ' und erhalten alle Integrationen inklusive'}.
                       </p>
                     )}
@@ -935,48 +935,44 @@ export default function RequestForm() {
               </p>
             </div>
 
-            {isWebsite && (
-              <>
-                <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--muted)' }}>
-                  Rechnungsadresse
-                </p>
-                <div className="mb-5">
-                  <label style={labelStyle}>Straße und Hausnummer *</label>
-                  <input
-                    type="text"
-                    value={street}
-                    onChange={e => setStreet(e.target.value)}
-                    placeholder="Musterstraße 12"
-                    style={inputStyle}
-                  />
-                  {errors.street && <p style={errorStyle}>{errors.street}</p>}
-                </div>
-                <div className="flex gap-3 mb-5">
-                  <div style={{ flex: '0 0 120px' }}>
-                    <label style={labelStyle}>PLZ *</label>
-                    <input
-                      type="text"
-                      value={zip}
-                      onChange={e => setZip(e.target.value)}
-                      placeholder="04109"
-                      style={inputStyle}
-                    />
-                    {errors.zip && <p style={errorStyle}>{errors.zip}</p>}
-                  </div>
-                  <div style={{ flex: 1 }}>
-                    <label style={labelStyle}>Stadt *</label>
-                    <input
-                      type="text"
-                      value={city}
-                      onChange={e => setCity(e.target.value)}
-                      placeholder="Leipzig"
-                      style={inputStyle}
-                    />
-                    {errors.city && <p style={errorStyle}>{errors.city}</p>}
-                  </div>
-                </div>
-              </>
-            )}
+            <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--muted)' }}>
+              Rechnungsadresse
+            </p>
+            <div className="mb-5">
+              <label style={labelStyle}>Straße und Hausnummer *</label>
+              <input
+                type="text"
+                value={street}
+                onChange={e => setStreet(e.target.value)}
+                placeholder="Musterstraße 12"
+                style={inputStyle}
+              />
+              {errors.street && <p style={errorStyle}>{errors.street}</p>}
+            </div>
+            <div className="flex gap-3 mb-5">
+              <div style={{ flex: '0 0 120px' }}>
+                <label style={labelStyle}>PLZ *</label>
+                <input
+                  type="text"
+                  value={zip}
+                  onChange={e => setZip(e.target.value)}
+                  placeholder="04109"
+                  style={inputStyle}
+                />
+                {errors.zip && <p style={errorStyle}>{errors.zip}</p>}
+              </div>
+              <div style={{ flex: 1 }}>
+                <label style={labelStyle}>Stadt *</label>
+                <input
+                  type="text"
+                  value={city}
+                  onChange={e => setCity(e.target.value)}
+                  placeholder="Leipzig"
+                  style={inputStyle}
+                />
+                {errors.city && <p style={errorStyle}>{errors.city}</p>}
+              </div>
+            </div>
 
             <div className="flex gap-3">
               <button

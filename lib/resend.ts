@@ -20,7 +20,7 @@ export const PACKAGE_INFO: Record<string, { name: string; price: string; feature
   },
   'wp-pro': {
     name: 'WP Pro',
-    price: 'ab 1.500 EUR',
+    price: 'ab 1.990 EUR',
     features: ['Alles aus WP Design', 'Amelia Buchungssystem', 'Google Calendar Sync', 'Zoom-Integration', 'Stripe-Zahlungen', 'DSGVO-Grundlage'],
   },
   'web-app': {
@@ -50,13 +50,23 @@ export const PACKAGE_INFO: Record<string, { name: string; price: string; feature
   },
   'praxis-digital': {
     name: 'Praxis Digital',
-    price: '1.500 EUR',
-    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting'],
+    price: '1.990 EUR',
+    features: ['WordPress + Divi oder Next.js', 'Amelia Buchungssystem', 'Google Calendar Sync', 'SEO-Grundlage + Yoast', 'Zoom-Integration', 'DSGVO-konform', 'IONOS / All-Inkl Hosting', '🎁 2 Monate Website-Pflege inklusive'],
   },
   'praxis-digital-design': {
     name: 'Praxis Digital — Nur Design',
     price: '900 EUR',
     features: ['Individuelles Design nach Ihrem Stil', 'Bis 5 Seiten', 'Mobile-optimiert', 'DSGVO-Grundlage', 'IONOS / All-Inkl Hosting'],
+  },
+  'startklar': {
+    name: 'Startklar-Paket',
+    price: '450 EUR',
+    features: ['Vollständige Überprüfung der bestehenden Website', 'Fehlerbehebung + technische Korrekturen', 'Domain + Hosting verbinden', 'Veröffentlichung', 'Amelia Buchungssystem einrichten + testen', 'SEO-Grundlage (Yoast) + Google Search Console'],
+  },
+  'wachstum': {
+    name: 'Wachstumspaket',
+    price: '790 EUR',
+    features: ['Google Ads — Kampagnen-Einrichtung', 'SEO-Grundoptimierung (Yoast + Search Console)', 'Google Unternehmensprofil + Maps', 'KI-Sichtbarkeit (Optimierung für ChatGPT & Co.)'],
   },
   'ki-automation': {
     name: 'KI-Automatisierung',
