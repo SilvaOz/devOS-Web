@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: 'Blog | DevOS Web — Tipps für Therapeuten & Coaches',
   description:
     'Praktische Tipps zu WordPress, Online-Buchungssystemen und KI-Tools für Therapeuten, Heilpraktiker und Coaches im DACH-Raum.',
+  robots: { index: false, follow: true },
 }
 
 const CATEGORY_COLORS: Record<string, string> = {

@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: `${post.title} | DevOS Web Blog`,
       description: post.description,
+      robots: { index: false, follow: true },
       openGraph: {
         title: post.title,
         description: post.description,

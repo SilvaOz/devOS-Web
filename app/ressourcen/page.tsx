@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'Ressourcen & Tools — DevOS Web',
   description:
     'Die besten Tools für Therapeuten, Coaches und Selbstständige im DACH-Raum — kuratiert und persönlich getestet.',
+  robots: { index: false, follow: true },
 }
 
 type Tool = {

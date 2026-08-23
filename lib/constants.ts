@@ -6,8 +6,6 @@ export const NAV_LINKS = [
   { label: 'Start', href: '/' },
   { label: 'Leistungen', href: '/leistungen' },
   { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Ressourcen', href: '/ressourcen' },
   { label: 'Kontakt', href: '/kontakt' },
 ] as const
 
@@ -574,8 +572,6 @@ export const FOOTER = {
   links: [
     { label: 'Leistungen', href: '/leistungen' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Ressourcen', href: '/ressourcen' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Kontakt', href: '/kontakt' },
   ],
