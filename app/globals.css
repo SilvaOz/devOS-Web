@@ -605,3 +605,22 @@ h1, h2 {
   background: var(--accent);
   transition: width 0.05s linear;
 }
+
+@media (max-width: 768px) {
+  .wv-text {
+    top: unset;
+    bottom: 7vh;
+    left: 1.5rem;
+    right: 1.5rem;
+    transform: none;
+  }
+
+  .wv-line-lg,
+  .wv-line-accent {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+
+  .wv-cta-block {
+    margin-top: 1.25rem !important;
+  }
+}

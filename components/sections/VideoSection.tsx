@@ -147,6 +147,7 @@ export default function VideoSection() {
           {/* Subheadline + CTA + Micros */}
           <div
             id="wv-cta"
+            className="wv-cta-block"
             style={{
               opacity: 0,
               transform: 'translateY(16px)',
