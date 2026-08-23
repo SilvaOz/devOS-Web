@@ -496,15 +496,15 @@ h1, h2 {
   gap: 6px;
   padding: 0.28rem 0.65rem;
   border-radius: 999px;
-  border: 1px solid rgba(91, 189, 186, 0.35);
-  background: rgba(46, 125, 122, 0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(91, 189, 186, 0.5);
+  background: rgba(46, 125, 122, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: var(--font-mono);
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(243, 245, 243, 0.88);
+  color: rgba(180, 230, 228, 0.95);
 }
 
 .wv-badge-dot {

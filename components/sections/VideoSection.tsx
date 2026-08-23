@@ -8,8 +8,6 @@ function fade(progress: number, start: number, end: number) {
   return (progress - start) / (end - start)
 }
 
-const MICROS = ['Kein technisches Wissen nötig', 'Persönlicher Ansprechpartner', 'Antwort in 24–48h']
-
 export default function VideoSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const targetRef    = useRef(0)
@@ -144,7 +142,7 @@ export default function VideoSection() {
             beginnt unter der Oberfläche.
           </p>
 
-          {/* Subheadline + CTA + Micros */}
+          {/* CTA buttons */}
           <div
             id="wv-cta"
             className="wv-cta-block"
@@ -153,49 +151,17 @@ export default function VideoSection() {
               transform: 'translateY(16px)',
               willChange: 'opacity, transform',
               display: 'flex',
-              flexDirection: 'column',
-              gap: '1.25rem',
+              gap: '1rem',
+              flexWrap: 'wrap',
               marginTop: '2.5rem',
             }}
           >
-            <p style={{
-              color: 'rgba(243,245,243,0.78)',
-              fontSize: 'clamp(0.875rem, 1.4vw, 1.05rem)',
-              maxWidth: 500,
-              lineHeight: 1.65,
-              margin: 0,
-              textShadow: '0 1px 8px rgba(0,0,0,0.5)',
-            }}>
-              Professionelle Websites, Buchungen und digitale Lösungen — persönlich entwickelt, verständlich erklärt und zuverlässig betreut.
-            </p>
-
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-              <a href="/anfragen" className="wv-cta-btn wv-cta-primary">
-                Projekt besprechen →
-              </a>
-              <a href="/leistungen" className="wv-cta-btn wv-cta-secondary">
-                Leistungen ansehen
-              </a>
-            </div>
-
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-              {MICROS.map(m => (
-                <span
-                  key={m}
-                  style={{
-                    color: 'rgba(243,245,243,0.62)',
-                    fontSize: '0.75rem',
-                    fontFamily: 'var(--font-mono)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                  }}
-                >
-                  <span style={{ color: '#5bbdba' }}>✓</span>
-                  {m}
-                </span>
-              ))}
-            </div>
+            <a href="/anfragen" className="wv-cta-btn wv-cta-primary">
+              Projekt besprechen →
+            </a>
+            <a href="/leistungen" className="wv-cta-btn wv-cta-secondary">
+              Leistungen ansehen
+            </a>
           </div>
 
         </div>
