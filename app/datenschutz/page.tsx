@@ -122,48 +122,15 @@ export default function DatenschutzPage() {
             </section>
 
             <section>
-              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>6. Google AdSense (Werbung)</h2>
+              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>6. Keine Tracking-Tools oder Werbung</h2>
               <p>
-                Diese Website verwendet Google AdSense (Google Ireland Ltd., Gordon House,
-                Barrow Street, Dublin 4, Irland) zur Einblendung von Werbeanzeigen.
-                Google AdSense verwendet Cookies und Web-Beacons, um personalisierte
-                Werbung anzuzeigen.
-              </p>
-              <p style={{ marginTop: '0.75rem' }}>
-                Ihre Einwilligung wird über unser Cookie-Banner eingeholt. Ohne Ihre
-                Zustimmung werden keine personalisierten Anzeigen geschaltet.
-                Sie können Ihre Einwilligung jederzeit widerrufen, indem Sie den
-                Browser-Cache und die Cookies löschen und die Seite neu besuchen.
-              </p>
-              <p style={{ marginTop: '0.75rem' }}>
-                Weitere Informationen zur Datennutzung durch Google:{' '}
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: '3px' }}
-                >
-                  policies.google.com/privacy
-                </a>
-              </p>
-              <p style={{ marginTop: '0.75rem' }}>
-                Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
+                Diese Website verwendet keine Tracking-Tools, Analytics-Dienste oder Werbeanzeigen.
+                Es werden keine Cookies zu Analyse- oder Marketingzwecken gesetzt.
               </p>
             </section>
 
             <section>
-              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>7. Google Analytics (geplant)</h2>
-              <p>
-                Wir planen den Einsatz von Google Analytics 4 zur Analyse des Nutzerverhaltens.
-                Bei Aktivierung werden Sie durch das Cookie-Banner um Einwilligung gebeten.
-              </p>
-              <p style={{ marginTop: '0.75rem' }}>
-                Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>8. Ihre Rechte</h2>
+              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>7. Ihre Rechte</h2>
               <p>Sie haben das Recht:</p>
               <ul style={{ paddingLeft: '1.25rem', marginTop: '0.5rem' }}>
                 <li>Auskunft über Ihre bei uns gespeicherten Daten zu erhalten (Art. 15 DSGVO)</li>
@@ -186,7 +153,7 @@ export default function DatenschutzPage() {
             </section>
 
             <section>
-              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
+              <h2 className="text-base font-bold mb-2" style={{ color: 'var(--fg)' }}>8. Beschwerderecht bei der Aufsichtsbehörde</h2>
               <p>
                 Sie haben das Recht, sich bei der zuständigen Datenschutzaufsichtsbehörde
                 zu beschweren. In Sachsen ist dies:
@@ -200,7 +167,7 @@ export default function DatenschutzPage() {
             </section>
 
             <p className="text-xs" style={{ color: 'var(--muted)' }}>
-              Letzte Aktualisierung: Mai 2026
+              Letzte Aktualisierung: August 2026
             </p>
           </div>
         </div>

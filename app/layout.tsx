@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Manrope, JetBrains_Mono, Fraunces } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import AnimationInit from '@/components/ui/AnimationInit'
-import { CookieConsent } from '@/components/ui/CookieConsent'
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -49,8 +47,6 @@ export const metadata: Metadata = {
   },
 }
 
-const ADSENSE_ID = 'ca-pub-7730346462920964'
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,22 +58,9 @@ export default function RootLayout({
       className={`${manrope.variable} ${jetbrainsMono.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* AdSense verification meta tag */}
-        <meta name="google-adsense-account" content={ADSENSE_ID} />
-      </head>
       <body className="antialiased">
         <AnimationInit />
         {children}
-        <CookieConsent />
-
-        {/* Google AdSense — loads after interaction, respects consent via AdSenseAd component */}
-        <Script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_ID}`}
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   )

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { getAllPosts } from '@/lib/blog'
-import { AdSenseAd } from '@/components/ui/AdSenseAd'
 
 export const metadata: Metadata = {
   title: 'Blog | DevOS Web — Tipps für Therapeuten & Coaches',
@@ -68,13 +67,6 @@ export default function BlogPage() {
             </p>
           </div>
         </section>
-
-        {/* AdSense — below header */}
-        <div className="py-4 px-4 sm:px-6" style={{ background: 'var(--bg-elevated)' }}>
-          <div className="max-w-4xl mx-auto">
-            <AdSenseAd slot="7319284650" format="horizontal" style={{ minHeight: '60px' }} />
-          </div>
-        </div>
 
         {/* Posts grid */}
         <section className="py-16 px-4 sm:px-6" style={{ background: 'var(--bg)' }}>

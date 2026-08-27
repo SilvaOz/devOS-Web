@@ -30,7 +30,9 @@ export default function ImpressumPage() {
               <p>
                 Oscar Silva<br />
                 DevOS Solutions<br />
-                Leipzig, Deutschland
+                GutsMuthsstraße 8<br />
+                04177 Leipzig<br />
+                Deutschland
               </p>
             </section>
 
@@ -148,7 +150,7 @@ export default function ImpressumPage() {
             </section>
 
             <p className="text-xs" style={{ color: 'var(--muted)' }}>
-              Letzte Aktualisierung: Mai 2026
+              Letzte Aktualisierung: August 2026
             </p>
           </div>
         </div>

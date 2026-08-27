@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import { getPost, getAllSlugs } from '@/lib/blog'
-import { AdSenseAd } from '@/components/ui/AdSenseAd'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -133,17 +132,6 @@ export default async function BlogPost({ params }: Props) {
             />
           </div>
         </article>
-
-        {/* AdSense — between article and CTA */}
-        <div className="py-6 px-4 sm:px-6" style={{ background: 'var(--bg)' }}>
-          <div className="max-w-3xl mx-auto">
-            <AdSenseAd
-              slot="2847391056"
-              format="auto"
-              style={{ minHeight: '90px' }}
-            />
-          </div>
-        </div>
 
         {/* CTA */}
         <section

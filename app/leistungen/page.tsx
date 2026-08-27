@@ -440,7 +440,7 @@ export default function LeistungenPage() {
                 { icon: 'Youtube' as IconName, title: 'YouTube-Kanal', text: 'Strategie, SEO-Optimierung und automatisierter Upload-Workflow.' },
                 { icon: 'Bot' as IconName, title: 'KI-Pipeline', text: 'Python + FFmpeg + Claude API — Content auf Knopfdruck.' },
                 { icon: 'Pin' as IconName, title: 'Pinterest', text: 'Rich Pins, automatische Pin-Erstellung aus Blog-Artikeln.' },
-                { icon: 'Globe' as IconName, title: 'Blog + SEO', text: 'Next.js Blog mit AdSense, Affiliate-Links und mehrsprachiger Strategie.' },
+                { icon: 'Globe' as IconName, title: 'Blog + SEO', text: 'Next.js Blog mit Affiliate-Links und mehrsprachiger SEO-Strategie.' },
               ]).map((item) => (
                 <div
                   key={item.title}
